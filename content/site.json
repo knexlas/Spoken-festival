@@ -18,7 +18,7 @@
       "name": "Antwerpen",
       "tagline": "Het koude spook van de Schelde — drones, koren en techno onder oud gewelf.",
       "dates": "31 OKT – 01 NOV 2026",
-      "venue": "Sint-Annakerk & Scheldekaaien",
+      "venue": "Blikfabriek",
       "addressLocality": "Antwerpen",
       "addressCountry": "BE",
       "twin": "Tegelijk in Kortrijk →",
@@ -45,7 +45,7 @@
         }
       ],
       "info": [
-        "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Sint-Annakerk en langs de donkere Scheldekaaien.",
+        "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Blikfabriek, een oude industriële hal aan de Krugerstraat.",
         "Eén nacht, drie podia, en een programma dat balanceert tussen rouw en extase. Dit is de koude kant van het spook."
       ],
       "facts": [
@@ -55,8 +55,8 @@
         { "k": "Leeftijd", "v": "16+" }
       ],
       "practical": [
-        { "k": "Locatie", "v": "Sint-Annakerk, Antwerpen" },
-        { "k": "Bereikbaar", "v": "Trein tot Antwerpen-Centraal, dan tram 7" },
+        { "k": "Locatie", "v": "Blikfabriek, Krugerstraat 232, Antwerpen" },
+        { "k": "Bereikbaar", "v": "Trein tot Antwerpen-Centraal, dan ca. 20 min wandelen of openbaar vervoer richting Zuid" },
         { "k": "Openingsuren", "v": "19:00 – 02:00" },
         { "k": "Eten & drank", "v": "Foodtrucks op de kaaien" },
         { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
@@ -74,7 +74,7 @@
       "name": "Kortrijk",
       "tagline": "Het warme spook van de Leie — soul, darkwave en disco bij smeulend kaarslicht.",
       "dates": "31 OKT – 01 NOV 2026",
-      "venue": "Budafabriek & Leieboorden",
+      "venue": "Buda",
       "addressLocality": "Kortrijk",
       "addressCountry": "BE",
       "twin": "← Tegelijk in Antwerpen",
@@ -101,7 +101,7 @@
         }
       ],
       "info": [
-        "Aan de andere kant van het land neemt Spoken bezit van de Budafabriek en de Leieboorden in Kortrijk.",
+        "Aan de andere kant van het land neemt Spoken bezit van Buda, het eilandje in de Leie in het hart van Kortrijk.",
         "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en dansbaar. De zachte tegenhanger van Antwerpen."
       ],
       "facts": [
@@ -111,7 +111,7 @@
         { "k": "Leeftijd", "v": "16+" }
       ],
       "practical": [
-        { "k": "Locatie", "v": "Budafabriek, Kortrijk" },
+        { "k": "Locatie", "v": "Buda, Broelkaai 6, Kortrijk" },
         { "k": "Bereikbaar", "v": "Trein tot Kortrijk, dan 10 min te voet" },
         { "k": "Openingsuren", "v": "19:00 – 02:00" },
         { "k": "Eten & drank", "v": "Warme keuken in de hal" },
