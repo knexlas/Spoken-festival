@@ -473,19 +473,5 @@ async function boot(){
 }
 boot();
 </script>
-
-<!-- Netlify Identity: catches invite / password-recovery links that land on the
-     homepage (…/#invite_token=…) so users can set their password, then sends them
-     to /admin/ after login. Required for the CMS invite flow. -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", function (user) {
-      if (!user) {
-        window.netlifyIdentity.on("login", function () { document.location.href = "/admin/"; });
-      }
-    });
-  }
-</script>
 </body>
 </html>

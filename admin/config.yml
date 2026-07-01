@@ -1,21 +1,27 @@
 # =============================================================================
 # Decap CMS — beheert content/site.json met een visuele editor op /admin
 #
-# BACKEND: standaard 'git-gateway' (Netlify Identity). Activeren op Netlify:
-#   1. Site settings → Identity → Enable Identity
-#   2. Identity → Services → Git Gateway → Enable
-#   3. Identity → Registration → "Invite only" (aanrader) en nodig Vonk en Zonen uit
-# Alternatief (zonder Identity) = GitHub-login: vervang het backend-blok door
-#   backend:
-#     name: github
-#     repo: <gebruiker>/<repo>
-#     branch: main
-# en stel in Netlify een GitHub OAuth-provider in (Site settings → Access control).
+# BACKEND: rechtstreekse GitHub-login (Netlify Identity/Git Gateway is
+# deprecated door Netlify en bleek niet betrouwbaar op nieuwe sites — zie
+# README.md voor de volledige uitleg). Editors loggen in met hun eigen
+# GitHub-account via "Login with GitHub"; ze moeten wel als collaborator op
+# de repo staan (Settings → Collaborators op github.com/knexlas/Spoken-festival).
+#
+# Vereist eenmalig in Netlify: Site configuration → Access & security → OAuth
+# → "Install provider" → GitHub, met een Client ID + Client Secret van een
+# GitHub OAuth App (github.com/settings/developers → New OAuth App):
+#   Homepage URL:            https://spokenfestival.netlify.app
+#   Authorization callback:  https://api.netlify.com/auth/done
+# (base_url/auth_endpoint hieronder laten Decap die Netlify-koppeling gebruiken
+# in plaats van zelf een OAuth-server te hoeven draaien.)
 # =============================================================================
 
 backend:
-  name: git-gateway
+  name: github
+  repo: knexlas/Spoken-festival
   branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Laat de editor lokaal testen via:  npx decap-server  (samen met de site op localhost)
 local_backend: true

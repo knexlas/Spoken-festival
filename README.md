@@ -102,23 +102,31 @@ Elke push naar GitHub (of straks elke CMS-bewerking) triggert een nieuwe build.
 
 ---
 
-## CMS — Decap (opgezet)
+## CMS — Decap (opgezet, GitHub-login)
 
 De visuele editor staat klaar op **`/admin`** (`admin/index.html` + `admin/config.yml`).
-Vonk en Zonen bewerken daar de hele site; bij opslaan schrijft Decap naar
-`content/site.json`, Netlify herbouwt, en de site (incl. SEO) is bijgewerkt.
+Vonk en Zonen bewerken daar de hele site; bij opslaan committeert Decap naar
+`content/site.json` op GitHub, Netlify herbouwt, en de site (incl. SEO) is bijgewerkt.
 
-**Activeren op Netlify (eenmalig):**
-1. Site live zetten (zie *Deployen op Netlify* hierboven).
-2. **Site settings → Identity → Enable Identity.**
-3. **Identity → Services → Git Gateway → Enable.**
-4. **Identity → Registration → Invite only** (aanrader), en nodig de mensen van
-   Vonk en Zonen uit via hun e-mail.
-5. Zij krijgen een mail, kiezen een wachtwoord en loggen in op
-   `https://www.spokenfestival.be/admin/`.
+> **Waarom GitHub-login i.p.v. Netlify Identity/Git Gateway?** Netlify heeft Identity
+> en Git Gateway in februari 2025 deprecated: bestaande koppelingen blijven werken,
+> maar nieuwe zijn niet aanbevolen en functionele bugs worden niet meer opgelost.
+> Bij het opzetten liep dit ook effectief vast met "Your Git Gateway backend is not
+> returning valid settings" — een bekend, onopgelost probleem bij nieuwe sites.
+> GitHub-login is de actief onderhouden weg.
 
-> Geen Netlify Identity willen gebruiken? In `admin/config.yml` staat (in commentaar)
-> het alternatief met **GitHub-login** beschreven.
+**Activeren (eenmalig):**
+1. **GitHub OAuth App aanmaken:** [github.com/settings/developers](https://github.com/settings/developers)
+   → *New OAuth App*:
+   - Homepage URL: `https://spokenfestival.netlify.app` (of je uiteindelijke domein)
+   - Authorization callback URL: `https://api.netlify.com/auth/done`
+   - Bewaar de **Client ID** en genereer een **Client Secret**.
+2. **In Netlify:** *Project configuration → Access & security → OAuth* → *Install provider*
+   → **GitHub** → plak Client ID + Client Secret.
+3. **Collaborators toevoegen:** op github.com/knexlas/Spoken-festival → *Settings →
+   Collaborators* → nodig de GitHub-accounts van Vonk en Zonen uit (schrijftoegang).
+   Zij hebben dus wel een (gratis) GitHub-account nodig.
+4. Zij gaan naar `https://www.spokenfestival.be/admin/` en klikken **"Login with GitHub"**.
 
 **Lokaal de editor testen** (zonder Netlify, met live opslaan naar je bestand):
 ```
