@@ -1,0 +1,14 @@
+{
+  "name": "spoken-festival",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SPOKEN — festivalwebsite (Antwerpen & Kortrijk). Static, content in content/site.json, SEO generated at build.",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "python -m http.server 8000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

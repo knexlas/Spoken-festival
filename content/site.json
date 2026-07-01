@@ -1,0 +1,128 @@
+{
+  "theme": "spectraal",
+  "festival": {
+    "name": "SPOKEN",
+    "year": "2026",
+    "siteUrl": "https://www.spokenfestival.be",
+    "organizer": "Vonk en Zonen",
+    "locale": "nl_BE",
+    "startDate": "2026-10-31T19:00:00+01:00",
+    "endDate": "2026-11-01T02:00:00+01:00",
+    "description": "SPOKEN — één nacht, twee steden. Een spookfestival tegelijk in Antwerpen en Kortrijk. Drones, koren, techno, soul, darkwave en disco.",
+    "shareImage": "/assets/og-image.jpg"
+  },
+  "cities": [
+    {
+      "id": "ant",
+      "side": "left",
+      "name": "Antwerpen",
+      "tagline": "Het koude spook van de Schelde — drones, koren en techno onder oud gewelf.",
+      "dates": "31 OKT – 01 NOV 2026",
+      "venue": "Sint-Annakerk & Scheldekaaien",
+      "addressLocality": "Antwerpen",
+      "addressCountry": "BE",
+      "twin": "Tegelijk in Kortrijk →",
+      "railCue": "verken →",
+      "ticketUrl": "#tickets",
+      "days": [
+        {
+          "day": "VR",
+          "date": "31 OKT",
+          "slots": [
+            { "id": "a1", "time": "20:00", "artist": "NOKTURN", "stage": "De Kathedraal", "genre": "Ambient / Drone", "blurb": "Een openingsritueel van trage, kerkelijke drones die zich traag onder het gewelf opbouwen." },
+            { "id": "a2", "time": "21:30", "artist": "Vesper Bloom", "stage": "Nevel", "genre": "Dream pop", "blurb": "Wazige gitaren en spookachtige vocalen die zich in de mist boven de kaaien verliezen." },
+            { "id": "a3", "time": "23:00", "artist": "GEISTLER", "stage": "Schelde Hal", "genre": "Techno", "blurb": "Strakke, donkere techno die de loods tot diep in de nacht laat trillen." }
+          ]
+        },
+        {
+          "day": "ZA",
+          "date": "01 NOV",
+          "slots": [
+            { "id": "a4", "time": "19:30", "artist": "Hollow Choir", "stage": "De Kathedraal", "genre": "Koor / Experimenteel", "blurb": "Een twintigkoppig spookkoor vult de volledige ruimte met overlappende stemmen." },
+            { "id": "a5", "time": "21:00", "artist": "MOORLAND", "stage": "Nevel", "genre": "Post-rock", "blurb": "Cinematische opbouw richting een verpletterende, mistige climax." },
+            { "id": "a6", "time": "22:30", "artist": "Static Séance", "stage": "Schelde Hal", "genre": "Industrial", "blurb": "Ruwe machineritmes verweven met opgenomen seance-samples." }
+          ]
+        }
+      ],
+      "info": [
+        "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Sint-Annakerk en langs de donkere Scheldekaaien.",
+        "Eén nacht, drie podia, en een programma dat balanceert tussen rouw en extase. Dit is de koude kant van het spook."
+      ],
+      "facts": [
+        { "k": "Steden", "v": "2 / 1 nacht" },
+        { "k": "Acts", "v": "6" },
+        { "k": "Podia", "v": "3" },
+        { "k": "Leeftijd", "v": "16+" }
+      ],
+      "practical": [
+        { "k": "Locatie", "v": "Sint-Annakerk, Antwerpen" },
+        { "k": "Bereikbaar", "v": "Trein tot Antwerpen-Centraal, dan tram 7" },
+        { "k": "Openingsuren", "v": "19:00 – 02:00" },
+        { "k": "Eten & drank", "v": "Foodtrucks op de kaaien" },
+        { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
+        { "k": "Toegankelijk", "v": "Rolstoeltoegankelijk" }
+      ],
+      "tickets": [
+        { "tier": "Dagticket", "price": "€39", "note": "Vrijdag óf zaterdag" },
+        { "tier": "Combiticket", "price": "€69", "note": "Beide avonden" },
+        { "tier": "Spookpas", "price": "€119", "note": "Combi + late-night + locker" }
+      ]
+    },
+    {
+      "id": "kor",
+      "side": "right",
+      "name": "Kortrijk",
+      "tagline": "Het warme spook van de Leie — soul, darkwave en disco bij smeulend kaarslicht.",
+      "dates": "31 OKT – 01 NOV 2026",
+      "venue": "Budafabriek & Leieboorden",
+      "addressLocality": "Kortrijk",
+      "addressCountry": "BE",
+      "twin": "← Tegelijk in Antwerpen",
+      "railCue": "← verken",
+      "ticketUrl": "#tickets",
+      "days": [
+        {
+          "day": "VR",
+          "date": "31 OKT",
+          "slots": [
+            { "id": "k1", "time": "20:00", "artist": "Emberlight", "stage": "Gloed", "genre": "Neo-soul", "blurb": "Warme, smeulende soul bij honderden kaarsen in de oude fabriekshal." },
+            { "id": "k2", "time": "21:30", "artist": "WOLFSKIN", "stage": "Buda Fabriek", "genre": "Darkwave", "blurb": "Koude synths met een gloeiend, kloppend hart eronder." },
+            { "id": "k3", "time": "23:00", "artist": "Sodium Dreams", "stage": "Leie Loods", "genre": "House", "blurb": "Oranje nachtlampjes en deep house langs het water." }
+          ]
+        },
+        {
+          "day": "ZA",
+          "date": "01 NOV",
+          "slots": [
+            { "id": "k4", "time": "19:30", "artist": "Maréchal", "stage": "Gloed", "genre": "Chanson noir", "blurb": "Donkere chanson met een fluwelen stem die je de rillingen bezorgt." },
+            { "id": "k5", "time": "21:00", "artist": "ASHEN", "stage": "Buda Fabriek", "genre": "Synthwave", "blurb": "Gloeiende retro-synths en dikke neonmist." },
+            { "id": "k6", "time": "22:30", "artist": "Lantaarn", "stage": "Leie Loods", "genre": "Disco / Funk", "blurb": "Warme discobollen die de duisternis verjagen tot sluitingstijd." }
+          ]
+        }
+      ],
+      "info": [
+        "Aan de andere kant van het land neemt Spoken bezit van de Budafabriek en de Leieboorden in Kortrijk.",
+        "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en dansbaar. De zachte tegenhanger van Antwerpen."
+      ],
+      "facts": [
+        { "k": "Steden", "v": "2 / 1 nacht" },
+        { "k": "Acts", "v": "6" },
+        { "k": "Podia", "v": "3" },
+        { "k": "Leeftijd", "v": "16+" }
+      ],
+      "practical": [
+        { "k": "Locatie", "v": "Budafabriek, Kortrijk" },
+        { "k": "Bereikbaar", "v": "Trein tot Kortrijk, dan 10 min te voet" },
+        { "k": "Openingsuren", "v": "19:00 – 02:00" },
+        { "k": "Eten & drank", "v": "Warme keuken in de hal" },
+        { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
+        { "k": "Toegankelijk", "v": "Rolstoeltoegankelijk" }
+      ],
+      "tickets": [
+        { "tier": "Dagticket", "price": "€39", "note": "Vrijdag óf zaterdag" },
+        { "tier": "Combiticket", "price": "€69", "note": "Beide avonden" },
+        { "tier": "Spookpas", "price": "€119", "note": "Combi + late-night + locker" }
+      ]
+    }
+  ]
+}

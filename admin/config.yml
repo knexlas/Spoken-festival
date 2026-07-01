@@ -1,0 +1,144 @@
+# =============================================================================
+# Decap CMS — beheert content/site.json met een visuele editor op /admin
+#
+# BACKEND: standaard 'git-gateway' (Netlify Identity). Activeren op Netlify:
+#   1. Site settings → Identity → Enable Identity
+#   2. Identity → Services → Git Gateway → Enable
+#   3. Identity → Registration → "Invite only" (aanrader) en nodig Vonk en Zonen uit
+# Alternatief (zonder Identity) = GitHub-login: vervang het backend-blok door
+#   backend:
+#     name: github
+#     repo: <gebruiker>/<repo>
+#     branch: main
+# en stel in Netlify een GitHub OAuth-provider in (Site settings → Access control).
+# =============================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Laat de editor lokaal testen via:  npx decap-server  (samen met de site op localhost)
+local_backend: true
+
+# Geüploade afbeeldingen komen hier terecht (en worden mee gedeployed).
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+# Publiceren gaat rechtstreeks (geen aparte review-stap). Zet onderstaande aan
+# voor een review-workflow via pull requests:
+# publish_mode: editorial_workflow
+
+locale: "nl"
+
+collections:
+  - name: "site"
+    label: "Festivalwebsite"
+    delete: false
+    files:
+      - name: "content"
+        label: "Alle inhoud"
+        file: "content/site.json"
+        description: "De volledige site: thema, festivalgegevens en de twee steden."
+        fields:
+          - label: "Kleurthema"
+            name: "theme"
+            widget: "select"
+            hint: "Sfeerpalet voor de hele site."
+            options:
+              - { label: "Spectraal", value: "spectraal" }
+              - { label: "Necropolis", value: "necropolis" }
+              - { label: "Maanlicht", value: "maanlicht" }
+              - { label: "Vagevuur", value: "vagevuur" }
+              - { label: "Ectoplasma", value: "ectoplasma" }
+              - { label: "Nevel", value: "nevel" }
+              - { label: "Nachtschade", value: "nachtschade" }
+              - { label: "Wierook", value: "wierook" }
+              - { label: "As", value: "as" }
+              - { label: "Sint-Elmsvuur", value: "sintelmsvuur" }
+
+          - label: "Festival"
+            name: "festival"
+            widget: "object"
+            fields:
+              - { label: "Naam", name: "name", widget: "string" }
+              - { label: "Jaar", name: "year", widget: "string" }
+              - { label: "Website-URL", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be" }
+              - { label: "Organisator", name: "organizer", widget: "string" }
+              - { label: "Taal/regio (og:locale)", name: "locale", widget: "string", required: false }
+              - { label: "Startdatum & -tijd", name: "startDate", widget: "datetime", picker_utc: false }
+              - { label: "Einddatum & -tijd", name: "endDate", widget: "datetime", picker_utc: false }
+              - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text" }
+              - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Toont bij delen op social media." }
+
+          - label: "Steden"
+            name: "cities"
+            label_singular: "Stad"
+            widget: "list"
+            hint: "Twee steden. Voeg geen steden toe of verwijder ze niet — pas enkel de inhoud aan."
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "ID", name: "id", widget: "hidden" }
+              - { label: "Zijde", name: "side", widget: "hidden" }
+              - { label: "Naam", name: "name", widget: "string" }
+              - { label: "Tagline", name: "tagline", widget: "text" }
+              - { label: "Datums (tekst)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
+              - { label: "Locatie / venue", name: "venue", widget: "string" }
+              - { label: "Stad (adres)", name: "addressLocality", widget: "string" }
+              - { label: "Landcode", name: "addressCountry", widget: "string", hint: "Bv. BE" }
+              - { label: "Verwijzing andere stad", name: "twin", widget: "string" }
+              - { label: "Rail-cue", name: "railCue", widget: "string" }
+              - { label: "Ticket-link", name: "ticketUrl", widget: "string" }
+
+              - label: "Programma (dagen)"
+                name: "days"
+                label_singular: "Dag"
+                widget: "list"
+                summary: "{{fields.day}} {{fields.date}}"
+                fields:
+                  - { label: "Dag", name: "day", widget: "string", hint: "Bv. VR" }
+                  - { label: "Datum", name: "date", widget: "string", hint: "Bv. 31 OKT" }
+                  - label: "Optredens"
+                    name: "slots"
+                    label_singular: "Optreden"
+                    widget: "list"
+                    summary: "{{fields.time}} — {{fields.artist}}"
+                    fields:
+                      - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
+                      - { label: "Artiest", name: "artist", widget: "string" }
+                      - { label: "Podium", name: "stage", widget: "string" }
+                      - { label: "Genre", name: "genre", widget: "string" }
+                      - { label: "Omschrijving", name: "blurb", widget: "text" }
+
+              - label: "Info-paragrafen"
+                name: "info"
+                label_singular: "Paragraaf"
+                widget: "list"
+                field: { label: "Paragraaf", name: "paragraph", widget: "text" }
+
+              - label: "Kerncijfers"
+                name: "facts"
+                label_singular: "Cijfer"
+                widget: "list"
+                summary: "{{fields.k}}: {{fields.v}}"
+                fields:
+                  - { label: "Label", name: "k", widget: "string" }
+                  - { label: "Waarde", name: "v", widget: "string" }
+
+              - label: "Praktisch"
+                name: "practical"
+                label_singular: "Item"
+                widget: "list"
+                summary: "{{fields.k}}: {{fields.v}}"
+                fields:
+                  - { label: "Label", name: "k", widget: "string" }
+                  - { label: "Waarde", name: "v", widget: "string" }
+
+              - label: "Tickets"
+                name: "tickets"
+                label_singular: "Ticket"
+                widget: "list"
+                summary: "{{fields.tier}} — {{fields.price}}"
+                fields:
+                  - { label: "Type", name: "tier", widget: "string" }
+                  - { label: "Prijs", name: "price", widget: "string", hint: "Bv. €39" }
+                  - { label: "Toelichting", name: "note", widget: "string" }
