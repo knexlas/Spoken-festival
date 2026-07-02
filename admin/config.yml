@@ -1,5 +1,8 @@
 # =============================================================================
-# Decap CMS — beheert content/site.json met een visuele editor op /admin
+# Decap CMS — beheert content/festival.json, content/antwerpen.json en
+# content/kortrijk.json met een visuele editor op /admin. Drie aparte
+# bestanden (i.p.v. één grote) zodat de editor drie overzichtelijke items
+# toont: Festival-instellingen, Antwerpen, Kortrijk.
 #
 # BACKEND: rechtstreekse GitHub-login (Netlify Identity/Git Gateway is
 # deprecated door Netlify en bleek niet betrouwbaar op nieuwe sites — zie
@@ -36,15 +39,91 @@ public_folder: "/assets/uploads"
 
 locale: "nl"
 
+# Herbruikbare veld-structuur voor een stad (YAML-anker) — Antwerpen en
+# Kortrijk hebben exact dezelfde opbouw, dus die wordt hier één keer
+# gedefinieerd en hieronder tweemaal hergebruikt (*city_fields).
+city_fields: &city_fields
+  - { label: "ID", name: "id", widget: "hidden" }
+  - { label: "Zijde", name: "side", widget: "hidden" }
+  - { label: "Naam", name: "name", widget: "string" }
+  - { label: "Tagline", name: "tagline", widget: "text" }
+  - { label: "Datums (tekst)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
+  - { label: "Locatie / venue", name: "venue", widget: "string" }
+  - { label: "Stad (adres)", name: "addressLocality", widget: "string" }
+  - { label: "Landcode", name: "addressCountry", widget: "string", hint: "Bv. BE" }
+  - { label: "Verwijzing andere stad", name: "twin", widget: "string" }
+  - { label: "Rail-cue", name: "railCue", widget: "string" }
+  - { label: "Ticket-link", name: "ticketUrl", widget: "string" }
+
+  - label: "Programma (dagen)"
+    name: "days"
+    label_singular: "Dag"
+    widget: "list"
+    collapsed: true
+    summary: "{{fields.day}} {{fields.date}}"
+    fields:
+      - { label: "Dag", name: "day", widget: "string", hint: "Bv. VR" }
+      - { label: "Datum", name: "date", widget: "string", hint: "Bv. 31 OKT" }
+      - label: "Optredens"
+        name: "slots"
+        label_singular: "Optreden"
+        widget: "list"
+        collapsed: true
+        summary: "{{fields.time}} — {{fields.artist}}"
+        fields:
+          - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
+          - { label: "Artiest", name: "artist", widget: "string" }
+          - { label: "Podium", name: "stage", widget: "string" }
+          - { label: "Genre", name: "genre", widget: "string" }
+          - { label: "Omschrijving", name: "blurb", widget: "text" }
+
+  - label: "Info-paragrafen"
+    name: "info"
+    label_singular: "Paragraaf"
+    widget: "list"
+    collapsed: true
+    field: { label: "Paragraaf", name: "paragraph", widget: "text" }
+
+  - label: "Kerncijfers"
+    name: "facts"
+    label_singular: "Cijfer"
+    widget: "list"
+    collapsed: true
+    summary: "{{fields.k}}: {{fields.v}}"
+    fields:
+      - { label: "Label", name: "k", widget: "string" }
+      - { label: "Waarde", name: "v", widget: "string" }
+
+  - label: "Praktisch"
+    name: "practical"
+    label_singular: "Item"
+    widget: "list"
+    collapsed: true
+    summary: "{{fields.k}}: {{fields.v}}"
+    fields:
+      - { label: "Label", name: "k", widget: "string" }
+      - { label: "Waarde", name: "v", widget: "string" }
+
+  - label: "Tickets"
+    name: "tickets"
+    label_singular: "Ticket"
+    widget: "list"
+    collapsed: true
+    summary: "{{fields.tier}} — {{fields.price}}"
+    fields:
+      - { label: "Type", name: "tier", widget: "string" }
+      - { label: "Prijs", name: "price", widget: "string", hint: "Bv. €39" }
+      - { label: "Toelichting", name: "note", widget: "string" }
+
 collections:
   - name: "site"
     label: "Festivalwebsite"
     delete: false
     files:
-      - name: "content"
-        label: "Alle inhoud"
-        file: "content/site.json"
-        description: "De volledige site: thema, festivalgegevens en de twee steden."
+      - name: "festival"
+        label: "Festival-instellingen"
+        file: "content/festival.json"
+        description: "Thema, naam, datums en SEO-gegevens voor de hele site."
         fields:
           - label: "Kleurthema"
             name: "theme"
@@ -76,75 +155,14 @@ collections:
               - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text" }
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Toont bij delen op social media." }
 
-          - label: "Steden"
-            name: "cities"
-            label_singular: "Stad"
-            widget: "list"
-            hint: "Twee steden. Voeg geen steden toe of verwijder ze niet — pas enkel de inhoud aan."
-            summary: "{{fields.name}}"
-            fields:
-              - { label: "ID", name: "id", widget: "hidden" }
-              - { label: "Zijde", name: "side", widget: "hidden" }
-              - { label: "Naam", name: "name", widget: "string" }
-              - { label: "Tagline", name: "tagline", widget: "text" }
-              - { label: "Datums (tekst)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
-              - { label: "Locatie / venue", name: "venue", widget: "string" }
-              - { label: "Stad (adres)", name: "addressLocality", widget: "string" }
-              - { label: "Landcode", name: "addressCountry", widget: "string", hint: "Bv. BE" }
-              - { label: "Verwijzing andere stad", name: "twin", widget: "string" }
-              - { label: "Rail-cue", name: "railCue", widget: "string" }
-              - { label: "Ticket-link", name: "ticketUrl", widget: "string" }
+      - name: "antwerpen"
+        label: "Antwerpen"
+        file: "content/antwerpen.json"
+        description: "Alles voor de Antwerpse editie: programma, info, praktisch en tickets."
+        fields: *city_fields
 
-              - label: "Programma (dagen)"
-                name: "days"
-                label_singular: "Dag"
-                widget: "list"
-                summary: "{{fields.day}} {{fields.date}}"
-                fields:
-                  - { label: "Dag", name: "day", widget: "string", hint: "Bv. VR" }
-                  - { label: "Datum", name: "date", widget: "string", hint: "Bv. 31 OKT" }
-                  - label: "Optredens"
-                    name: "slots"
-                    label_singular: "Optreden"
-                    widget: "list"
-                    summary: "{{fields.time}} — {{fields.artist}}"
-                    fields:
-                      - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
-                      - { label: "Artiest", name: "artist", widget: "string" }
-                      - { label: "Podium", name: "stage", widget: "string" }
-                      - { label: "Genre", name: "genre", widget: "string" }
-                      - { label: "Omschrijving", name: "blurb", widget: "text" }
-
-              - label: "Info-paragrafen"
-                name: "info"
-                label_singular: "Paragraaf"
-                widget: "list"
-                field: { label: "Paragraaf", name: "paragraph", widget: "text" }
-
-              - label: "Kerncijfers"
-                name: "facts"
-                label_singular: "Cijfer"
-                widget: "list"
-                summary: "{{fields.k}}: {{fields.v}}"
-                fields:
-                  - { label: "Label", name: "k", widget: "string" }
-                  - { label: "Waarde", name: "v", widget: "string" }
-
-              - label: "Praktisch"
-                name: "practical"
-                label_singular: "Item"
-                widget: "list"
-                summary: "{{fields.k}}: {{fields.v}}"
-                fields:
-                  - { label: "Label", name: "k", widget: "string" }
-                  - { label: "Waarde", name: "v", widget: "string" }
-
-              - label: "Tickets"
-                name: "tickets"
-                label_singular: "Ticket"
-                widget: "list"
-                summary: "{{fields.tier}} — {{fields.price}}"
-                fields:
-                  - { label: "Type", name: "tier", widget: "string" }
-                  - { label: "Prijs", name: "price", widget: "string", hint: "Bv. €39" }
-                  - { label: "Toelichting", name: "note", widget: "string" }
+      - name: "kortrijk"
+        label: "Kortrijk"
+        file: "content/kortrijk.json"
+        description: "Alles voor de Kortrijkse editie: programma, info, praktisch en tickets."
+        fields: *city_fields

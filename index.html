@@ -240,9 +240,9 @@ import { renderPanels } from './assets/render.mjs';
    SITE_DATA — the festival content. NO LONGER hard-coded here. Two sources:
      • production: build.mjs inlines it as window.__SITE__ and pre-renders the
        panels into the HTML (best for SEO + works offline).
-     • development: if no inlined data, it is fetched from content/site.json.
-   That JSON file is the single thing the organizers (Vonk en Zonen) edit, and
-   is exactly the file a CMS like Decap reads & writes later.
+     • development: if no inlined data, it is fetched from content/*.json.
+   Those JSON files (festival.json, antwerpen.json, kortrijk.json) are exactly
+   what the organizers (Vonk en Zonen) edit via the Decap CMS at /admin.
    ========================================================================= */
 let SITE_DATA = window.__SITE__ || null;
 
@@ -440,7 +440,7 @@ function syncHint(){
 }
 mq.addEventListener('change', () => { state.active = null; applySplit(); syncHint(); });
 
-/* boot — load content from content/site.json, then render + init */
+/* boot — load content/festival.json + content/antwerpen.json + content/kortrijk.json, then render + init */
 document.querySelector('[data-look="seance"]').classList.add('on');
 document.querySelector('[data-mech="follow"]').classList.add('on');
 
@@ -450,12 +450,17 @@ async function boot(){
 
   if (!SITE_DATA) {
     try {
-      const res = await fetch('content/site.json', { cache: 'no-store' });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      SITE_DATA = await res.json();
+      const [fest, ant, kor] = await Promise.all(
+        ['festival.json', 'antwerpen.json', 'kortrijk.json'].map(async name => {
+          const res = await fetch('content/' + name, { cache: 'no-store' });
+          if (!res.ok) throw new Error(name + ': HTTP ' + res.status);
+          return res.json();
+        })
+      );
+      SITE_DATA = { theme: fest.theme, festival: fest.festival, cities: [ant, kor] };
     } catch (err) {
       stage.innerHTML = '<div style="margin:auto;max-width:46ch;padding:40px;font-family:var(--f-mono);font-size:13px;line-height:1.7;color:#bbb;text-align:center;">' +
-        'Kon <b>content/site.json</b> niet laden.<br><br>Open deze site via een (lokale) webserver, niet rechtstreeks vanaf het bestand. ' +
+        'Kon de inhoud uit <b>content/</b> niet laden.<br><br>Open deze site via een (lokale) webserver, niet rechtstreeks vanaf het bestand. ' +
         'Bv. in deze map:<br><code style="color:#7fd4c1;">python -m http.server</code><br>en ga naar <code style="color:#7fd4c1;">http://localhost:8000</code>.<br><br>' +
         '<span style="color:#666;">(' + err.message + ')</span></div>';
       return;

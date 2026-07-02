@@ -6,17 +6,23 @@ Statische website, geen build-stap, geen framework. Klaar om later een CMS op te
 ## Structuur
 
 ```
-index.html          ← bronpagina (layout, sfeer, interactie, paletten)
-content/site.json   ← ALLE inhoud die de organisatie bewerkt (lineup, tickets, info, SEO-velden…)
-assets/render.mjs   ← rendering, gedeeld door de browser én de build
-build.mjs           ← bouwt dist/ (pre-rendering + SEO) uit site.json
-netlify.toml        ← Netlify: build = `node build.mjs`, publiceer dist/
-dist/               ← gegenereerde productieversie (NIET met de hand bewerken)
-screenshots/        ← referentiebeelden
+index.html              ← bronpagina (layout, sfeer, interactie, paletten)
+content/festival.json   ← thema + festivalgegevens/SEO-velden (bewerkt de organisatie)
+content/antwerpen.json  ← alles voor Antwerpen: programma, info, praktisch, tickets
+content/kortrijk.json   ← alles voor Kortrijk: idem
+assets/render.mjs       ← rendering, gedeeld door de browser én de build
+build.mjs               ← bouwt dist/ (pre-rendering + SEO) uit content/*.json
+netlify.toml            ← Netlify: build = `node build.mjs`, publiceer dist/
+dist/                   ← gegenereerde productieversie (NIET met de hand bewerken)
+screenshots/            ← referentiebeelden
 ```
 
-- **Inhoud aanpassen** = `content/site.json` bewerken. De pagina laadt dit bestand bij het openen.
-- **Kleurenthema kiezen** = het veld `"theme"` bovenaan `site.json` (bv. `"necropolis"`),
+Drie aparte bestanden i.p.v. één grote: zo toont de CMS-editor drie overzichtelijke
+items (Festival-instellingen, Antwerpen, Kortrijk) in plaats van één lange lijst.
+
+- **Inhoud aanpassen** = de juiste `content/*.json` bewerken (of via de CMS op `/admin`).
+  De pagina laadt deze bestanden bij het openen.
+- **Kleurenthema kiezen** = het veld `"theme"` in `content/festival.json` (bv. `"necropolis"`),
   óf live uitproberen via de paletkiezer rechtsboven op de site. De 10 namen staan in
   `index.html` onder `const PALETTES` (spectraal, necropolis, maanlicht, vagevuur,
   ectoplasma, nevel, nachtschade, wierook, as, sint-elmsvuur).
@@ -24,7 +30,8 @@ screenshots/        ← referentiebeelden
 ## SEO — automatisch gegenereerd
 
 Vindbaarheid is ingebouwd en blijft synchroon met de inhoud. `node build.mjs` leest
-`content/site.json` en genereert in `dist/`:
+`content/festival.json`, `content/antwerpen.json` en `content/kortrijk.json`, en
+genereert in `dist/`:
 
 - **Pre-rendered HTML** — de lineup/tekst staat in de HTML zelf (niet enkel via JavaScript),
   zodat Google en social-bots de inhoud meteen zien.
@@ -33,7 +40,7 @@ Vindbaarheid is ingebouwd en blijft synchroon met de inhoud. `node build.mjs` le
 - **Open Graph + Twitter-cards** → nette previews bij delen.
 - **sitemap.xml** + **robots.txt** + **canonical** (www).
 
-> **Later iets wijzigen?** Ja — pas gewoon `content/site.json` aan (of straks via het CMS).
+> **Later iets wijzigen?** Ja — pas gewoon de juiste `content/*.json` aan (of via de CMS).
 > Bij elke Netlify-deploy draait de build opnieuw en worden titel, beschrijving, JSON-LD,
 > OG-tags en sitemap **automatisch** opnieuw gegenereerd. Je hoeft nooit SEO-tags met de
 > hand bij te werken. (Voeg later nog een echte `assets/og-image.jpg` van 1200×630 toe
@@ -48,8 +55,8 @@ python -m http.server 8000 --directory dist
 
 ## Lokaal bekijken (bron, snelste voor inhoud bewerken)
 
-`site.json` wordt via `fetch()` geladen, dus de site moet via een webserver draaien
-(niet rechtstreeks `index.html` dubbelklikken). In deze map:
+De `content/*.json`-bestanden worden via `fetch()` geladen, dus de site moet via een
+webserver draaien (niet rechtstreeks `index.html` dubbelklikken). In deze map:
 
 ```
 python -m http.server
@@ -105,8 +112,11 @@ Elke push naar GitHub (of straks elke CMS-bewerking) triggert een nieuwe build.
 ## CMS — Decap (opgezet, GitHub-login)
 
 De visuele editor staat klaar op **`/admin`** (`admin/index.html` + `admin/config.yml`).
-Vonk en Zonen bewerken daar de hele site; bij opslaan committeert Decap naar
-`content/site.json` op GitHub, Netlify herbouwt, en de site (incl. SEO) is bijgewerkt.
+De editor toont drie items — **Festival-instellingen**, **Antwerpen**, **Kortrijk** —
+elk met ingeklapte lijsten voor optredens/tickets/etc. (klik om open te vouwen), zodat
+je nooit één lange pagina met alles tegelijk uitgeklapt ziet. Bij opslaan committeert
+Decap naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de site
+(incl. SEO) is bijgewerkt.
 
 > **Waarom GitHub-login i.p.v. Netlify Identity/Git Gateway?** Netlify heeft Identity
 > en Git Gateway in februari 2025 deprecated: bestaande koppelingen blijven werken,
@@ -134,7 +144,7 @@ npx decap-server          # in één terminal
 python -m http.server 8000 # in een andere
 ```
 Ga naar `http://localhost:8000/admin/` — `local_backend: true` laat je dan
-rechtstreeks `content/site.json` bewerken.
+rechtstreeks de `content/*.json`-bestanden bewerken.
 
 **Afbeeldingen** die in de editor geüpload worden, komen in `assets/uploads/`
 en worden mee gedeployed.

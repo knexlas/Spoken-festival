@@ -1,0 +1,56 @@
+{
+  "id": "ant",
+  "side": "left",
+  "name": "Antwerpen",
+  "tagline": "Het koude spook van de Schelde — drones, koren en techno onder oud gewelf.",
+  "dates": "31 OKT – 01 NOV 2026",
+  "venue": "Blikfabriek",
+  "addressLocality": "Antwerpen",
+  "addressCountry": "BE",
+  "twin": "Tegelijk in Kortrijk →",
+  "railCue": "verken →",
+  "ticketUrl": "#tickets",
+  "days": [
+    {
+      "day": "VR",
+      "date": "31 OKT",
+      "slots": [
+        { "id": "a1", "time": "20:00", "artist": "NOKTURN", "stage": "De Kathedraal", "genre": "Ambient / Drone", "blurb": "Een openingsritueel van trage, kerkelijke drones die zich traag onder het gewelf opbouwen." },
+        { "id": "a2", "time": "21:30", "artist": "Vesper Bloom", "stage": "Nevel", "genre": "Dream pop", "blurb": "Wazige gitaren en spookachtige vocalen die zich in de mist boven de kaaien verliezen." },
+        { "id": "a3", "time": "23:00", "artist": "GEISTLER", "stage": "Schelde Hal", "genre": "Techno", "blurb": "Strakke, donkere techno die de loods tot diep in de nacht laat trillen." }
+      ]
+    },
+    {
+      "day": "ZA",
+      "date": "01 NOV",
+      "slots": [
+        { "id": "a4", "time": "19:30", "artist": "Hollow Choir", "stage": "De Kathedraal", "genre": "Koor / Experimenteel", "blurb": "Een twintigkoppig spookkoor vult de volledige ruimte met overlappende stemmen." },
+        { "id": "a5", "time": "21:00", "artist": "MOORLAND", "stage": "Nevel", "genre": "Post-rock", "blurb": "Cinematische opbouw richting een verpletterende, mistige climax." },
+        { "id": "a6", "time": "22:30", "artist": "Static Séance", "stage": "Schelde Hal", "genre": "Industrial", "blurb": "Ruwe machineritmes verweven met opgenomen seance-samples." }
+      ]
+    }
+  ],
+  "info": [
+    "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Blikfabriek, een oude industriële hal aan de Krugerstraat.",
+    "Eén nacht, drie podia, en een programma dat balanceert tussen rouw en extase. Dit is de koude kant van het spook."
+  ],
+  "facts": [
+    { "k": "Steden", "v": "2 / 1 nacht" },
+    { "k": "Acts", "v": "6" },
+    { "k": "Podia", "v": "3" },
+    { "k": "Leeftijd", "v": "16+" }
+  ],
+  "practical": [
+    { "k": "Locatie", "v": "Blikfabriek, Krugerstraat 232, Antwerpen" },
+    { "k": "Bereikbaar", "v": "Trein tot Antwerpen-Centraal, dan ca. 20 min wandelen of openbaar vervoer richting Zuid" },
+    { "k": "Openingsuren", "v": "19:00 – 02:00" },
+    { "k": "Eten & drank", "v": "Foodtrucks op de kaaien" },
+    { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
+    { "k": "Toegankelijk", "v": "Rolstoeltoegankelijk" }
+  ],
+  "tickets": [
+    { "tier": "Dagticket", "price": "€39", "note": "Vrijdag óf zaterdag" },
+    { "tier": "Combiticket", "price": "€69", "note": "Beide avonden" },
+    { "tier": "Spookpas", "price": "€119", "note": "Combi + late-night + locker" }
+  ]
+}

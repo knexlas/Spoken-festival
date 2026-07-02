@@ -1,12 +1,14 @@
 /* =========================================================================
-   build.mjs — turns the source (index.html + content/site.json) into a
+   build.mjs — turns the source (index.html + content/*.json) into a
    production /dist that is fast AND findable:
      • pre-renders the city panels into the HTML (crawlers see real content)
      • inlines the data so the page needs no fetch
      • injects canonical + Open Graph/Twitter + JSON-LD MusicEvent (per city)
      • writes sitemap.xml + robots.txt
-   Everything is derived from content/site.json, so editing content (by hand or
-   later via the CMS) regenerates the SEO automatically — nothing to hand-tune.
+   Content lives in three CMS-friendly files (content/festival.json,
+   content/antwerpen.json, content/kortrijk.json) so the Decap editor shows
+   three focused entries instead of one giant one. Editing any of them (by
+   hand or via the CMS) regenerates the SEO automatically — nothing to hand-tune.
 
    Run:  node build.mjs      Output:  dist/
    ========================================================================= */
@@ -18,7 +20,9 @@ import { renderPanels, esc } from './assets/render.mjs';
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 
-const data = JSON.parse(readFileSync(join(root, 'content', 'site.json'), 'utf8'));
+const readJson = name => JSON.parse(readFileSync(join(root, 'content', name), 'utf8'));
+const { theme, festival } = readJson('festival.json');
+const data = { theme, festival, cities: [readJson('antwerpen.json'), readJson('kortrijk.json')] };
 const f = data.festival;
 const base = (f.siteUrl || '').replace(/\/$/, '');
 

@@ -1,5 +1,5 @@
 # Netlify configuration for SPOKEN
-# Build regenerates dist/ (pre-rendered HTML + SEO) from content/site.json.
+# Build regenerates dist/ (pre-rendered HTML + SEO) from content/*.json.
 
 [build]
   command = "node build.mjs"

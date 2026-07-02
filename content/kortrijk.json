@@ -1,0 +1,56 @@
+{
+  "id": "kor",
+  "side": "right",
+  "name": "Kortrijk",
+  "tagline": "Het warme spook van de Leie — soul, darkwave en disco bij smeulend kaarslicht.",
+  "dates": "31 OKT – 01 NOV 2026",
+  "venue": "Buda",
+  "addressLocality": "Kortrijk",
+  "addressCountry": "BE",
+  "twin": "← Tegelijk in Antwerpen",
+  "railCue": "← verken",
+  "ticketUrl": "#tickets",
+  "days": [
+    {
+      "day": "VR",
+      "date": "31 OKT",
+      "slots": [
+        { "id": "k1", "time": "20:00", "artist": "Emberlight", "stage": "Gloed", "genre": "Neo-soul", "blurb": "Warme, smeulende soul bij honderden kaarsen in de oude fabriekshal." },
+        { "id": "k2", "time": "21:30", "artist": "WOLFSKIN", "stage": "Buda Fabriek", "genre": "Darkwave", "blurb": "Koude synths met een gloeiend, kloppend hart eronder." },
+        { "id": "k3", "time": "23:00", "artist": "Sodium Dreams", "stage": "Leie Loods", "genre": "House", "blurb": "Oranje nachtlampjes en deep house langs het water." }
+      ]
+    },
+    {
+      "day": "ZA",
+      "date": "01 NOV",
+      "slots": [
+        { "id": "k4", "time": "19:30", "artist": "Maréchal", "stage": "Gloed", "genre": "Chanson noir", "blurb": "Donkere chanson met een fluwelen stem die je de rillingen bezorgt." },
+        { "id": "k5", "time": "21:00", "artist": "ASHEN", "stage": "Buda Fabriek", "genre": "Synthwave", "blurb": "Gloeiende retro-synths en dikke neonmist." },
+        { "id": "k6", "time": "22:30", "artist": "Lantaarn", "stage": "Leie Loods", "genre": "Disco / Funk", "blurb": "Warme discobollen die de duisternis verjagen tot sluitingstijd." }
+      ]
+    }
+  ],
+  "info": [
+    "Aan de andere kant van het land neemt Spoken bezit van Buda, het eilandje in de Leie in het hart van Kortrijk.",
+    "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en dansbaar. De zachte tegenhanger van Antwerpen."
+  ],
+  "facts": [
+    { "k": "Steden", "v": "2 / 1 nacht" },
+    { "k": "Acts", "v": "6" },
+    { "k": "Podia", "v": "3" },
+    { "k": "Leeftijd", "v": "16+" }
+  ],
+  "practical": [
+    { "k": "Locatie", "v": "Buda, Broelkaai 6, Kortrijk" },
+    { "k": "Bereikbaar", "v": "Trein tot Kortrijk, dan 10 min te voet" },
+    { "k": "Openingsuren", "v": "19:00 – 02:00" },
+    { "k": "Eten & drank", "v": "Warme keuken in de hal" },
+    { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
+    { "k": "Toegankelijk", "v": "Rolstoeltoegankelijk" }
+  ],
+  "tickets": [
+    { "tier": "Dagticket", "price": "€39", "note": "Vrijdag óf zaterdag" },
+    { "tier": "Combiticket", "price": "€69", "note": "Beide avonden" },
+    { "tier": "Spookpas", "price": "€119", "note": "Combi + late-night + locker" }
+  ]
+}
