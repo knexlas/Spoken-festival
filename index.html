@@ -16,6 +16,10 @@
     --f-body:'Space Grotesk', sans-serif;
     --f-mono:'Space Mono', monospace;
     --disp-tr:none; --disp-sp:0.012em; --disp-wt:400; --radius:2px;
+    /* how far the visible screen falls short of the layout viewport (mobile
+       browser address bar) — kept in sync by JS via the visualViewport API,
+       so fixed bottom elements can compensate. See citytoggle. */
+    --vv-lift:0px;
   }
   html[data-theme="static"]{
     --f-display:'Oswald', sans-serif;
@@ -174,7 +178,7 @@
 
   /* city toggle — mobile only */
   .citytoggle-scrim{ display:none; }
-  .citytoggle{ position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,14,18,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
+  .citytoggle{ position:fixed; left:50%; transform:translate(-50%, calc(-1 * var(--vv-lift))); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,14,18,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
   .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#0a0a0c; background:var(--toggle-acc,#fff); font-weight:700; }
 
@@ -203,7 +207,7 @@
     /* city-switch pill sits at a fixed screen position while the programme
        list scrolls underneath it; fade the content out behind it so it never
        visually collides with a row of text. */
-    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(5,4,6,0.92), rgba(5,4,6,0)); display:block; }
+    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(5,4,6,0.92), rgba(5,4,6,0)); display:block; transform:translateY(calc(-1 * var(--vv-lift))); }
     .citytoggle{ display:flex; }
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
@@ -325,6 +329,33 @@ const hintEl = document.getElementById('hint');
 const citytoggle = document.getElementById('citytoggle');
 const COMPACTION = 0.5;
 const mq = window.matchMedia('(max-width: 860px)');
+
+/* Mobile browsers report the layout viewport as the full page height even
+   while their address bar is covering part of the screen — so a plain
+   `position:fixed; bottom:22px` element can sit below the area actually
+   visible until the user scrolls (which auto-hides the bar). Track the gap
+   via visualViewport and feed it back as a CSS var the fixed elements read.
+   Uses documentElement.clientHeight (not window.innerHeight, which some
+   browsers report in a different pixel space) as the layout-viewport
+   reference, and skips the correction while pinch-zoomed (scale > 1) so
+   zooming in doesn't get misread as a toolbar change. */
+if (window.visualViewport) {
+  const vv = window.visualViewport;
+  const updateVVLift = () => {
+    const layoutH = document.documentElement.clientHeight;
+    const lift = vv.scale <= 1.02 ? Math.max(0, layoutH - (vv.height + vv.offsetTop)) : 0;
+    document.documentElement.style.setProperty('--vv-lift', lift + 'px');
+  };
+  vv.addEventListener('resize', updateVVLift);
+  vv.addEventListener('scroll', updateVVLift);
+  window.addEventListener('resize', updateVVLift);
+  window.addEventListener('orientationchange', updateVVLift);
+  updateVVLift();
+  // some browsers settle their toolbar/viewport metrics a moment after load,
+  // without firing a visualViewport event — re-check a couple of times to catch that.
+  setTimeout(updateVVLift, 300);
+  setTimeout(updateVVLift, 1200);
+}
 
 const state = { mechanic:'follow', active:null, hinted:false, mobileCity:'ant' };
 
