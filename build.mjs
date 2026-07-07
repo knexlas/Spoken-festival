@@ -3,7 +3,7 @@
    production /dist that is fast AND findable:
      • pre-renders the city panels into the HTML (crawlers see real content)
      • inlines the data so the page needs no fetch
-     • injects canonical + Open Graph/Twitter + JSON-LD MusicEvent (per city)
+     • injects canonical + Open Graph/Twitter + JSON-LD LiteraryEvent (per city)
      • writes sitemap.xml + robots.txt
    Content lives in three CMS-friendly files (content/festival.json,
    content/antwerpen.json, content/kortrijk.json) so the Decap editor shows
@@ -36,7 +36,7 @@ const pageTitle = `${f.name} · Festival — ${cityNames} · ${data.cities[0].da
 const pageDesc = f.description;
 const shareImg = absUrl(f.shareImage);
 
-/* ---- JSON-LD: one MusicEvent per city, sharing one Festival as superEvent ---- */
+/* ---- JSON-LD: one LiteraryEvent per city, sharing one Festival as superEvent ---- */
 const festivalNode = {
   '@type': 'Festival',
   name: `${f.name} Festival ${f.year}`,
@@ -46,7 +46,7 @@ const festivalNode = {
 };
 const events = data.cities.map(c => ({
   '@context': 'https://schema.org',
-  '@type': 'MusicEvent',
+  '@type': 'LiteraryEvent',
   name: `${f.name} — ${c.name}`,
   startDate: f.startDate,
   endDate: f.endDate,
@@ -61,7 +61,7 @@ const events = data.cities.map(c => ({
     address: { '@type': 'PostalAddress', addressLocality: c.addressLocality, addressCountry: c.addressCountry },
   },
   organizer: { '@type': 'Organization', name: f.organizer, url: base + '/' },
-  performer: c.days.flatMap(d => d.slots).map(s => ({ '@type': 'MusicGroup', name: s.artist })),
+  performer: c.days.flatMap(d => d.slots).map(s => ({ '@type': 'Person', name: s.artist })),
   offers: c.tickets.map(t => ({
     '@type': 'Offer',
     name: t.tier,

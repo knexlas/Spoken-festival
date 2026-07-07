@@ -2,7 +2,7 @@
   "id": "ant",
   "side": "left",
   "name": "Antwerpen",
-  "tagline": "Het koude spook van de Schelde — drones, koren en techno onder oud gewelf.",
+  "tagline": "Het koude spook van de Schelde — spookverhalen, poëzie en spoken word onder oud gewelf.",
   "dates": "31 OKT – 01 NOV 2026",
   "venue": "Blikfabriek",
   "addressLocality": "Antwerpen",
@@ -15,18 +15,18 @@
       "day": "VR",
       "date": "31 OKT",
       "slots": [
-        { "id": "a1", "time": "20:00", "artist": "NOKTURN", "stage": "De Kathedraal", "genre": "Ambient / Drone", "blurb": "Een openingsritueel van trage, kerkelijke drones die zich traag onder het gewelf opbouwen." },
-        { "id": "a2", "time": "21:30", "artist": "Vesper Bloom", "stage": "Nevel", "genre": "Dream pop", "blurb": "Wazige gitaren en spookachtige vocalen die zich in de mist boven de kaaien verliezen." },
-        { "id": "a3", "time": "23:00", "artist": "GEISTLER", "stage": "Schelde Hal", "genre": "Techno", "blurb": "Strakke, donkere techno die de loods tot diep in de nacht laat trillen." }
+        { "id": "a1", "time": "20:00", "artist": "NOKTURN", "stage": "De Kathedraal", "genre": "Geluidspoëzie", "blurb": "Een openingsritueel van gefluisterde tekstlagen en kerkelijke galm die zich traag onder het gewelf opbouwt." },
+        { "id": "a2", "time": "21:30", "artist": "Vesper Bloom", "stage": "Nevel", "genre": "Lezing · Gotische roman", "blurb": "Dromerige prozastukken over verdwijning en verlangen, voorgelezen in de mist boven de kaaien." },
+        { "id": "a3", "time": "23:00", "artist": "GEISTLER", "stage": "Schelde Hal", "genre": "Spoken word", "blurb": "Strakke, donkere spoken word die de hal tot diep in de nacht laat trillen." }
       ]
     },
     {
       "day": "ZA",
       "date": "01 NOV",
       "slots": [
-        { "id": "a4", "time": "19:30", "artist": "Hollow Choir", "stage": "De Kathedraal", "genre": "Koor / Experimenteel", "blurb": "Een twintigkoppig spookkoor vult de volledige ruimte met overlappende stemmen." },
-        { "id": "a5", "time": "21:00", "artist": "MOORLAND", "stage": "Nevel", "genre": "Post-rock", "blurb": "Cinematische opbouw richting een verpletterende, mistige climax." },
-        { "id": "a6", "time": "22:30", "artist": "Static Séance", "stage": "Schelde Hal", "genre": "Industrial", "blurb": "Ruwe machineritmes verweven met opgenomen seance-samples." }
+        { "id": "a4", "time": "19:30", "artist": "Hollow Choir", "stage": "De Kathedraal", "genre": "Verhalenkoor · Performance", "blurb": "Een twintigkoppig verhalenkoor vult de volledige ruimte met overlappende stemmen en fragmenten." },
+        { "id": "a5", "time": "21:00", "artist": "MOORLAND", "stage": "Nevel", "genre": "Interview · Roman", "blurb": "Een cinematisch gesprek over eenzaamheid, natuur en het onheilspellende, richting een meeslepende climax." },
+        { "id": "a6", "time": "22:30", "artist": "Static Séance", "stage": "Schelde Hal", "genre": "Performance · Griezelverhalen", "blurb": "Ruwe geluidsopnames verweven met live verteld griezelverhaal, opgenomen tijdens echte seances." }
       ]
     }
   ],
@@ -36,7 +36,7 @@
   ],
   "facts": [
     { "k": "Steden", "v": "2 / 1 nacht" },
-    { "k": "Acts", "v": "6" },
+    { "k": "Gasten", "v": "6" },
     { "k": "Podia", "v": "3" },
     { "k": "Leeftijd", "v": "16+" }
   ],

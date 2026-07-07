@@ -19,7 +19,7 @@ export function slotHtml(cityId, s, key){
       </div>
       <div class="slot-body" data-body="${key}">
         <div class="slot-inner">
-          <div class="slot-photo">ARTIST PHOTO</div>
+          <div class="slot-photo">SPREKERFOTO</div>
           <div>
             <div class="slot-genre">${esc(s.genre)}</div>
             <p class="slot-blurb">${esc(s.blurb)}</p>
@@ -61,6 +61,7 @@ export function panelHtml(city, festival){
       <div class="content">
         <header class="hero">
           <div class="eyebrow"><span class="mark">SPOKEN</span><span class="line"></span><span class="yr">${esc(festival.year)}</span></div>
+          ${festival.subtitle ? `<p class="hero-subtitle">${esc(festival.subtitle)}</p>` : ''}
           <div class="title-wrap">
             <div class="title-echo two" aria-hidden="true">${esc(city.name)}</div>
             <div class="title-echo" aria-hidden="true">${esc(city.name)}</div>

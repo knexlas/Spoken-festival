@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SPOKEN · Festival — Antwerpen & Kortrijk · 31 OKT – 01 NOV 2026</title>
-<meta name="description" content="SPOKEN — één nacht, twee steden. Een spookfestival tegelijk in Antwerpen en Kortrijk. Drones, koren, techno, soul, darkwave en disco.">
+<meta name="description" content="SPOKEN — één nacht, twee steden. Een spookachtig literatuurfestival tegelijk in Antwerpen en Kortrijk. Verhalen, poëzie, spoken word en gotische fictie.">
 <meta name="theme-color" content="#050406">
-<!-- BUILD:SEO --> <!-- build.mjs injects canonical, refined meta/OG/Twitter and JSON-LD MusicEvent here (Open Graph tags are intentionally only in the built output) -->
+<!-- BUILD:SEO --> <!-- build.mjs injects canonical, refined meta/OG/Twitter and JSON-LD LiteraryEvent here (Open Graph tags are intentionally only in the built output) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Oswald:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -58,6 +58,7 @@
   .content{ min-height:100%; padding:clamp(34px,4.2vw,76px); display:flex; flex-direction:column; gap:clamp(54px,6vw,96px); }
 
   .eyebrow{ display:flex; align-items:center; gap:14px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:var(--acc); }
+  .hero-subtitle{ margin:0; font-style:italic; font-size:clamp(17px,1.8vw,24px); color:var(--fg); max-width:36ch; line-height:1.4; text-shadow:0 0 20px var(--glow); }
   .eyebrow .line{ flex:1; height:1px; background:var(--line); }
   .eyebrow .yr{ color:var(--mut); }
   .eyebrow .mark{ animation:flicker 7s linear infinite; }
@@ -171,6 +172,7 @@
   .palrow .nm{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.1em; color:rgba(255,255,255,0.85); }
 
   /* city toggle — mobile only */
+  .citytoggle-scrim{ display:none; }
   .citytoggle{ position:absolute; left:50%; transform:translateX(-50%); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,14,18,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
   .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#0a0a0c; background:var(--toggle-acc,#fff); font-weight:700; }
@@ -186,7 +188,21 @@
     .stage[data-mobile-city="ant"] .panel[data-id="ant"],
     .stage[data-mobile-city="kor"] .panel[data-id="kor"]{ opacity:1; transform:none; z-index:3; }
     .content{ padding-bottom:120px; }
+
+    /* top controls: was centered LOOK toggle + right-aligned palette picker,
+       which measured out to a ~73px overlap at 375px width. Pin LOOK to the
+       left and shrink the palette button to icon-only so both fit with room
+       to spare. */
+    .controls{ left:18px; right:auto; transform:none; }
+    .palettebtn #palettename{ display:none; }
+    .palettebtn{ padding:8px 10px; }
+
     .controls .split-seg{ display:none; }
+
+    /* city-switch pill sits at a fixed screen position while the programme
+       list scrolls underneath it; fade the content out behind it so it never
+       visually collides with a row of text. */
+    .citytoggle-scrim{ position:absolute; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(5,4,6,0.92), rgba(5,4,6,0)); display:block; }
     .citytoggle{ display:flex; }
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
@@ -228,6 +244,7 @@
 
   <div class="hint" id="hint"></div>
 
+  <div class="citytoggle-scrim"></div>
   <div class="citytoggle" id="citytoggle">
     <button data-city="ant">Antwerpen</button>
     <button data-city="kor">Kortrijk</button>

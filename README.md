@@ -1,7 +1,9 @@
 # SPOKEN — festivalwebsite
 
-Eén nacht, twee steden: **Antwerpen** (koud spook) & **Kortrijk** (warm spook).
-Statische website, geen build-stap, geen framework. Klaar om later een CMS op te zetten.
+Spookthema **literatuurfestival** (geen muziekfestival), één nacht, twee steden:
+**Antwerpen** (koud spook) & **Kortrijk** (warm spook). Programma bestaat uit lezingen,
+interviews, spoken word, poëzie en verhalen-performances — geen "artiesten"/"genres"
+in muzikale zin. Statische website, gebouwd via `node build.mjs`.
 
 ## Structuur
 

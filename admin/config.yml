@@ -64,17 +64,17 @@ city_fields: &city_fields
     fields:
       - { label: "Dag", name: "day", widget: "string", hint: "Bv. VR" }
       - { label: "Datum", name: "date", widget: "string", hint: "Bv. 31 OKT" }
-      - label: "Optredens"
+      - label: "Programmaonderdelen"
         name: "slots"
-        label_singular: "Optreden"
+        label_singular: "Programmaonderdeel"
         widget: "list"
         collapsed: true
         summary: "{{fields.time}} — {{fields.artist}}"
         fields:
           - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
-          - { label: "Artiest", name: "artist", widget: "string" }
-          - { label: "Podium", name: "stage", widget: "string" }
-          - { label: "Genre", name: "genre", widget: "string" }
+          - { label: "Naam (auteur / gast / performer)", name: "artist", widget: "string" }
+          - { label: "Podium / zaal", name: "stage", widget: "string" }
+          - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
           - { label: "Omschrijving", name: "blurb", widget: "text" }
 
   - label: "Info-paragrafen"
@@ -146,6 +146,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Naam", name: "name", widget: "string" }
+              - { label: "Ondertitel", name: "subtitle", widget: "string", required: false, hint: "Korte, krachtige zin die op de homepage verschijnt, onder het SPOKEN-logo." }
               - { label: "Jaar", name: "year", widget: "string" }
               - { label: "Website-URL", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be" }
               - { label: "Organisator", name: "organizer", widget: "string" }

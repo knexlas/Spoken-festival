@@ -2,7 +2,7 @@
   "id": "kor",
   "side": "right",
   "name": "Kortrijk",
-  "tagline": "Het warme spook van de Leie — soul, darkwave en disco bij smeulend kaarslicht.",
+  "tagline": "Het warme spook van de Leie — verhalen, gedichten en nachtelijke voorleesavonden bij smeulend kaarslicht.",
   "dates": "31 OKT – 01 NOV 2026",
   "venue": "Buda",
   "addressLocality": "Kortrijk",
@@ -15,28 +15,28 @@
       "day": "VR",
       "date": "31 OKT",
       "slots": [
-        { "id": "k1", "time": "20:00", "artist": "Emberlight", "stage": "Gloed", "genre": "Neo-soul", "blurb": "Warme, smeulende soul bij honderden kaarsen in de oude fabriekshal." },
-        { "id": "k2", "time": "21:30", "artist": "WOLFSKIN", "stage": "Buda Fabriek", "genre": "Darkwave", "blurb": "Koude synths met een gloeiend, kloppend hart eronder." },
-        { "id": "k3", "time": "23:00", "artist": "Sodium Dreams", "stage": "Leie Loods", "genre": "House", "blurb": "Oranje nachtlampjes en deep house langs het water." }
+        { "id": "k1", "time": "20:00", "artist": "Emberlight", "stage": "Gloed", "genre": "Poëzie", "blurb": "Warme, smeulende poëzie bij honderden kaarsen in de oude fabriekshal." },
+        { "id": "k2", "time": "21:30", "artist": "WOLFSKIN", "stage": "Buda Fabriek", "genre": "Verhalen · Folklore", "blurb": "Koude volksverhalen met een gloeiend, kloppend hart eronder." },
+        { "id": "k3", "time": "23:00", "artist": "Sodium Dreams", "stage": "Leie Loods", "genre": "Nachtgesprek · Non-fictie", "blurb": "Oranje nachtlampjes en een intiem gesprek over dromen, angst en het schrijverschap, tot diep in de nacht." }
       ]
     },
     {
       "day": "ZA",
       "date": "01 NOV",
       "slots": [
-        { "id": "k4", "time": "19:30", "artist": "Maréchal", "stage": "Gloed", "genre": "Chanson noir", "blurb": "Donkere chanson met een fluwelen stem die je de rillingen bezorgt." },
-        { "id": "k5", "time": "21:00", "artist": "ASHEN", "stage": "Buda Fabriek", "genre": "Synthwave", "blurb": "Gloeiende retro-synths en dikke neonmist." },
-        { "id": "k6", "time": "22:30", "artist": "Lantaarn", "stage": "Leie Loods", "genre": "Disco / Funk", "blurb": "Warme discobollen die de duisternis verjagen tot sluitingstijd." }
+        { "id": "k4", "time": "19:30", "artist": "Maréchal", "stage": "Gloed", "genre": "Chanson · Poëzie", "blurb": "Donkere chanson-teksten met een fluwelen stem die je de rillingen bezorgt." },
+        { "id": "k5", "time": "21:00", "artist": "ASHEN", "stage": "Buda Fabriek", "genre": "Lezing · Sciencefiction", "blurb": "Gloeiende retro-toekomstbeelden en dikke neonmist in een meeslepende sciencefiction-lezing." },
+        { "id": "k6", "time": "22:30", "artist": "Lantaarn", "stage": "Leie Loods", "genre": "Humor · Spoken word", "blurb": "Warme, humoristische verhalen die de duisternis verjagen tot sluitingstijd." }
       ]
     }
   ],
   "info": [
     "Aan de andere kant van het land neemt Spoken bezit van Buda, het eilandje in de Leie in het hart van Kortrijk.",
-    "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en dansbaar. De zachte tegenhanger van Antwerpen."
+    "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en intiem. De zachte tegenhanger van Antwerpen."
   ],
   "facts": [
     { "k": "Steden", "v": "2 / 1 nacht" },
-    { "k": "Acts", "v": "6" },
+    { "k": "Gasten", "v": "6" },
     { "k": "Podia", "v": "3" },
     { "k": "Leeftijd", "v": "16+" }
   ],
