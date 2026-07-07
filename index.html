@@ -174,7 +174,7 @@
 
   /* city toggle — mobile only */
   .citytoggle-scrim{ display:none; }
-  .citytoggle{ position:absolute; left:50%; transform:translateX(-50%); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,14,18,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
+  .citytoggle{ position:fixed; left:50%; transform:translateX(-50%); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,14,18,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
   .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#0a0a0c; background:var(--toggle-acc,#fff); font-weight:700; }
 
@@ -203,11 +203,16 @@
     /* city-switch pill sits at a fixed screen position while the programme
        list scrolls underneath it; fade the content out behind it so it never
        visually collides with a row of text. */
-    .citytoggle-scrim{ position:absolute; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(5,4,6,0.92), rgba(5,4,6,0)); display:block; }
+    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(5,4,6,0.92), rgba(5,4,6,0)); display:block; }
     .citytoggle{ display:flex; }
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
     .slot-stage{ display:none; }
+
+    /* the "KLIK VOOR INFO" tap target was only ~16px tall (text line-height) —
+       well under a comfortable touch target. Pad it out and pull the margin
+       back in so the extra hit area doesn't push the row layout around. */
+    .expand-hint{ padding:14px 6px; margin:-14px -6px; }
   }
 </style>
 </head>
