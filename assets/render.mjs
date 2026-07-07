@@ -76,7 +76,7 @@ export function panelHtml(city, festival){
         </header>
 
         <section>
-          <div class="sec-head"><h2>Programma</h2><span class="line"></span><span class="hint">KLIK VOOR INFO</span></div>
+          <div class="sec-head"><h2>Programma</h2><span class="line"></span><span class="expand-hint" data-toggle-all="${city.id}">KLIK VOOR INFO</span></div>
           ${days}
         </section>
 

@@ -84,7 +84,8 @@
   .sec-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:26px; }
   .sec-head h2{ margin:0; font-family:var(--f-display); text-transform:var(--disp-tr); letter-spacing:var(--disp-sp); font-weight:var(--disp-wt); font-size:clamp(28px,3.2vw,46px); line-height:1; }
   .sec-head .line{ flex:1; height:1px; background:var(--line); }
-  .sec-head .hint{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.2em; color:var(--mut); }
+  .expand-hint{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.2em; color:var(--mut); cursor:pointer; transition:color .2s ease; }
+  .expand-hint:hover{ color:var(--acc); }
 
   .day{ margin-bottom:34px; }
   .day-head{ display:flex; align-items:center; gap:12px; margin-bottom:6px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.24em; text-transform:uppercase; color:var(--acc); }
@@ -372,6 +373,16 @@ stage.addEventListener('mouseleave', () => {
 
 /* desktop click-lock + slot toggling (delegated) */
 stage.addEventListener('click', e => {
+  const toggleAll = e.target.closest('[data-toggle-all]');
+  if (toggleAll){
+    const panel = toggleAll.closest('.panel');
+    const bodies = panel.querySelectorAll('.slot-body');
+    const anyClosed = [...bodies].some(b => !b.classList.contains('open'));
+    bodies.forEach(b => b.classList.toggle('open', anyClosed));
+    panel.querySelectorAll('.slot-chev').forEach(c => c.textContent = anyClosed ? '–' : '+');
+    toggleAll.textContent = anyClosed ? 'VERBERG INFO' : 'KLIK VOOR INFO';
+    return;
+  }
   const row = e.target.closest('.slot-row');
   if (row){
     const key = row.getAttribute('data-toggle');
