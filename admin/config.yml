@@ -1,13 +1,15 @@
 # =============================================================================
-# Decap CMS — beheert content/festival.json, content/antwerpen.json en
-# content/kortrijk.json met een visuele editor op /admin. Drie aparte
-# bestanden (i.p.v. één grote) zodat de editor drie overzichtelijke items
-# toont: Festival-instellingen, Antwerpen, Kortrijk.
+# CMS-configuratie (Sveltia CMS, Decap-compatibel formaat) — beheert
+# content/festival.json, content/antwerpen.json en content/kortrijk.json met
+# een visuele editor op /admin. Drie aparte bestanden (i.p.v. één grote)
+# zodat de editor drie overzichtelijke items toont: Festival-instellingen,
+# Antwerpen, Kortrijk. De editor zelf is Sveltia (geladen in admin/index.html),
+# een moderne drop-in vervanger voor Decap die exact dit configformaat leest.
 #
 # BACKEND: rechtstreekse GitHub-login (Netlify Identity/Git Gateway is
 # deprecated door Netlify en bleek niet betrouwbaar op nieuwe sites — zie
 # README.md voor de volledige uitleg). Editors loggen in met hun eigen
-# GitHub-account via "Login with GitHub"; ze moeten wel als collaborator op
+# GitHub-account via "Sign in with GitHub"; ze moeten wel als collaborator op
 # de repo staan (Settings → Collaborators op github.com/knexlas/Spoken-festival).
 #
 # Vereist eenmalig in Netlify: Site configuration → Access & security → OAuth
@@ -15,8 +17,9 @@
 # GitHub OAuth App (github.com/settings/developers → New OAuth App):
 #   Homepage URL:            https://spokenfestival.netlify.app
 #   Authorization callback:  https://api.netlify.com/auth/done
-# (base_url/auth_endpoint hieronder laten Decap die Netlify-koppeling gebruiken
-# in plaats van zelf een OAuth-server te hoeven draaien.)
+# (base_url/auth_endpoint hieronder laten de CMS die Netlify-koppeling
+# gebruiken in plaats van zelf een OAuth-server te hoeven draaien; Sveltia
+# ondersteunt deze bestaande koppeling ongewijzigd.)
 # =============================================================================
 
 backend:
@@ -26,7 +29,10 @@ backend:
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
-# Laat de editor lokaal testen via:  npx decap-server  (samen met de site op localhost)
+# Lokaal testen: Sveltia heeft geen proxy-server nodig — open /admin op een
+# lokale server en kies "Work with Local Repository" (Chrome/Edge), dat
+# rechtstreeks in de projectmap leest/schrijft. local_backend blijft staan
+# voor het geval er ooit naar Decap wordt teruggeschakeld (Sveltia negeert het).
 local_backend: true
 
 # Geüploade afbeeldingen komen hier terecht (en worden mee gedeployed).
@@ -45,15 +51,15 @@ locale: "nl"
 city_fields: &city_fields
   - { label: "ID", name: "id", widget: "hidden" }
   - { label: "Zijde", name: "side", widget: "hidden" }
-  - { label: "Naam", name: "name", widget: "string" }
-  - { label: "Tagline", name: "tagline", widget: "text" }
-  - { label: "Datums (tekst)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
-  - { label: "Locatie / venue", name: "venue", widget: "string" }
-  - { label: "Stad (adres)", name: "addressLocality", widget: "string" }
-  - { label: "Landcode", name: "addressCountry", widget: "string", hint: "Bv. BE" }
-  - { label: "Verwijzing andere stad", name: "twin", widget: "string" }
-  - { label: "Rail-cue", name: "railCue", widget: "string" }
-  - { label: "Ticket-link", name: "ticketUrl", widget: "string" }
+  - { label: "Naam van de stad", name: "name", widget: "string" }
+  - { label: "Tagline (korte sfeerbeschrijving onder de stadsnaam)", name: "tagline", widget: "text" }
+  - { label: "Datums (zoals getoond op de site)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
+  - { label: "Locatie / venue", name: "venue", widget: "string", hint: "Bv. Blikfabriek" }
+  - { label: "Stad (voor Google/kaarten)", name: "addressLocality", widget: "string", hint: "Bv. Antwerpen" }
+  - { label: "Landcode (voor Google/kaarten)", name: "addressCountry", widget: "string", hint: "BE voor België — normaal niet wijzigen" }
+  - { label: "Tekstje dat naar de andere stad verwijst", name: "twin", widget: "string", hint: "Bv. 'Tegelijk in Kortrijk →'" }
+  - { label: "Tekstje in de smalle zijbalk (alleen desktop)", name: "railCue", widget: "string", hint: "Kort woord dat uitnodigt om deze stad open te klappen, bv. 'verken →'" }
+  - { label: "Ticket-link", name: "ticketUrl", widget: "string", hint: "Volledige link naar de ticketshop (https://…), of #tickets zolang die er nog niet is" }
 
   - label: "Programma (dagen)"
     name: "days"
@@ -145,16 +151,16 @@ collections:
             name: "festival"
             widget: "object"
             fields:
-              - { label: "Naam", name: "name", widget: "string" }
+              - { label: "Naam van het festival", name: "name", widget: "string" }
               - { label: "Ondertitel", name: "subtitle", widget: "string", required: false, hint: "Korte, krachtige zin die op de homepage verschijnt, onder het SPOKEN-logo." }
-              - { label: "Jaar", name: "year", widget: "string" }
-              - { label: "Website-URL", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be" }
-              - { label: "Organisator", name: "organizer", widget: "string" }
-              - { label: "Taal/regio (og:locale)", name: "locale", widget: "string", required: false }
-              - { label: "Startdatum & -tijd", name: "startDate", widget: "datetime", picker_utc: false }
-              - { label: "Einddatum & -tijd", name: "endDate", widget: "datetime", picker_utc: false }
-              - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text" }
-              - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Toont bij delen op social media." }
+              - { label: "Jaar (editie)", name: "year", widget: "string", hint: "Bv. 2026" }
+              - { label: "Website-adres", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be — normaal niet wijzigen" }
+              - { label: "Organisator", name: "organizer", widget: "string", hint: "Bv. Vonk en Zonen" }
+              - { label: "Taal/regio (technisch, voor social media)", name: "locale", widget: "string", required: false, hint: "nl_BE — normaal niet wijzigen" }
+              - { label: "Startdatum & -tijd", name: "startDate", widget: "datetime", picker_utc: false, hint: "Officiële start van het festival (gebruikt door Google)" }
+              - { label: "Einddatum & -tijd", name: "endDate", widget: "datetime", picker_utc: false, hint: "Officieel einde van het festival (gebruikt door Google)" }
+              - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text", hint: "1 à 2 zinnen; dit is de tekst die Google en social media tonen." }
+              - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
 
       - name: "antwerpen"
         label: "Antwerpen"

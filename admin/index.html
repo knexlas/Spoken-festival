@@ -7,9 +7,11 @@
   <title>SPOKEN — Beheer</title>
 </head>
 <body>
-  <!-- Netlify Identity: levert de login voor het git-gateway-backend -->
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <!-- Decap CMS (de visuele editor) -->
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- Sveltia CMS — moderne drop-in vervanger voor Decap CMS. Leest exact
+       dezelfde admin/config.yml en gebruikt dezelfde GitHub-login via de
+       Netlify OAuth-koppeling; alleen de editor-UI is anders (strakker,
+       donker thema, geen rommelige voorvertoning). Terugdraaien = dit
+       script weer vervangen door decap-cms.js. -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
 </body>
 </html>

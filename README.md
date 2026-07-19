@@ -111,14 +111,20 @@ Elke push naar GitHub (of straks elke CMS-bewerking) triggert een nieuwe build.
 
 ---
 
-## CMS — Decap (opgezet, GitHub-login)
+## CMS — Sveltia (opgezet, GitHub-login, Decap-compatibel)
 
 De visuele editor staat klaar op **`/admin`** (`admin/index.html` + `admin/config.yml`).
 De editor toont drie items — **Festival-instellingen**, **Antwerpen**, **Kortrijk** —
-elk met ingeklapte lijsten voor optredens/tickets/etc. (klik om open te vouwen), zodat
-je nooit één lange pagina met alles tegelijk uitgeklapt ziet. Bij opslaan committeert
-Decap naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de site
+elk met ingeklapte lijsten voor programmaonderdelen/tickets/etc. Bij opslaan committeert
+de CMS naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de site
 (incl. SEO) is bijgewerkt.
+
+> **Waarom Sveltia i.p.v. Decap?** Decap's standaard-UI bleek niet presentabel
+> genoeg (kale lege kaarten op de startpagina, en een rechterpaneel dat rauwe
+> velddata toonde). Sveltia CMS is de moderne opvolger die exact hetzelfde
+> `config.yml`-formaat en dezelfde GitHub/Netlify-OAuth-koppeling gebruikt —
+> alleen de editor-UI is anders. Terugdraaien = in `admin/index.html` het
+> Sveltia-script weer vervangen door `decap-cms.js`.
 
 > **Waarom GitHub-login i.p.v. Netlify Identity/Git Gateway?** Netlify heeft Identity
 > en Git Gateway in februari 2025 deprecated: bestaande koppelingen blijven werken,
@@ -138,15 +144,15 @@ Decap naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de sit
 3. **Collaborators toevoegen:** op github.com/knexlas/Spoken-festival → *Settings →
    Collaborators* → nodig de GitHub-accounts van Vonk en Zonen uit (schrijftoegang).
    Zij hebben dus wel een (gratis) GitHub-account nodig.
-4. Zij gaan naar `https://www.spokenfestival.be/admin/` en klikken **"Login with GitHub"**.
+4. Zij gaan naar `https://www.spokenfestival.be/admin/` en klikken **"Sign In with GitHub"**.
 
-**Lokaal de editor testen** (zonder Netlify, met live opslaan naar je bestand):
+**Lokaal de editor testen** (zonder Netlify of GitHub-login):
 ```
-npx decap-server          # in één terminal
-python -m http.server 8000 # in een andere
+python -m http.server 8000
 ```
-Ga naar `http://localhost:8000/admin/` — `local_backend: true` laat je dan
-rechtstreeks de `content/*.json`-bestanden bewerken.
+Ga naar `http://localhost:8000/admin/` en kies **"Work with Local Repository"**
+(werkt in Chrome/Edge): selecteer de projectmap, en de editor leest en schrijft
+dan rechtstreeks de lokale `content/*.json`-bestanden — geen proxy-server nodig.
 
 **Afbeeldingen** die in de editor geüpload worden, komen in `assets/uploads/`
 en worden mee gedeployed.
