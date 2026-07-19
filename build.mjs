@@ -21,9 +21,15 @@ const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 
 const readJson = name => JSON.parse(readFileSync(join(root, 'content', name), 'utf8'));
-const { theme, festival } = readJson('festival.json');
-const data = { theme, festival, cities: [readJson('antwerpen.json'), readJson('kortrijk.json')] };
+const { theme, festival, labels } = readJson('festival.json');
+const data = {
+  theme, festival, labels: labels || {},
+  cities: [readJson('antwerpen.json'), readJson('kortrijk.json')],
+  artists: readJson('artiesten.json').artists || [],
+  news: readJson('nieuws.json'),
+};
 const f = data.festival;
+const artistByName = Object.fromEntries(data.artists.filter(a => a && a.name).map(a => [String(a.name).trim(), a]));
 const base = (f.siteUrl || '').replace(/\/$/, '');
 
 // JSON safe to drop inside a <script> tag (prevents </script> breakout)
@@ -61,7 +67,14 @@ const events = data.cities.map(c => ({
     address: { '@type': 'PostalAddress', addressLocality: c.addressLocality, addressCountry: c.addressCountry },
   },
   organizer: { '@type': 'Organization', name: f.organizer, url: base + '/' },
-  performer: c.days.flatMap(d => d.slots).map(s => ({ '@type': 'Person', name: s.artist })),
+  performer: c.days.flatMap(d => d.slots).map(s => {
+    const a = artistByName[String(s.artist || '').trim()];
+    return {
+      '@type': 'Person', name: s.artist,
+      ...(a && a.photo ? { image: absUrl(a.photo) } : {}),
+      ...(a && a.bio ? { description: a.bio } : {}),
+    };
+  }),
   offers: c.tickets.map(t => ({
     '@type': 'Offer',
     name: t.tier,
@@ -99,7 +112,10 @@ html = html
   .replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${esc(pageDesc)}">`)
   .replace('<!-- BUILD:SEO -->', seo)
   .replace('<!-- BUILD:DATA -->', `<script>window.__SITE__=${safeJson(data)}</script>`)
-  .replace('<!-- panels injected -->', renderPanels(data));
+  .replace('<!-- panels injected -->', renderPanels(data))
+  // cache-bust the module import per deploy, so browsers holding an old
+  // render.mjs never pair it with a newer page (mismatched exports = dead page)
+  .replace("./assets/render.mjs", `./assets/render.mjs?v=${Date.now()}`);
 
 /* ---- write dist ---- */
 rmSync(dist, { recursive: true, force: true });

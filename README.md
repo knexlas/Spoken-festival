@@ -9,9 +9,11 @@ in muzikale zin. Statische website, gebouwd via `node build.mjs`.
 
 ```
 index.html              ← bronpagina (layout, sfeer, interactie, paletten)
-content/festival.json   ← thema + festivalgegevens/SEO-velden (bewerkt de organisatie)
+content/festival.json   ← thema + festivalgegevens/SEO-velden + alle koppen & knopteksten
 content/antwerpen.json  ← alles voor Antwerpen: programma, info, praktisch, tickets
 content/kortrijk.json   ← alles voor Kortrijk: idem
+content/artiesten.json  ← artiesten & gasten: naam, foto, bio, link (programma verwijst hiernaar)
+content/nieuws.json     ← nieuwsberichten + affiches/posters
 assets/render.mjs       ← rendering, gedeeld door de browser én de build
 build.mjs               ← bouwt dist/ (pre-rendering + SEO) uit content/*.json
 netlify.toml            ← Netlify: build = `node build.mjs`, publiceer dist/
@@ -19,8 +21,18 @@ dist/                   ← gegenereerde productieversie (NIET met de hand bewer
 screenshots/            ← referentiebeelden
 ```
 
-Drie aparte bestanden i.p.v. één grote: zo toont de CMS-editor drie overzichtelijke
-items (Festival-instellingen, Antwerpen, Kortrijk) in plaats van één lange lijst.
+Aparte bestanden per onderwerp: zo toont de CMS-editor overzichtelijke items
+(Festival-instellingen, Antwerpen, Kortrijk, Artiesten & gasten, Nieuws & affiches)
+in plaats van één lange lijst. In het programma kies je een artiest uit een
+dropdown; foto en bio uit `artiesten.json` verschijnen dan automatisch bij dat
+programmaonderdeel (en in de Google-eventdata). Nieuws- en affichesecties
+verschijnen pas op de site zodra er inhoud in staat. Vrijwel alle teksten —
+inclusief sectiekoppen en knoppen — zijn via het CMS aan te passen; er is
+niets hardcoded behalve de structuur.
+
+> Lokaal ontwikkelen: na een wijziging aan `assets/render.mjs` kan de browser
+> een oude versie vasthouden — hard verversen met **Ctrl+F5**. In productie
+> speelt dit niet: de build stempelt het script met een versienummer per deploy.
 
 - **Inhoud aanpassen** = de juiste `content/*.json` bewerken (of via de CMS op `/admin`).
   De pagina laadt deze bestanden bij het openen.

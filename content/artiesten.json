@@ -1,0 +1,16 @@
+{
+  "artists": [
+    { "name": "NOKTURN", "photo": "", "bio": "Klankdichter die gefluisterde tekstlagen en kerkelijke galm stapelt tot een ritueel. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Vesper Bloom", "photo": "", "bio": "Schrijft dromerig proza over verdwijning en verlangen. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "GEISTLER", "photo": "", "bio": "Spoken-wordartiest met een strak, donker ritme. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Hollow Choir", "photo": "", "bio": "Twintigkoppig verhalenkoor dat stemmen en fragmenten laat overlappen. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "MOORLAND", "photo": "", "bio": "Romancier van eenzaamheid, natuur en het onheilspellende. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Static Séance", "photo": "", "bio": "Verweeft ruwe geluidsopnames met live verteld griezelverhaal. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Emberlight", "photo": "", "bio": "Dichter van warme, smeulende verzen bij kaarslicht. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "WOLFSKIN", "photo": "", "bio": "Verteller van koude volksverhalen met een gloeiend hart. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Sodium Dreams", "photo": "", "bio": "Non-fictieschrijver over dromen, angst en het schrijverschap. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Maréchal", "photo": "", "bio": "Donkere chanson-teksten met een fluwelen stem. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "ASHEN", "photo": "", "bio": "Sciencefiction-auteur van gloeiende retro-toekomstbeelden. Placeholder-bio — vervang via het CMS.", "link": "" },
+    { "name": "Lantaarn", "photo": "", "bio": "Humoristische spoken word die de duisternis verjaagt. Placeholder-bio — vervang via het CMS.", "link": "" }
+  ]
+}

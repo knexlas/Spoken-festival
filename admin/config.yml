@@ -1,9 +1,9 @@
 # =============================================================================
-# CMS-configuratie (Sveltia CMS, Decap-compatibel formaat) — beheert
-# content/festival.json, content/antwerpen.json en content/kortrijk.json met
-# een visuele editor op /admin. Drie aparte bestanden (i.p.v. één grote)
-# zodat de editor drie overzichtelijke items toont: Festival-instellingen,
-# Antwerpen, Kortrijk. De editor zelf is Sveltia (geladen in admin/index.html),
+# CMS-configuratie (Sveltia CMS, Decap-compatibel formaat) — beheert de
+# bestanden in content/ met een visuele editor op /admin. Aparte bestanden
+# per onderwerp zodat de editor overzichtelijke items toont:
+# Festival-instellingen, Antwerpen, Kortrijk, Artiesten & gasten,
+# Nieuws & affiches. De editor zelf is Sveltia (geladen in admin/index.html),
 # een moderne drop-in vervanger voor Decap die exact dit configformaat leest.
 #
 # BACKEND: rechtstreekse GitHub-login (Netlify Identity/Git Gateway is
@@ -78,7 +78,15 @@ city_fields: &city_fields
         summary: "{{fields.time}} — {{fields.artist}}"
         fields:
           - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
-          - { label: "Naam (auteur / gast / performer)", name: "artist", widget: "string" }
+          - label: "Artiest / gast"
+            name: "artist"
+            widget: "relation"
+            collection: "site"
+            file: "artiesten"
+            search_fields: ["artists.*.name"]
+            display_fields: ["artists.*.name"]
+            value_field: "artists.*.name"
+            hint: "Kies uit de lijst 'Artiesten & gasten'. Nieuwe naam? Voeg die eerst daar toe — foto en bio verschijnen dan automatisch bij dit programmaonderdeel."
           - { label: "Podium / zaal", name: "stage", widget: "string" }
           - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
           - { label: "Omschrijving", name: "blurb", widget: "text" }
@@ -162,6 +170,24 @@ collections:
               - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text", hint: "1 à 2 zinnen; dit is de tekst die Google en social media tonen." }
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
 
+          - label: "Teksten & knoppen (site-breed)"
+            name: "labels"
+            widget: "object"
+            collapsed: true
+            required: false
+            hint: "Alle koppen en knopteksten op de site. Normaal hoef je hier niets te wijzigen."
+            fields:
+              - { label: "Kop: programma", name: "programma", widget: "string", required: false }
+              - { label: "Kop: nieuws", name: "nieuws", widget: "string", required: false }
+              - { label: "Kop: info", name: "info", widget: "string", required: false }
+              - { label: "Kop: praktisch", name: "praktisch", widget: "string", required: false }
+              - { label: "Kop: affiches", name: "affiches", widget: "string", required: false }
+              - { label: "Kop: tickets", name: "tickets", widget: "string", required: false }
+              - { label: "Knop: alles openklappen", name: "klikVoorInfo", widget: "string", required: false }
+              - { label: "Knop: alles dichtklappen", name: "verbergInfo", widget: "string", required: false }
+              - { label: "Knop: tickets (bovenaan)", name: "ticketsKnop", widget: "string", required: false }
+              - { label: "Knop: koop (per ticket)", name: "koopKnop", widget: "string", required: false }
+
       - name: "antwerpen"
         label: "Antwerpen"
         file: "content/antwerpen.json"
@@ -173,3 +199,46 @@ collections:
         file: "content/kortrijk.json"
         description: "Alles voor de Kortrijkse editie: programma, info, praktisch en tickets."
         fields: *city_fields
+
+      - name: "artiesten"
+        label: "Artiesten & gasten"
+        file: "content/artiesten.json"
+        description: "Wie er komt: naam, foto en beschrijving. Het programma verwijst naar deze lijst."
+        fields:
+          - label: "Artiesten & gasten"
+            name: "artists"
+            label_singular: "Artiest / gast"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "Naam", name: "name", widget: "string", hint: "Deze naam verschijnt in het programma en op de site." }
+              - { label: "Foto", name: "photo", widget: "image", required: false, hint: "Liggende foto werkt het best (bv. 800×600)." }
+              - { label: "Beschrijving / bio", name: "bio", widget: "text", required: false, hint: "Korte introductie; verschijnt onder het programmaonderdeel." }
+              - { label: "Website of social-link", name: "link", widget: "string", required: false, hint: "https://… (optioneel)" }
+
+      - name: "nieuws"
+        label: "Nieuws & affiches"
+        file: "content/nieuws.json"
+        description: "Nieuwsberichten en affiches/posters. Verschijnen vanzelf op de site zodra er iets in staat."
+        fields:
+          - label: "Nieuwsberichten"
+            name: "posts"
+            label_singular: "Bericht"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Datum (zoals getoond)", name: "date", widget: "string", hint: "Bv. 15 juni 2026" }
+              - { label: "Afbeelding", name: "image", widget: "image", required: false }
+              - { label: "Tekst", name: "body", widget: "text", hint: "Witregel = nieuwe alinea." }
+          - label: "Affiches / posters"
+            name: "posters"
+            label_singular: "Affiche"
+            widget: "list"
+            collapsed: true
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Afbeelding", name: "image", widget: "image" }
+              - { label: "Onderschrift", name: "caption", widget: "string", required: false }
