@@ -9,10 +9,11 @@ in muzikale zin. Statische website, gebouwd via `node build.mjs`.
 
 ```
 index.html              ← bronpagina (layout, sfeer, interactie, paletten)
-content/festival.json   ← thema + festivalgegevens/SEO-velden + alle koppen & knopteksten
-content/antwerpen.json  ← alles voor Antwerpen: programma, info, praktisch, tickets
-content/kortrijk.json   ← alles voor Kortrijk: idem
-content/artiesten.json  ← artiesten & gasten: naam, foto, bio, link (programma verwijst hiernaar)
+content/festival.json   ← thema + festivalgegevens/SEO + festivaldagen + alle koppen & knopteksten
+content/antwerpen.json  ← Antwerpen: info, praktisch, tickets (programma wordt afgeleid)
+content/kortrijk.json   ← Kortrijk: idem
+content/artiesten.json  ← artiesten & gasten MET hun optredens (stad, dag, tijd, podium)
+                          → dé enige bron voor programma én blokkenschema
 content/nieuws.json     ← nieuwsberichten + affiches/posters
 assets/render.mjs       ← rendering, gedeeld door de browser én de build
 build.mjs               ← bouwt dist/ (pre-rendering + SEO) uit content/*.json
@@ -130,6 +131,20 @@ De editor toont drie items — **Festival-instellingen**, **Antwerpen**, **Kortr
 elk met ingeklapte lijsten voor programmaonderdelen/tickets/etc. Bij opslaan committeert
 de CMS naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de site
 (incl. SEO) is bijgewerkt.
+
+**Werkwijze: een artiest boeken (alles op één plek)**
+Open **Artiesten & gasten** → voeg de artiest toe (naam, foto, bio) → voeg onder
+**Optredens** één of meer optredens toe: **stad** (Antwerpen/Kortrijk), **dag**,
+**start- en eindtijd**, **podium**, genre en omschrijving. Dat is alles: het
+programma én het **blokkenschema** van de juiste stad worden hier automatisch
+uit opgebouwd, en Google's eventdata ook. Er bestaat bewust géén tweede plek
+waar tijden staan — dus niets kan ooit uit sync raken. Eén artiest kan
+meerdere optredens hebben, ook in beide steden; de site toont dan vanzelf een
+"Ook te zien: …"-kruisverwijzing bij elk optreden.
+
+De **festivaldagen** (VR/ZA + datum) beheer je één keer bij *Festival-instellingen*;
+ze gelden voor beide steden. De dag-code (bv. `vr`) niet meer wijzigen zodra er
+optredens aan hangen.
 
 > **Waarom Sveltia i.p.v. Decap?** Decap's standaard-UI bleek niet presentabel
 > genoeg (kale lege kaarten op de startpagina, en een rechterpaneel dat rauwe

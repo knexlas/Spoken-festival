@@ -10,47 +10,69 @@
   "twin": "Tegelijk in Kortrijk →",
   "railCue": "verken →",
   "ticketUrl": "#tickets",
-  "days": [
-    {
-      "day": "VR",
-      "date": "31 OKT",
-      "slots": [
-        { "id": "a1", "time": "20:00", "artist": "NOKTURN", "stage": "De Kathedraal", "genre": "Geluidspoëzie", "blurb": "Een openingsritueel van gefluisterde tekstlagen en kerkelijke galm die zich traag onder het gewelf opbouwt." },
-        { "id": "a2", "time": "21:30", "artist": "Vesper Bloom", "stage": "Nevel", "genre": "Lezing · Gotische roman", "blurb": "Dromerige prozastukken over verdwijning en verlangen, voorgelezen in de mist boven de kaaien." },
-        { "id": "a3", "time": "23:00", "artist": "GEISTLER", "stage": "Schelde Hal", "genre": "Spoken word", "blurb": "Strakke, donkere spoken word die de hal tot diep in de nacht laat trillen." }
-      ]
-    },
-    {
-      "day": "ZA",
-      "date": "01 NOV",
-      "slots": [
-        { "id": "a4", "time": "19:30", "artist": "Hollow Choir", "stage": "De Kathedraal", "genre": "Verhalenkoor · Performance", "blurb": "Een twintigkoppig verhalenkoor vult de volledige ruimte met overlappende stemmen en fragmenten." },
-        { "id": "a5", "time": "21:00", "artist": "MOORLAND", "stage": "Nevel", "genre": "Interview · Roman", "blurb": "Een cinematisch gesprek over eenzaamheid, natuur en het onheilspellende, richting een meeslepende climax." },
-        { "id": "a6", "time": "22:30", "artist": "Static Séance", "stage": "Schelde Hal", "genre": "Performance · Griezelverhalen", "blurb": "Ruwe geluidsopnames verweven met live verteld griezelverhaal, opgenomen tijdens echte seances." }
-      ]
-    }
-  ],
   "info": [
     "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Blikfabriek, een oude industriële hal aan de Krugerstraat.",
     "Eén nacht, drie podia, en een programma dat balanceert tussen rouw en extase. Dit is de koude kant van het spook."
   ],
   "facts": [
-    { "k": "Steden", "v": "2 / 1 nacht" },
-    { "k": "Gasten", "v": "6" },
-    { "k": "Podia", "v": "3" },
-    { "k": "Leeftijd", "v": "16+" }
+    {
+      "k": "Steden",
+      "v": "2 / 1 nacht"
+    },
+    {
+      "k": "Gasten",
+      "v": "6"
+    },
+    {
+      "k": "Podia",
+      "v": "3"
+    },
+    {
+      "k": "Leeftijd",
+      "v": "16+"
+    }
   ],
   "practical": [
-    { "k": "Locatie", "v": "Blikfabriek, Krugerstraat 232, Antwerpen" },
-    { "k": "Bereikbaar", "v": "Trein tot Antwerpen-Centraal, dan ca. 20 min wandelen of openbaar vervoer richting Zuid" },
-    { "k": "Openingsuren", "v": "19:00 – 02:00" },
-    { "k": "Eten & drank", "v": "Foodtrucks op de kaaien" },
-    { "k": "Lockers", "v": "Beschikbaar aan de ingang" },
-    { "k": "Toegankelijk", "v": "Rolstoeltoegankelijk" }
+    {
+      "k": "Locatie",
+      "v": "Blikfabriek, Krugerstraat 232, Antwerpen"
+    },
+    {
+      "k": "Bereikbaar",
+      "v": "Trein tot Antwerpen-Centraal, dan ca. 20 min wandelen of openbaar vervoer richting Zuid"
+    },
+    {
+      "k": "Openingsuren",
+      "v": "19:00 – 02:00"
+    },
+    {
+      "k": "Eten & drank",
+      "v": "Foodtrucks op de kaaien"
+    },
+    {
+      "k": "Lockers",
+      "v": "Beschikbaar aan de ingang"
+    },
+    {
+      "k": "Toegankelijk",
+      "v": "Rolstoeltoegankelijk"
+    }
   ],
   "tickets": [
-    { "tier": "Dagticket", "price": "€39", "note": "Vrijdag óf zaterdag" },
-    { "tier": "Combiticket", "price": "€69", "note": "Beide avonden" },
-    { "tier": "Spookpas", "price": "€119", "note": "Combi + late-night + locker" }
+    {
+      "tier": "Dagticket",
+      "price": "€39",
+      "note": "Vrijdag óf zaterdag"
+    },
+    {
+      "tier": "Combiticket",
+      "price": "€69",
+      "note": "Beide avonden"
+    },
+    {
+      "tier": "Spookpas",
+      "price": "€119",
+      "note": "Combi + late-night + locker"
+    }
   ]
 }

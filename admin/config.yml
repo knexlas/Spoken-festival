@@ -61,36 +61,6 @@ city_fields: &city_fields
   - { label: "Tekstje in de smalle zijbalk (alleen desktop)", name: "railCue", widget: "string", hint: "Kort woord dat uitnodigt om deze stad open te klappen, bv. 'verken →'" }
   - { label: "Ticket-link", name: "ticketUrl", widget: "string", hint: "Volledige link naar de ticketshop (https://…), of #tickets zolang die er nog niet is" }
 
-  - label: "Programma (dagen)"
-    name: "days"
-    label_singular: "Dag"
-    widget: "list"
-    collapsed: true
-    summary: "{{fields.day}} {{fields.date}}"
-    fields:
-      - { label: "Dag", name: "day", widget: "string", hint: "Bv. VR" }
-      - { label: "Datum", name: "date", widget: "string", hint: "Bv. 31 OKT" }
-      - label: "Programmaonderdelen"
-        name: "slots"
-        label_singular: "Programmaonderdeel"
-        widget: "list"
-        collapsed: true
-        summary: "{{fields.time}} — {{fields.artist}}"
-        fields:
-          - { label: "Tijd", name: "time", widget: "string", hint: "Bv. 20:00" }
-          - label: "Artiest / gast"
-            name: "artist"
-            widget: "relation"
-            collection: "site"
-            file: "artiesten"
-            search_fields: ["artists.*.name"]
-            display_fields: ["artists.*.name"]
-            value_field: "artists.*.name"
-            hint: "Kies uit de lijst 'Artiesten & gasten'. Nieuwe naam? Voeg die eerst daar toe — foto en bio verschijnen dan automatisch bij dit programmaonderdeel."
-          - { label: "Podium / zaal", name: "stage", widget: "string" }
-          - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
-          - { label: "Omschrijving", name: "blurb", widget: "text" }
-
   - label: "Info-paragrafen"
     name: "info"
     label_singular: "Paragraaf"
@@ -170,6 +140,17 @@ collections:
               - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text", hint: "1 à 2 zinnen; dit is de tekst die Google en social media tonen." }
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
 
+          - label: "Festivaldagen"
+            name: "days"
+            label_singular: "Dag"
+            widget: "list"
+            hint: "De dagen van het festival — gelden voor beide steden. De optredens (bij Artiesten & gasten) verwijzen naar deze dagen."
+            summary: "{{fields.label}} {{fields.date}}"
+            fields:
+              - { label: "Code", name: "id", widget: "string", hint: "Kort en uniek, bv. vr of za. NIET meer wijzigen zodra er optredens aan gekoppeld zijn." }
+              - { label: "Naam (zoals getoond)", name: "label", widget: "string", hint: "Bv. VR" }
+              - { label: "Datum (zoals getoond)", name: "date", widget: "string", hint: "Bv. 31 OKT" }
+
           - label: "Teksten & knoppen (site-breed)"
             name: "labels"
             widget: "object"
@@ -187,23 +168,29 @@ collections:
               - { label: "Knop: alles dichtklappen", name: "verbergInfo", widget: "string", required: false }
               - { label: "Knop: tickets (bovenaan)", name: "ticketsKnop", widget: "string", required: false }
               - { label: "Knop: koop (per ticket)", name: "koopKnop", widget: "string", required: false }
+              - { label: "Placeholder: foto ontbreekt nog", name: "fotoVolgt", widget: "string", required: false }
+              - { label: "Linktekst: meer over [artiest]", name: "meerOver", widget: "string", required: false }
+              - { label: "Uitleg bij eerste bezoek (desktop, hover-modus)", name: "hintBeweeg", widget: "string", required: false }
+              - { label: "Uitleg bij eerste bezoek (desktop, klik-modus)", name: "hintKlik", widget: "string", required: false }
+              - { label: "Kop: blokkenschema", name: "blokkenschema", widget: "string", required: false }
+              - { label: "Label: ook te zien (kruisverwijzing artiest)", name: "ookTeZien", widget: "string", required: false }
 
       - name: "antwerpen"
         label: "Antwerpen"
         file: "content/antwerpen.json"
-        description: "Alles voor de Antwerpse editie: programma, info, praktisch en tickets."
+        description: "De Antwerpse editie: info, praktisch en tickets. Het programma zelf beheer je bij 'Artiesten & gasten' (optredens) — het verschijnt hier automatisch."
         fields: *city_fields
 
       - name: "kortrijk"
         label: "Kortrijk"
         file: "content/kortrijk.json"
-        description: "Alles voor de Kortrijkse editie: programma, info, praktisch en tickets."
+        description: "De Kortrijkse editie: info, praktisch en tickets. Het programma zelf beheer je bij 'Artiesten & gasten' (optredens) — het verschijnt hier automatisch."
         fields: *city_fields
 
       - name: "artiesten"
         label: "Artiesten & gasten"
         file: "content/artiesten.json"
-        description: "Wie er komt: naam, foto en beschrijving. Het programma verwijst naar deze lijst."
+        description: "Alles over wie er komt én wanneer ze optreden. De programma's en blokkenschema's van Antwerpen en Kortrijk worden hier automatisch uit opgebouwd — dit is de enige plek waar je tijden en podia beheert."
         fields:
           - label: "Artiesten & gasten"
             name: "artists"
@@ -216,6 +203,35 @@ collections:
               - { label: "Foto", name: "photo", widget: "image", required: false, hint: "Liggende foto werkt het best (bv. 800×600)." }
               - { label: "Beschrijving / bio", name: "bio", widget: "text", required: false, hint: "Korte introductie; verschijnt onder het programmaonderdeel." }
               - { label: "Website of social-link", name: "link", widget: "string", required: false, hint: "https://… (optioneel)" }
+              - label: "Optredens"
+                name: "performances"
+                label_singular: "Optreden"
+                widget: "list"
+                collapsed: true
+                required: false
+                summary: "{{fields.city}} · {{fields.day}} · {{fields.time}}"
+                hint: "Wanneer en waar deze artiest optreedt. Eén artiest kan meerdere optredens hebben, ook in beide steden. Dit vult automatisch het programma én het blokkenschema van de juiste stad."
+                fields:
+                  - label: "Stad"
+                    name: "city"
+                    widget: "select"
+                    options:
+                      - { label: "Antwerpen", value: "ant" }
+                      - { label: "Kortrijk", value: "kor" }
+                  - label: "Dag"
+                    name: "day"
+                    widget: "relation"
+                    collection: "site"
+                    file: "festival"
+                    search_fields: ["days.*.label"]
+                    display_fields: ["days.*.label"]
+                    value_field: "days.*.id"
+                    hint: "Festivaldagen beheer je bij Festival-instellingen."
+                  - { label: "Starttijd", name: "time", widget: "string", hint: "Bv. 20:00" }
+                  - { label: "Eindtijd", name: "end", widget: "string", required: false, hint: "Bv. 21:00 — leeg gelaten telt als 1 uur (voor het blokkenschema)." }
+                  - { label: "Podium / zaal", name: "stage", widget: "string" }
+                  - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
+                  - { label: "Omschrijving van dit optreden", name: "blurb", widget: "text", required: false }
 
       - name: "nieuws"
         label: "Nieuws & affiches"

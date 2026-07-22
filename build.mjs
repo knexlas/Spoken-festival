@@ -15,15 +15,15 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderPanels, esc } from './assets/render.mjs';
+import { renderPanels, esc, cityPerformances } from './assets/render.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 
 const readJson = name => JSON.parse(readFileSync(join(root, 'content', name), 'utf8'));
-const { theme, festival, labels } = readJson('festival.json');
+const { theme, festival, labels, days } = readJson('festival.json');
 const data = {
-  theme, festival, labels: labels || {},
+  theme, festival, labels: labels || {}, days: days || [],
   cities: [readJson('antwerpen.json'), readJson('kortrijk.json')],
   artists: readJson('artiesten.json').artists || [],
   news: readJson('nieuws.json'),
@@ -67,10 +67,11 @@ const events = data.cities.map(c => ({
     address: { '@type': 'PostalAddress', addressLocality: c.addressLocality, addressCountry: c.addressCountry },
   },
   organizer: { '@type': 'Organization', name: f.organizer, url: base + '/' },
-  performer: c.days.flatMap(d => d.slots).map(s => {
-    const a = artistByName[String(s.artist || '').trim()];
+  // programme is derived from the artists' performances (single source of truth)
+  performer: [...new Set(cityPerformances(data, c.id).map(p => p.artist))].map(name => {
+    const a = artistByName[String(name || '').trim()];
     return {
-      '@type': 'Person', name: s.artist,
+      '@type': 'Person', name,
       ...(a && a.photo ? { image: absUrl(a.photo) } : {}),
       ...(a && a.bio ? { description: a.bio } : {}),
     };

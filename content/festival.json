@@ -12,6 +12,10 @@
     "description": "SPOKEN — één nacht, twee steden. Een spookachtig literatuurfestival tegelijk in Antwerpen en Kortrijk. Verhalen, poëzie, spoken word en gotische fictie.",
     "shareImage": "/assets/og-image.jpg"
   },
+  "days": [
+    { "id": "vr", "label": "VR", "date": "31 OKT" },
+    { "id": "za", "label": "ZA", "date": "01 NOV" }
+  ],
   "labels": {
     "programma": "Programma",
     "nieuws": "Nieuws",
@@ -22,6 +26,12 @@
     "klikVoorInfo": "KLIK VOOR INFO",
     "verbergInfo": "VERBERG INFO",
     "ticketsKnop": "Tickets",
-    "koopKnop": "Koop"
+    "koopKnop": "Koop",
+    "fotoVolgt": "FOTO VOLGT",
+    "meerOver": "meer over",
+    "hintBeweeg": "beweeg naar links of rechts",
+    "hintKlik": "klik een stad",
+    "blokkenschema": "Blokkenschema",
+    "ookTeZien": "Ook te zien"
   }
 }
