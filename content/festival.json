@@ -1,15 +1,15 @@
 {
-  "theme": "spectraal",
   "festival": {
     "name": "SPOKEN",
     "year": "2026",
     "subtitle": "Het festival waarbij je angst in de ogen kijkt.",
+    "shortDate": "31.10.2026",
     "siteUrl": "https://www.spokenfestival.be",
     "organizer": "Vonk en Zonen",
     "locale": "nl_BE",
     "startDate": "2026-10-31T19:00:00+01:00",
-    "endDate": "2026-11-01T02:00:00+01:00",
-    "description": "SPOKEN — één nacht, twee steden. Een spookachtig literatuurfestival tegelijk in Antwerpen en Kortrijk. Verhalen, poëzie, spoken word en gotische fictie.",
+    "endDate": "2026-11-01T23:00:00+01:00",
+    "description": "SPOKEN — griezelfestival over het spookachtige, één weekend tegelijk in Antwerpen en Kortrijk. Spookverhalen, essays, poëzie en spoken word.",
     "shareImage": "/assets/og-image.jpg"
   },
   "days": [
@@ -27,11 +27,13 @@
     "verbergInfo": "VERBERG INFO",
     "ticketsKnop": "Tickets",
     "koopKnop": "Koop",
-    "fotoVolgt": "FOTO VOLGT",
+    "fotoVolgt": "PORTRET",
     "meerOver": "meer over",
     "hintBeweeg": "beweeg naar links of rechts",
     "hintKlik": "klik een stad",
     "blokkenschema": "Blokkenschema",
-    "ookTeZien": "Ook te zien"
+    "ookTeZien": "Ook te zien",
+    "footerTag": "GRIEZELFESTIVAL",
+    "introKnop": "KLIK OM BINNEN TE GAAN"
   }
 }

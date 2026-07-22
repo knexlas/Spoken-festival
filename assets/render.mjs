@@ -6,12 +6,14 @@
    visitor sees are generated from the exact same code.
 
    SINGLE SOURCE OF TRUTH for the programme: each artist's `performances`
-   list in content/artiesten.json (city, day, start/end time, stage, genre,
-   blurb). The per-city programme lists AND the blokkenschema (timetable
-   grid) are derived from it at render time — there is deliberately no
-   second editable copy of any time anywhere, so nothing can drift out of
-   sync. Festival days are defined once in content/festival.json (`days`),
-   shared by both cities.
+   list in content/artiesten.json. The per-city programme lists AND the
+   blokkenschema are derived from it at render time. Festival days are
+   defined once in content/festival.json (`days`), shared by both cities.
+
+   V3 DESIGN (illustrated identity): the hand-painted artwork layers below
+   (face backdrop, hero figures, interludes, the SPOKEN wordmark whose "O"
+   is a living eye) are design constants, not CMS content — they are the
+   festival's visual identity, like the fonts.
    ========================================================================= */
 
 export const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
@@ -20,9 +22,19 @@ export const DEFAULT_LABELS = {
   programma: 'Programma', nieuws: 'Nieuws', info: 'Info', praktisch: 'Praktisch',
   affiches: 'Affiches', tickets: 'Tickets', klikVoorInfo: 'KLIK VOOR INFO',
   verbergInfo: 'VERBERG INFO', ticketsKnop: 'Tickets', koopKnop: 'Koop',
-  fotoVolgt: 'FOTO VOLGT', meerOver: 'meer over',
+  fotoVolgt: 'PORTRET', meerOver: 'meer over',
   hintBeweeg: 'beweeg naar links of rechts', hintKlik: 'klik een stad',
   blokkenschema: 'Blokkenschema', ookTeZien: 'Ook te zien',
+  footerTag: 'GRIEZELFESTIVAL', introKnop: 'KLIK OM BINNEN TE GAAN',
+};
+
+/* v3 artwork per city (hand-painted illustrations, client-supplied) */
+export const ART = {
+  wordmark: 'assets/img/wordmark.png',
+  eyeFrames: ['assets/img/eye-half.png', 'assets/img/eye-75.png', 'assets/img/eye-closed.png'],
+  face: 'assets/img/gezicht.jpg',
+  ant: { fig: 'assets/img/spook5.jpg', fig2: 'assets/img/spook2.png', fig3: 'assets/img/spook3.png', facePos: 'left top' },
+  kor: { fig: 'assets/img/spook1.jpg', fig2: 'assets/img/spook4.png', fig3: null, facePos: 'right top' },
 };
 
 export const labelSet = data => ({ ...DEFAULT_LABELS, ...(data && data.labels ? data.labels : {}) });
@@ -196,8 +208,35 @@ function postersSection(ctx){
         </section>`;
 }
 
+/* ---- figure interlude: painted ghost tucked between two sections ---- */
+function interlude(src, align, deg, dur){
+  if (!src) return '';
+  return `
+        <div class="interlude" aria-hidden="true">
+          <div class="interlude-fig" style="background-image:url('${esc(src)}');${align === 'right' ? 'right:4%;background-position:right center;' : 'left:4%;background-position:left center;'}transform:rotate(${deg}deg);animation-duration:${dur}s;"></div>
+        </div>`;
+}
+
+/* ---- the painted SPOKEN wordmark; its "O" is a living eye (iris follows
+   the cursor, lids blink — driven by JS in index.html via the data hooks) ---- */
+function wordmarkHtml(festival){
+  return `
+              <div class="wordmark">
+                <img class="wm-img" src="${ART.wordmark}" alt="${esc(festival.name)}">
+                <div class="eye" data-eye>
+                  <div class="eye-clip">
+                    <div class="eye-iris" data-iris><img src="${ART.wordmark}" alt=""></div>
+                  </div>
+                  <img class="eye-lid" data-lid="1" src="${ART.eyeFrames[0]}" alt="">
+                  <img class="eye-lid" data-lid="2" src="${ART.eyeFrames[1]}" alt="">
+                  <img class="eye-lid" data-lid="3" src="${ART.eyeFrames[2]}" alt="">
+                </div>
+              </div>`;
+}
+
 export function panelHtml(city, ctx){
   const { festival, labels } = ctx;
+  const art = ART[city.id] || {};
   const cityDays = deriveDays(ctx.data, city.id);
   const days = cityDays.map((d, di) => `
     <div class="day">
@@ -214,25 +253,24 @@ export function panelHtml(city, ctx){
       <div class="price">${esc(t.price)}</div>
       <a class="buy" href="${esc(city.ticketUrl)}">${esc(labels.koopKnop)}</a>
     </div>`).join('');
+  const footerLine = [festival.name, labels.footerTag, city.name].filter(Boolean).map(esc).join(' · ');
 
   return `
   <section class="panel" data-id="${city.id}" data-side="${city.side}">
-    <div class="fog-a"></div>
-    <div class="fog-b"></div>
-    <div class="wisps">
-      <span style="left:14%;bottom:8%;width:110px;height:110px;filter:blur(26px);animation:wisp 17s ease-in-out infinite;animation-delay:0s;"></span>
-      <span style="left:42%;bottom:4%;width:80px;height:80px;filter:blur(22px);animation:wisp 21s ease-in-out infinite;animation-delay:5s;"></span>
-      <span style="left:68%;bottom:12%;width:130px;height:130px;filter:blur(30px);animation:wisp 25s ease-in-out infinite;animation-delay:9s;"></span>
-      <span style="left:86%;bottom:2%;width:70px;height:70px;filter:blur(20px);animation:wisp 19s ease-in-out infinite;animation-delay:13s;"></span>
-    </div>
+    <div class="face-bg" style="background-position:${esc(art.facePos || 'center top')};"></div>
+    <div class="panel-fig" data-fig style="background-image:url('${esc(art.fig || '')}');"></div>
 
-    <div class="scroll">
+    <div class="scroll" data-scroll>
       <div class="content">
         <header class="hero">
-          <div class="eyebrow"><span class="mark">${esc(festival.name)}</span><span class="line"></span><span class="yr">${esc(festival.year)}</span></div>
+          <div class="hero-scrim"></div>
+          <div class="masthead">
+${wordmarkHtml(festival)}
+            <span class="line"></span>
+            <span class="masthead-date">${esc(festival.shortDate || festival.year)}</span>
+          </div>
           ${festival.subtitle ? `<p class="hero-subtitle">${esc(festival.subtitle)}</p>` : ''}
           <div class="title-wrap">
-            <div class="title-echo two" aria-hidden="true">${esc(city.name)}</div>
             <div class="title-echo" aria-hidden="true">${esc(city.name)}</div>
             <h1 class="title">${esc(city.name)}</h1>
           </div>
@@ -248,6 +286,7 @@ export function panelHtml(city, ctx){
           <div class="sec-head"><h2>${esc(labels.programma)}</h2><span class="line"></span><span class="expand-hint" data-toggle-all="${city.id}">${esc(labels.klikVoorInfo)}</span></div>
           ${days}
         </section>
+${interlude(art.fig2, city.side === 'left' ? 'right' : 'left', city.side === 'left' ? -2 : 2, 11)}
 ${schemaSection(city, ctx)}
 ${newsSection(ctx)}
         <section>
@@ -263,10 +302,11 @@ ${newsSection(ctx)}
           <div class="practical">${practical}</div>
         </section>
 ${postersSection(ctx)}
+${interlude(art.fig3, 'left', 1.5, 13)}
         <section id="tickets">
           <div class="sec-head"><h2>${esc(labels.tickets)}</h2><span class="line"></span></div>
           <div class="tickets-list">${tickets}</div>
-          <div class="foot"><span>${esc(festival.name)} · ${esc(city.name)}</span><span>${esc(city.dates)}</span></div>
+          <div class="foot"><span>${footerLine}</span><span>${esc(city.dates)}</span></div>
         </section>
       </div>
     </div>

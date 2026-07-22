@@ -2,56 +2,56 @@
   "id": "ant",
   "side": "left",
   "name": "Antwerpen",
-  "tagline": "Het koude spook van de Schelde — spookverhalen, poëzie en spoken word onder oud gewelf.",
+  "tagline": "Het koude spook van de Schelde — spookverhalen, essays en poëzie onder oud gewelf.",
   "dates": "31 OKT – 01 NOV 2026",
-  "venue": "Blikfabriek",
+  "venue": "Letterenhuis & Sint-Annakerk",
   "addressLocality": "Antwerpen",
   "addressCountry": "BE",
   "twin": "Tegelijk in Kortrijk →",
   "railCue": "verken →",
   "ticketUrl": "#tickets",
   "info": [
-    "Spoken strijkt neer op twee plekken tegelijk. In Antwerpen kruipt het festival weg in de Blikfabriek, een oude industriële hal aan de Krugerstraat.",
-    "Eén nacht, drie podia, en een programma dat balanceert tussen rouw en extase. Dit is de koude kant van het spook."
+    "Spoken is een griezelfestival over het spookachtige: stemmen die naklinken, verhalen die blijven hangen en alles wat tussen de regels rondwaart.",
+    "Het strijkt op twee plekken tegelijk neer. In Antwerpen kruipt het weg in het Letterenhuis en de Sint-Annakerk — de koude, gotische kant van het woord."
   ],
   "facts": [
     {
-      "k": "Steden",
-      "v": "2 / 1 nacht"
+      "k": "Auteurs",
+      "v": "18"
     },
     {
-      "k": "Gasten",
-      "v": "6"
-    },
-    {
-      "k": "Podia",
+      "k": "Zalen",
       "v": "3"
     },
     {
-      "k": "Leeftijd",
-      "v": "16+"
+      "k": "Talen",
+      "v": "NL / EN"
+    },
+    {
+      "k": "Steden",
+      "v": "2"
     }
   ],
   "practical": [
     {
       "k": "Locatie",
-      "v": "Blikfabriek, Krugerstraat 232, Antwerpen"
+      "v": "Letterenhuis, Antwerpen"
     },
     {
       "k": "Bereikbaar",
-      "v": "Trein tot Antwerpen-Centraal, dan ca. 20 min wandelen of openbaar vervoer richting Zuid"
+      "v": "Trein tot Antwerpen-Centraal, dan tram 7"
     },
     {
       "k": "Openingsuren",
-      "v": "19:00 – 02:00"
+      "v": "VR 19:00 · ZA 14:00"
     },
     {
-      "k": "Eten & drank",
-      "v": "Foodtrucks op de kaaien"
+      "k": "Boekhandel",
+      "v": "Pop-up boekhandel & signeersessies"
     },
     {
-      "k": "Lockers",
-      "v": "Beschikbaar aan de ingang"
+      "k": "Vestiaire",
+      "v": "Gratis aan de ingang"
     },
     {
       "k": "Toegankelijk",
@@ -61,18 +61,18 @@
   "tickets": [
     {
       "tier": "Dagticket",
-      "price": "€39",
+      "price": "€22",
       "note": "Vrijdag óf zaterdag"
     },
     {
-      "tier": "Combiticket",
-      "price": "€69",
-      "note": "Beide avonden"
+      "tier": "Weekendpas",
+      "price": "€38",
+      "note": "Beide dagen"
     },
     {
       "tier": "Spookpas",
-      "price": "€119",
-      "note": "Combi + late-night + locker"
+      "price": "€65",
+      "note": "Weekend + signeersessies + boekenpakket"
     }
   ]
 }

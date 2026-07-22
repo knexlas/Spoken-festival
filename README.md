@@ -1,14 +1,16 @@
 # SPOKEN — festivalwebsite
 
-Spookthema **literatuurfestival** (geen muziekfestival), één nacht, twee steden:
-**Antwerpen** (koud spook) & **Kortrijk** (warm spook). Programma bestaat uit lezingen,
-interviews, spoken word, poëzie en verhalen-performances — geen "artiesten"/"genres"
-in muzikale zin. Statische website, gebouwd via `node build.mjs`.
+Spookthema **griezelfestival** (literatuur: spookverhalen, essays, poëzie, spoken word),
+één weekend (31 OKT – 01 NOV 2026), twee steden: **Antwerpen** (koud spook, krijtblauw)
+& **Kortrijk** (warm spook, gebrand oranje). Split-screen site met een **v3 geïllustreerde
+huisstijl** (handgeschilderde artwork, Amatic SC-lettering, geel `#e6d33b`). Statische
+website, gebouwd via `node build.mjs`.
 
 ## Structuur
 
 ```
-index.html              ← bronpagina (layout, sfeer, interactie, paletten)
+index.html              ← bronpagina (split-screen, sfeer, interactie; v3-huisstijl)
+assets/img, assets/media← geschilderde artwork + openingsvideo (huisstijl, geen CMS)
 content/festival.json   ← thema + festivalgegevens/SEO + festivaldagen + alle koppen & knopteksten
 content/antwerpen.json  ← Antwerpen: info, praktisch, tickets (programma wordt afgeleid)
 content/kortrijk.json   ← Kortrijk: idem
@@ -37,10 +39,13 @@ niets hardcoded behalve de structuur.
 
 - **Inhoud aanpassen** = de juiste `content/*.json` bewerken (of via de CMS op `/admin`).
   De pagina laadt deze bestanden bij het openen.
-- **Kleurenthema kiezen** = het veld `"theme"` in `content/festival.json` (bv. `"necropolis"`),
-  óf live uitproberen via de paletkiezer rechtsboven op de site. De 10 namen staan in
-  `index.html` onder `const PALETTES` (spectraal, necropolis, maanlicht, vagevuur,
-  ectoplasma, nevel, nachtschade, wierook, as, sint-elmsvuur).
+- **Huisstijl** (kleuren, lettertypes, geschilderde artwork, de "levende oog"-animatie,
+  de openingsvideo) is vast in `index.html` + `assets/render.mjs` — dit is het v3-ontwerp,
+  geen CMS-instelling. Het oude keuze-uit-10-paletten systeem is met v3 verdwenen; de
+  krijtblauwe (Antwerpen) / oranje (Kortrijk) / gele kleuren zijn nu definitief.
+- **Artwork** staat in `assets/img/` (`wordmark.png` met het oog, `gezicht.jpg` gezicht-
+  achtergrond, `spook1–5` figuren, `eye-*` knipperframes) en `assets/media/intro.mp4`.
+  Bron: de Claude Design v3-export (`Spokenv3_extracted/`, gitignored).
 
 ## SEO — automatisch gegenereerd
 

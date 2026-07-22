@@ -2,40 +2,40 @@
   "id": "kor",
   "side": "right",
   "name": "Kortrijk",
-  "tagline": "Het warme spook van de Leie — verhalen, gedichten en nachtelijke voorleesavonden bij smeulend kaarslicht.",
+  "tagline": "Het warme spook van de Leie — verhalen, spoken word en fluisterproza bij kaarslicht.",
   "dates": "31 OKT – 01 NOV 2026",
-  "venue": "Buda",
+  "venue": "Budafabriek & Stadsbibliotheek",
   "addressLocality": "Kortrijk",
   "addressCountry": "BE",
   "twin": "← Tegelijk in Antwerpen",
   "railCue": "← verken",
   "ticketUrl": "#tickets",
   "info": [
-    "Aan de andere kant van het land neemt Spoken bezit van Buda, het eilandje in de Leie in het hart van Kortrijk.",
-    "Zelfde nacht, ander temperament: hier is het spook warm, smeulend en intiem. De zachte tegenhanger van Antwerpen."
+    "Aan de andere kant van het land neemt Spoken bezit van de Budafabriek en de stadsbibliotheek in Kortrijk.",
+    "Zelfde weekend, ander temperament: hier is het woord warm, verteld en fluisterend. De zachte tegenhanger van Antwerpen."
   ],
   "facts": [
     {
-      "k": "Steden",
-      "v": "2 / 1 nacht"
+      "k": "Auteurs",
+      "v": "16"
     },
     {
-      "k": "Gasten",
-      "v": "6"
-    },
-    {
-      "k": "Podia",
+      "k": "Zalen",
       "v": "3"
     },
     {
-      "k": "Leeftijd",
-      "v": "16+"
+      "k": "Talen",
+      "v": "NL"
+    },
+    {
+      "k": "Steden",
+      "v": "2"
     }
   ],
   "practical": [
     {
       "k": "Locatie",
-      "v": "Buda, Broelkaai 6, Kortrijk"
+      "v": "Budafabriek, Kortrijk"
     },
     {
       "k": "Bereikbaar",
@@ -43,15 +43,15 @@
     },
     {
       "k": "Openingsuren",
-      "v": "19:00 – 02:00"
+      "v": "VR 19:00 · ZA 14:00"
     },
     {
-      "k": "Eten & drank",
-      "v": "Warme keuken in de hal"
+      "k": "Boekhandel",
+      "v": "Pop-up boekhandel & signeersessies"
     },
     {
-      "k": "Lockers",
-      "v": "Beschikbaar aan de ingang"
+      "k": "Vestiaire",
+      "v": "Gratis aan de ingang"
     },
     {
       "k": "Toegankelijk",
@@ -61,18 +61,18 @@
   "tickets": [
     {
       "tier": "Dagticket",
-      "price": "€39",
+      "price": "€22",
       "note": "Vrijdag óf zaterdag"
     },
     {
-      "tier": "Combiticket",
-      "price": "€69",
-      "note": "Beide avonden"
+      "tier": "Weekendpas",
+      "price": "€38",
+      "note": "Beide dagen"
     },
     {
       "tier": "Spookpas",
-      "price": "€119",
-      "note": "Combi + late-night + locker"
+      "price": "€65",
+      "note": "Weekend + signeersessies + boekenpakket"
     }
   ]
 }

@@ -11,15 +11,16 @@
    ========================================================================= */
 
 :root {
-  --f-display: 'IM Fell English', Georgia, serif;
+  --f-display: 'Amatic SC', cursive;
   --f-body: 'Space Grotesk', system-ui, sans-serif;
   --f-mono: 'Space Mono', monospace;
-  --bg: oklch(0.13 0.02 262);
-  --fg: oklch(0.93 0.012 240);
-  --mut: oklch(0.62 0.02 250);
-  --acc: oklch(0.85 0.09 188);
-  --line: oklch(0.27 0.02 258);
-  --glow: oklch(0.85 0.09 188 / 0.14);
+  --bg: #12100e;
+  --fg: #efe9dd;
+  --mut: #93897a;
+  --acc: #8ec8d8;       /* chalk blue — Antwerpen */
+  --line: rgba(239,233,221,0.16);
+  --glow: rgba(142,200,216,0.16);
+  --yellow: #e6d33b;
 }
 
 html, body {
@@ -35,24 +36,25 @@ html, body {
     radial-gradient(45% 40% at 90% 100%, oklch(0.74 0.145 48 / 0.07), transparent 60%);
 }
 
-/* headings — the festival's serif wordmark voice */
+/* headings — the festival's hand-drawn Amatic voice */
 h1, h2, h3, h4 {
   font-family: var(--f-display);
-  font-weight: 400;
-  line-height: 1.05;
-  color: oklch(0.96 0.012 240);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #f6f0e4;
   text-shadow: 0 0 26px var(--glow);
-  margin: 0 0 0.4em;
+  margin: 0 0 0.3em;
 }
-h1 { font-size: 42px; }
-h2 { font-size: 30px; }
-h3 { font-size: 23px; }
+h1 { font-size: 60px; }
+h2 { font-size: 44px; }
+h3 { font-size: 32px; }
 
 p { color: var(--fg); max-width: 62ch; }
-a { color: var(--acc); text-decoration: none; }
+a { color: var(--yellow); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-strong, b { color: oklch(0.97 0.012 240); }
+strong, b { color: #f6f0e4; }
 em, i { color: var(--mut); }
 
 hr {
@@ -100,4 +102,4 @@ blockquote {
   font-style: italic;
 }
 
-::selection { background: var(--acc); color: oklch(0.12 0.02 262); }
+::selection { background: var(--yellow); color: #141210; }

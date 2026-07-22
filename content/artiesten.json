@@ -1,111 +1,111 @@
 {
   "artists": [
     {
-      "name": "NOKTURN",
+      "name": "Charlotte Van den Broeck",
       "photo": "",
-      "bio": "Klankdichter die gefluisterde tekstlagen en kerkelijke galm stapelt tot een ritueel. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "20:00", "end": "21:00", "stage": "De Kathedraal", "genre": "Geluidspoëzie", "blurb": "Een openingsritueel van gefluisterde tekstlagen en kerkelijke galm die zich traag onder het gewelf opbouwt." }
+        { "city": "ant", "day": "vr", "time": "19:30", "end": "20:30", "stage": "De Leeszaal", "genre": "Voordracht · Poëzie", "blurb": "De dichteres opent het festival met nieuw werk over verdwijnen, echo en wat blijft naklinken." }
       ]
     },
     {
-      "name": "Vesper Bloom",
+      "name": "Nachtelijke Spookverhalen",
       "photo": "",
-      "bio": "Schrijft dromerig proza over verdwijning en verlangen. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "21:30", "end": "22:30", "stage": "Nevel", "genre": "Lezing · Gotische roman", "blurb": "Dromerige prozastukken over verdwijning en verlangen, voorgelezen in de mist boven de kaaien." }
+        { "city": "ant", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Sint-Annakerk", "genre": "Voorlezing · Gotiek", "blurb": "Vier auteurs lezen bij kaarslicht klassieke en gloednieuwe spookverhalen voor onder het gewelf." }
       ]
     },
     {
-      "name": "GEISTLER",
+      "name": "Stefan Hertmans",
       "photo": "",
-      "bio": "Spoken-wordartiest met een strak, donker ritme. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "23:00", "end": "00:00", "stage": "Schelde Hal", "genre": "Spoken word", "blurb": "Strakke, donkere spoken word die de hal tot diep in de nacht laat trillen." }
+        { "city": "ant", "day": "vr", "time": "22:30", "end": "23:30", "stage": "De Leeszaal", "genre": "Gesprek · Essay", "blurb": "Een nachtgesprek over geheugen, ruïnes en alles wat blijft spoken in taal." }
       ]
     },
     {
-      "name": "Hollow Choir",
+      "name": "Debat: De Onttovering",
       "photo": "",
-      "bio": "Twintigkoppig verhalenkoor dat stemmen en fragmenten laat overlappen. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "19:30", "end": "20:30", "stage": "De Kathedraal", "genre": "Verhalenkoor · Performance", "blurb": "Een twintigkoppig verhalenkoor vult de volledige ruimte met overlappende stemmen en fragmenten." }
+        { "city": "ant", "day": "za", "time": "15:00", "end": "16:00", "stage": "Salon", "genre": "Debat · Essay", "blurb": "Schrijvers en filosofen buigen zich over het verdwijnen van het mysterie uit de moderne wereld." }
       ]
     },
     {
-      "name": "MOORLAND",
+      "name": "Delphine Lecompte",
       "photo": "",
-      "bio": "Romancier van eenzaamheid, natuur en het onheilspellende. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "21:00", "end": "22:00", "stage": "Nevel", "genre": "Interview · Roman", "blurb": "Een cinematisch gesprek over eenzaamheid, natuur en het onheilspellende, richting een meeslepende climax." }
+        { "city": "ant", "day": "za", "time": "17:00", "end": "18:00", "stage": "De Leeszaal", "genre": "Voordracht · Poëzie", "blurb": "Absurde, donkere poëzie met een lach die in de mist blijft hangen." }
       ]
     },
     {
-      "name": "Static Séance",
+      "name": "Spoken Word Nacht",
       "photo": "",
-      "bio": "Verweeft ruwe geluidsopnames met live verteld griezelverhaal. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "22:30", "end": "23:30", "stage": "Schelde Hal", "genre": "Performance · Griezelverhalen", "blurb": "Ruwe geluidsopnames verweven met live verteld griezelverhaal, opgenomen tijdens echte seances." }
+        { "city": "ant", "day": "za", "time": "20:00", "end": "00:00", "stage": "Sint-Annakerk", "genre": "Spoken word", "blurb": "Een estafette van stemmen tot na middernacht — de festivalnaam ten voeten uit." }
       ]
     },
     {
-      "name": "Emberlight",
+      "name": "Lize Spit",
       "photo": "",
-      "bio": "Dichter van warme, smeulende verzen bij kaarslicht. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "vr", "time": "20:00", "end": "21:00", "stage": "Gloed", "genre": "Poëzie", "blurb": "Warme, smeulende poëzie bij honderden kaarsen in de oude fabriekshal." }
+        { "city": "kor", "day": "vr", "time": "19:30", "end": "20:30", "stage": "De Verhalenzaal", "genre": "Voordracht · Proza", "blurb": "De schrijfster leest nieuw, beklemmend proza over wat een huis onthoudt en niet loslaat." }
       ]
     },
     {
-      "name": "WOLFSKIN",
+      "name": "Fluisterproza",
       "photo": "",
-      "bio": "Verteller van koude volksverhalen met een gloeiend hart. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "vr", "time": "21:30", "end": "22:30", "stage": "Buda Fabriek", "genre": "Verhalen · Folklore", "blurb": "Koude volksverhalen met een gloeiend, kloppend hart eronder." }
+        { "city": "kor", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Kaarsenzaal", "genre": "Voorlezing", "blurb": "Korte verhalen, één per kaars, voorgelezen tot de laatste vlam dooft." }
       ]
     },
     {
-      "name": "Sodium Dreams",
+      "name": "Maud Vanhauwaert",
       "photo": "",
-      "bio": "Non-fictieschrijver over dromen, angst en het schrijverschap. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "vr", "time": "23:00", "end": "00:00", "stage": "Leie Loods", "genre": "Nachtgesprek · Non-fictie", "blurb": "Oranje nachtlampjes en een intiem gesprek over dromen, angst en het schrijverschap, tot diep in de nacht." }
+        { "city": "kor", "day": "vr", "time": "22:30", "end": "23:30", "stage": "De Verhalenzaal", "genre": "Spoken word", "blurb": "Stadsdichter en performer brengt taal die zich aan je vastklampt en blijft." }
       ]
     },
     {
-      "name": "Maréchal",
+      "name": "Schrijfatelier: Geestverschijningen",
       "photo": "",
-      "bio": "Donkere chanson-teksten met een fluwelen stem. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "19:30", "end": "20:30", "stage": "Gloed", "genre": "Chanson · Poëzie", "blurb": "Donkere chanson-teksten met een fluwelen stem die je de rillingen bezorgt." }
+        { "city": "kor", "day": "za", "time": "15:00", "end": "17:00", "stage": "Atelier", "genre": "Workshop", "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt." }
       ]
     },
     {
-      "name": "ASHEN",
+      "name": "Peter Terrin",
       "photo": "",
-      "bio": "Sciencefiction-auteur van gloeiende retro-toekomstbeelden. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "21:00", "end": "22:00", "stage": "Buda Fabriek", "genre": "Lezing · Sciencefiction", "blurb": "Gloeiende retro-toekomstbeelden en dikke neonmist in een meeslepende sciencefiction-lezing." }
+        { "city": "kor", "day": "za", "time": "17:00", "end": "18:00", "stage": "De Verhalenzaal", "genre": "Gesprek · Roman", "blurb": "Over onheil, stilte en de dreiging die onder het alledaagse sluimert." }
       ]
     },
     {
-      "name": "Lantaarn",
+      "name": "Verhalen bij het Vuur",
       "photo": "",
-      "bio": "Humoristische spoken word die de duisternis verjaagt. Placeholder-bio — vervang via het CMS.",
+      "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "22:30", "end": "23:30", "stage": "Leie Loods", "genre": "Humor · Spoken word", "blurb": "Warme, humoristische verhalen die de duisternis verjagen tot sluitingstijd." }
+        { "city": "kor", "day": "za", "time": "20:00", "end": "23:00", "stage": "Kaarsenzaal", "genre": "Voorlezing · Slot", "blurb": "Een warme slotnacht van vertellers rond het haardvuur, tot sluitingstijd." }
       ]
     }
   ]

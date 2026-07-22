@@ -21,9 +21,9 @@ const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
 
 const readJson = name => JSON.parse(readFileSync(join(root, 'content', name), 'utf8'));
-const { theme, festival, labels, days } = readJson('festival.json');
+const { festival, labels, days } = readJson('festival.json');
 const data = {
-  theme, festival, labels: labels || {}, days: days || [],
+  festival, labels: labels || {}, days: days || [],
   cities: [readJson('antwerpen.json'), readJson('kortrijk.json')],
   artists: readJson('artiesten.json').artists || [],
   news: readJson('nieuws.json'),
@@ -38,7 +38,10 @@ const priceNum = p => (String(p).match(/[\d.,]+/) || ['0'])[0].replace(',', '.')
 const absUrl = u => !u ? base + '/' : (u.startsWith('http') ? u : base + '/' + u.replace(/^\//, ''));
 
 const cityNames = data.cities.map(c => c.name).join(' & ');
-const pageTitle = `${f.name} · Festival — ${cityNames} · ${data.cities[0].dates}`;
+// "GRIEZELFESTIVAL" (labels.footerTag) → "Griezelfestival" for the page title
+const rawTag = (data.labels.footerTag || 'Festival').trim();
+const titleTag = rawTag.charAt(0).toUpperCase() + rawTag.slice(1).toLowerCase();
+const pageTitle = `${f.name} · ${titleTag} — ${cityNames} · ${data.cities[0].dates}`;
 const pageDesc = f.description;
 const shareImg = absUrl(f.shareImage);
 

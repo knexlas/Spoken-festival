@@ -113,22 +113,9 @@ collections:
         file: "content/festival.json"
         description: "Thema, naam, datums en SEO-gegevens voor de hele site."
         fields:
-          - label: "Kleurthema"
-            name: "theme"
-            widget: "select"
-            hint: "Sfeerpalet voor de hele site."
-            options:
-              - { label: "Spectraal", value: "spectraal" }
-              - { label: "Necropolis", value: "necropolis" }
-              - { label: "Maanlicht", value: "maanlicht" }
-              - { label: "Vagevuur", value: "vagevuur" }
-              - { label: "Ectoplasma", value: "ectoplasma" }
-              - { label: "Nevel", value: "nevel" }
-              - { label: "Nachtschade", value: "nachtschade" }
-              - { label: "Wierook", value: "wierook" }
-              - { label: "As", value: "as" }
-              - { label: "Sint-Elmsvuur", value: "sintelmsvuur" }
-
+          # NB: het oude "Kleurthema"-veld is verdwenen met het v3-ontwerp —
+          # de kleuren zijn nu een vast onderdeel van de geïllustreerde
+          # huisstijl (krijtblauw Antwerpen, gebrand oranje Kortrijk, geel).
           - label: "Festival"
             name: "festival"
             widget: "object"
@@ -136,6 +123,7 @@ collections:
               - { label: "Naam van het festival", name: "name", widget: "string" }
               - { label: "Ondertitel", name: "subtitle", widget: "string", required: false, hint: "Korte, krachtige zin die op de homepage verschijnt, onder het SPOKEN-logo." }
               - { label: "Jaar (editie)", name: "year", widget: "string", hint: "Bv. 2026" }
+              - { label: "Korte datum (naast het logo)", name: "shortDate", widget: "string", required: false, hint: "Bv. 31.10.2026 — het gele, schuine datumlabel bovenaan." }
               - { label: "Website-adres", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be — normaal niet wijzigen" }
               - { label: "Organisator", name: "organizer", widget: "string", hint: "Bv. Vonk en Zonen" }
               - { label: "Taal/regio (technisch, voor social media)", name: "locale", widget: "string", required: false, hint: "nl_BE — normaal niet wijzigen" }
@@ -178,6 +166,8 @@ collections:
               - { label: "Uitleg bij eerste bezoek (desktop, klik-modus)", name: "hintKlik", widget: "string", required: false }
               - { label: "Kop: blokkenschema", name: "blokkenschema", widget: "string", required: false }
               - { label: "Label: ook te zien (kruisverwijzing artiest)", name: "ookTeZien", widget: "string", required: false }
+              - { label: "Footer-label (bv. GRIEZELFESTIVAL)", name: "footerTag", widget: "string", required: false }
+              - { label: "Intro-knop (openingsvideo)", name: "introKnop", widget: "string", required: false }
 
       - name: "antwerpen"
         label: "Antwerpen"

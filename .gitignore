@@ -2,10 +2,14 @@
 dist/
 
 # Claude Design exports (kept on disk as design sources, not needed in the repo;
-# the CMS/ skin files are applied into admin/)
+# their assets/skin files are applied into assets/ and admin/)
 Spoken.zip
 Spoken_extracted/
 CMS/
+Spokenv3_extracted/
+
+# raw illustrator source art (TIF/PSD, multi-GB) — keep on disk, never in git
+tiforiginals/
 
 # local tooling / editor cruft
 .claude/
