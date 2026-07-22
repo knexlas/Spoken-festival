@@ -5,13 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
   <title>SPOKEN — Beheer</title>
+
+  <!-- SPOKEN fonts (same as the public site) so the login screen, custom logo
+       and the reachable chrome inherit the festival's type. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================================
+       SPOKEN admin skin — the ROBUST layer.
+       Sveltia bundles its own UI styles inside its JS and does not (yet)
+       support full CSS theming of the editor internals (open request:
+       github.com/sveltia/sveltia-cms/issues/29). So this stylesheet only
+       themes the parts that are reliably reachable from the page:
+         · the page + login-screen background and fonts
+         · the custom mount element (#nc-root)
+       Deep restyling of the entry editor is done through the branded LIVE
+       PREVIEW (see spoken-preview.css, registered at the bottom of this file)
+       and through app_title + logo in admin/config.yml.
+       ===================================================================== */
+    :root { color-scheme: dark; }
+    html, body {
+      margin: 0;
+      height: 100%;
+      background: oklch(0.115 0.02 262);
+      color: oklch(0.93 0.012 240);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* atmospheric fog behind the login screen — subtle, on-brand, calm */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(45% 45% at 22% 20%, oklch(0.85 0.09 188 / 0.10), transparent 60%),
+        radial-gradient(45% 45% at 80% 82%, oklch(0.74 0.145 48 / 0.07), transparent 60%);
+    }
+    #nc-root {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+    /* the login screen renders near the top of the DOM before the app mounts;
+       give it SPOKEN type + a readable accent where inheritance reaches. */
+    #nc-root a { color: oklch(0.82 0.09 190); }
+  </style>
 </head>
 <body>
-  <!-- Sveltia CMS — moderne drop-in vervanger voor Decap CMS. Leest exact
-       dezelfde admin/config.yml en gebruikt dezelfde GitHub-login via de
-       Netlify OAuth-koppeling; alleen de editor-UI is anders (strakker,
-       donker thema, geen rommelige voorvertoning). Terugdraaien = dit
-       script weer vervangen door decap-cms.js. -->
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+  <!-- NB (geverifieerd 2026-07-22): Sveltia negeert dit mount-punt — het ruimt
+       de body op en tekent zijn eigen dekkende app-achtergrond over de hele
+       viewport. De fog/donkere pagina-achtergrond hierboven is dus alleen even
+       zichtbaar vóór de app laadt; de login volgt verder het licht/donker-thema
+       van het besturingssysteem. Onschadelijk, dus laten staan voor het geval
+       Sveltia theming later wél toelaat (issue #29). -->
+  <div id="nc-root"></div>
+
+  <!-- Sveltia CMS. NOTE: intentionally NOT type="module" — the JS API
+       (registerPreviewStyle / registerPreviewTemplate) is only available on the
+       global build. -->
+  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+
+  <script>
+    /* Base preview skin (fonts, dark theme, accent) for the preview pane. */
+    (function registerSpokenPreview() {
+      if (window.CMS && typeof window.CMS.registerPreviewStyle === 'function') {
+        window.CMS.registerPreviewStyle('/admin/spoken-preview.css');
+      } else {
+        setTimeout(registerSpokenPreview, 60);
+      }
+    })();
+  </script>
+
+  <!-- SPOKEN preview TEMPLATES — render each collection's preview 1:1 like the
+       public festival site. Self-registers once the CMS global is ready. -->
+  <script src="/admin/preview-templates.js"></script>
 </body>
 </html>

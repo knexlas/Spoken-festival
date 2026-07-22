@@ -127,10 +127,25 @@ Elke push naar GitHub (of straks elke CMS-bewerking) triggert een nieuwe build.
 ## CMS — Sveltia (opgezet, GitHub-login, Decap-compatibel)
 
 De visuele editor staat klaar op **`/admin`** (`admin/index.html` + `admin/config.yml`).
-De editor toont drie items — **Festival-instellingen**, **Antwerpen**, **Kortrijk** —
-elk met ingeklapte lijsten voor programmaonderdelen/tickets/etc. Bij opslaan committeert
-de CMS naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt, en de site
-(incl. SEO) is bijgewerkt.
+De editor toont vijf items — **Festival-instellingen**, **Antwerpen**, **Kortrijk**,
+**Artiesten & gasten**, **Nieuws & affiches** — met ingeklapte lijsten. Bij opslaan
+committeert de CMS naar de bijhorende `content/*.json` op GitHub, Netlify herbouwt,
+en de site (incl. SEO) is bijgewerkt.
+
+**SPOKEN-skin (uit Claude Design):** de editor draagt de festivalhuisstijl waar
+Sveltia dat toelaat: `app_title` "SPOKEN — Beheer" (login, header, browsertab),
+en een on-brand **live-voorbeeldpaneel** — `admin/spoken-preview.css` (donker
+thema, festival-fonts) plus `admin/preview-templates.js` (rendert per onderdeel
+een 1:1-voorbeeld van de site: stad in teal/amber, artiesten met foto en
+optredens, nieuws & affiches). Geverifieerd: de skin-bestanden laden zonder
+fouten en de preview-API registreert. **Nog niet verifieerbaar zonder login:**
+hoe het voorbeeldpaneel er in de ingelogde editor uitziet — controleer dat na
+de eerstvolgende deploy (oog-icoon in de editor). Beperking van Sveltia zelf:
+de login-achtergrond/editor-chrome zijn niet themebaar (de app tekent zijn
+eigen achtergrond; volgt licht/donker van het besturingssysteem) — volledige
+theming is een open Sveltia-feature-request (issue #29). Een vierkant logo kan
+later via `logo: { src: … }` in `config.yml`. Ontwerpbron: lokale map `CMS/`
+(bewust niet in de repo).
 
 **Werkwijze: een artiest boeken (alles op één plek)**
 Open **Artiesten & gasten** → voeg de artiest toe (naam, foto, bio) → voeg onder

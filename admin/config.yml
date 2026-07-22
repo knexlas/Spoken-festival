@@ -22,6 +22,10 @@
 # ondersteunt deze bestaande koppeling ongewijzigd.)
 # =============================================================================
 
+# On-brand titel in login/header/browsertab (Sveltia-optie). Een vierkant
+# logo kan later toegevoegd worden via:  logo: { src: /assets/uploads/spoken-logo.png }
+app_title: "SPOKEN — Beheer"
+
 backend:
   name: github
   repo: knexlas/Spoken-festival

@@ -1,0 +1,103 @@
+/* =========================================================================
+   SPOKEN — live-preview skin for the CMS editor.
+   Registered from admin/index.html via CMS.registerPreviewStyle(). This styles
+   the PREVIEW PANE (the panel editors see next to the form), so a draft reads
+   like the real festival site — dark, atmospheric, on-brand — while they type.
+
+   This is the one part of the editor Sveltia lets us theme reliably. It uses
+   the same palette + type as index.html on the public site: the cold "Spectraal"
+   Antwerpen accent as the primary, IM Fell English for display, Space Grotesk
+   for body, Space Mono for labels.
+   ========================================================================= */
+
+:root {
+  --f-display: 'IM Fell English', Georgia, serif;
+  --f-body: 'Space Grotesk', system-ui, sans-serif;
+  --f-mono: 'Space Mono', monospace;
+  --bg: oklch(0.13 0.02 262);
+  --fg: oklch(0.93 0.012 240);
+  --mut: oklch(0.62 0.02 250);
+  --acc: oklch(0.85 0.09 188);
+  --line: oklch(0.27 0.02 258);
+  --glow: oklch(0.85 0.09 188 / 0.14);
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--f-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  padding: 28px 30px;
+  background-image:
+    radial-gradient(50% 40% at 20% 8%, var(--glow), transparent 60%),
+    radial-gradient(45% 40% at 90% 100%, oklch(0.74 0.145 48 / 0.07), transparent 60%);
+}
+
+/* headings — the festival's serif wordmark voice */
+h1, h2, h3, h4 {
+  font-family: var(--f-display);
+  font-weight: 400;
+  line-height: 1.05;
+  color: oklch(0.96 0.012 240);
+  text-shadow: 0 0 26px var(--glow);
+  margin: 0 0 0.4em;
+}
+h1 { font-size: 42px; }
+h2 { font-size: 30px; }
+h3 { font-size: 23px; }
+
+p { color: var(--fg); max-width: 62ch; }
+a { color: var(--acc); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+strong, b { color: oklch(0.97 0.012 240); }
+em, i { color: var(--mut); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 26px 0;
+}
+
+/* mono voice for meta-ish text and small labels */
+small, time, code, .label {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--mut);
+}
+
+/* images (artist photos, posters, news images) */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  display: block;
+  filter: saturate(0.9) contrast(1.04);
+}
+
+/* lists (facts, practical, tickets rendered as lists) */
+ul, ol { padding-left: 1.2em; }
+li { margin: 6px 0; }
+
+ul { list-style: none; padding-left: 0; }
+ul li {
+  border-top: 1px solid var(--line);
+  padding: 11px 0;
+  font-family: var(--f-mono);
+  font-size: 13px;
+}
+
+blockquote {
+  margin: 20px 0;
+  padding: 12px 18px;
+  border-left: 2px solid var(--acc);
+  background: oklch(0.15 0.02 262);
+  color: var(--mut);
+  font-style: italic;
+}
+
+::selection { background: var(--acc); color: oklch(0.12 0.02 262); }
