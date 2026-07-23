@@ -26,6 +26,7 @@ export const DEFAULT_LABELS = {
   hintBeweeg: 'beweeg naar links of rechts', hintKlik: 'klik een stad',
   blokkenschema: 'Blokkenschema', ookTeZien: 'Ook te zien',
   footerTag: 'GRIEZELFESTIVAL', introKnop: 'KLIK OM BINNEN TE GAAN',
+  subprogramma: 'Subprogramma',
 };
 
 /* v3 artwork per city (hand-painted illustrations, client-supplied) */
@@ -93,6 +94,24 @@ function slotHtml(s, key, ctx, cityId, dayId){
   const elsewhere = others.length
     ? `<div class="slot-elsewhere">${esc(ctx.labels.ookTeZien)}: ${others.join(' — ')}</div>` : '';
 
+  // sub-programme: a nested, further-collapsible list of items within a slot
+  const sub = Array.isArray(s.subprogram) ? s.subprogram.filter(i => i && (i.title || i.text)) : [];
+  const subHtml = sub.length ? `
+            <div class="subprog">
+              <div class="subprog-head">${esc(ctx.labels.subprogramma)}</div>
+              ${sub.map((it, j) => `
+              <div class="subitem">
+                <button type="button" class="subitem-row" data-subtoggle="${key}-${j}">
+                  <span class="subitem-title">${esc(it.title || '')}</span>
+                  ${it.time ? `<span class="subitem-time">${esc(it.time)}</span>` : ''}
+                  <span class="subitem-chev" data-subchev="${key}-${j}">+</span>
+                </button>
+                <div class="subitem-body" data-subbody="${key}-${j}">
+                  ${String(it.text || '').split(/\n+/).filter(Boolean).map(p => `<p>${esc(p)}</p>`).join('')}
+                </div>
+              </div>`).join('')}
+            </div>` : '';
+
   return `
     <div class="slot" data-key="${key}">
       <div class="slot-row" data-toggle="${key}">
@@ -109,6 +128,7 @@ function slotHtml(s, key, ctx, cityId, dayId){
             <p class="slot-blurb">${esc(s.blurb)}</p>
             ${bio}
             ${elsewhere}
+            ${subHtml}
             ${link}
           </div>
         </div>
@@ -217,23 +237,6 @@ function interlude(src, align, deg, dur){
         </div>`;
 }
 
-/* ---- the painted SPOKEN wordmark; its "O" is a living eye (iris follows
-   the cursor, lids blink — driven by JS in index.html via the data hooks) ---- */
-function wordmarkHtml(festival){
-  return `
-              <div class="wordmark">
-                <img class="wm-img" src="${ART.wordmark}" alt="${esc(festival.name)}">
-                <div class="eye" data-eye>
-                  <div class="eye-clip">
-                    <div class="eye-iris" data-iris><img src="${ART.wordmark}" alt=""></div>
-                  </div>
-                  <img class="eye-lid" data-lid="1" src="${ART.eyeFrames[0]}" alt="">
-                  <img class="eye-lid" data-lid="2" src="${ART.eyeFrames[1]}" alt="">
-                  <img class="eye-lid" data-lid="3" src="${ART.eyeFrames[2]}" alt="">
-                </div>
-              </div>`;
-}
-
 export function panelHtml(city, ctx){
   const { festival, labels } = ctx;
   const art = ART[city.id] || {};
@@ -265,7 +268,7 @@ export function panelHtml(city, ctx){
         <header class="hero">
           <div class="hero-scrim"></div>
           <div class="masthead">
-${wordmarkHtml(festival)}
+            <span class="masthead-eyebrow">${esc([festival.name, labels.footerTag].filter(Boolean).join(' · '))}</span>
             <span class="line"></span>
             <span class="masthead-date">${esc(festival.shortDate || festival.year)}</span>
           </div>

@@ -15,7 +15,13 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Sint-Annakerk", "genre": "Voorlezing · Gotiek", "blurb": "Vier auteurs lezen bij kaarslicht klassieke en gloednieuwe spookverhalen voor onder het gewelf." }
+        { "city": "ant", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Sint-Annakerk", "genre": "Voorlezing · Gotiek", "blurb": "Vier auteurs lezen bij kaarslicht klassieke en gloednieuwe spookverhalen voor onder het gewelf.",
+          "subprogram": [
+            { "time": "21:00", "title": "De klopgeest", "text": "Openingsverhaal over een huis dat 's nachts terugklopt. Placeholder-tekst — bewerk via het CMS." },
+            { "time": "21:20", "title": "Wat de mist verbergt", "text": "Een novelle over de kaaien in november, wanneer de grens tussen levenden en doden vervaagt. Placeholder-tekst." },
+            { "time": "21:40", "title": "Brieven aan niemand", "text": "Epistolair spookverhaal, voorgelezen in twee stemmen. Placeholder-tekst — bewerk via het CMS." }
+          ]
+        }
       ]
     },
     {
@@ -87,7 +93,12 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "15:00", "end": "17:00", "stage": "Atelier", "genre": "Workshop", "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt." }
+        { "city": "kor", "day": "za", "time": "15:00", "end": "17:00", "stage": "Atelier", "genre": "Workshop", "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt.",
+          "subprogram": [
+            { "time": "15:00", "title": "Deel 1 — De plek", "text": "Kies een plek die je kent en maak ze onheimelijk. Placeholder-tekst — bewerk via het CMS." },
+            { "time": "16:00", "title": "Deel 2 — De verschijning", "text": "Introduceer iets dat er niet hoort te zijn, en laat het net niet zien. Placeholder-tekst." }
+          ]
+        }
       ]
     },
     {

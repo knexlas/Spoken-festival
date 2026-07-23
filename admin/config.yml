@@ -168,6 +168,7 @@ collections:
               - { label: "Label: ook te zien (kruisverwijzing artiest)", name: "ookTeZien", widget: "string", required: false }
               - { label: "Footer-label (bv. GRIEZELFESTIVAL)", name: "footerTag", widget: "string", required: false }
               - { label: "Intro-knop (openingsvideo)", name: "introKnop", widget: "string", required: false }
+              - { label: "Kop: subprogramma", name: "subprogramma", widget: "string", required: false }
 
       - name: "antwerpen"
         label: "Antwerpen"
@@ -226,6 +227,18 @@ collections:
                   - { label: "Podium / zaal", name: "stage", widget: "string" }
                   - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
                   - { label: "Omschrijving van dit optreden", name: "blurb", widget: "text", required: false }
+                  - label: "Subprogramma (onderdelen binnen dit optreden)"
+                    name: "subprogram"
+                    label_singular: "Onderdeel"
+                    widget: "list"
+                    collapsed: true
+                    required: false
+                    summary: "{{fields.title}}"
+                    hint: "Optioneel. Voor optredens die uit meerdere onderdelen bestaan (bv. meerdere lezingen of workshopdelen). Op de site kan de bezoeker elk onderdeel verder openklappen voor de tekst."
+                    fields:
+                      - { label: "Titel", name: "title", widget: "string" }
+                      - { label: "Tijd", name: "time", widget: "string", required: false, hint: "Optioneel, bv. 21:20" }
+                      - { label: "Tekst", name: "text", widget: "text", required: false }
 
       - name: "nieuws"
         label: "Nieuws & affiches"

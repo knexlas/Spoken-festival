@@ -23,10 +23,8 @@
     --f-mono:'Space Mono', monospace;
     --disp-tr:none; --disp-sp:0.02em; --disp-wt:700; --radius:0px;
     --yellow:#e6d33b; --on-yellow:#141210;
-    /* how far the visible screen falls short of the layout viewport (mobile
-       browser address bar) — kept in sync by JS via the visualViewport API,
-       so fixed bottom elements can compensate. See citytoggle. */
-    --vv-lift:0px;
+    /* height of the shared fixed top banner (SPOKEN eye + city toggle) */
+    --topbar-h:56px;
   }
   html, body { margin:0; height:100%; background:#0b0a09; }
   * { box-sizing:border-box; }
@@ -74,7 +72,7 @@
   }
 
   .scroll{ position:absolute; inset:0; z-index:2; overflow-y:auto; overflow-x:hidden; }
-  .content{ min-height:100%; padding:clamp(34px,4.2vw,76px); display:flex; flex-direction:column; gap:clamp(54px,6vw,96px); }
+  .content{ min-height:100%; padding:clamp(34px,4.2vw,76px); padding-top:calc(var(--topbar-h) + env(safe-area-inset-top,0px) + clamp(22px,2.4vw,40px)); display:flex; flex-direction:column; gap:clamp(54px,6vw,96px); }
 
   /* ---- hero ---- */
   .hero{ min-height:74vh; position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:20px; padding-bottom:8px; }
@@ -84,8 +82,9 @@
     bottom:-14px; top:18%; pointer-events:none;
     background:linear-gradient(180deg, transparent, var(--bg) 55%); opacity:0.85;
   }
-  .masthead{ display:flex; align-items:center; gap:18px; }
+  .masthead{ display:flex; align-items:center; gap:16px; }
   .masthead .line{ flex:1; height:1px; background:var(--line); }
+  .masthead-eyebrow{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:var(--acc); white-space:nowrap; }
   .masthead-date{ font-family:var(--f-display); font-weight:700; font-size:26px; letter-spacing:0.1em; color:var(--yellow); transform:rotate(-2deg); white-space:nowrap; }
 
   /* the painted SPOKEN wordmark — its O is a living eye */
@@ -150,7 +149,9 @@
   .slot-stage{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--mut); text-align:right; max-width:13ch; }
   .slot-chev{ font-family:var(--f-mono); font-size:18px; line-height:1; color:var(--acc); width:18px; text-align:center; }
   .slot-body{ overflow:hidden; max-height:0; opacity:0; transition:max-height 0.7s cubic-bezier(0.22,0.61,0.36,1), opacity 0.5s ease; }
-  .slot-body.open{ max-height:360px; opacity:1; }
+  /* generous cap so the nested sub-programme (which can be long) is never
+     clipped; short slots just don't use the extra room */
+  .slot-body.open{ max-height:2600px; opacity:1; }
   .slot-inner{ display:flex; gap:22px; padding:6px 4px 26px 66px; align-items:flex-start; }
   .slot-photo{ width:128px; height:96px; flex-shrink:0; border:1px solid var(--line); background-image:repeating-linear-gradient(45deg, var(--line) 0 1px, transparent 1px 9px); display:flex; align-items:flex-end; padding:7px; font-family:var(--f-mono); font-size:8px; letter-spacing:0.1em; color:var(--mut); }
   .slot-photo.has-img{ padding:0; overflow:hidden; background:none; }
@@ -161,6 +162,18 @@
   .slot-elsewhere{ margin-top:10px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.06em; color:var(--acc); }
   .slot-artist-link{ display:inline-block; margin-top:10px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow); text-decoration:none; }
   .slot-artist-link:hover{ text-decoration:underline; }
+
+  /* sub-programme: a further-collapsible list nested inside an expanded slot */
+  .subprog{ margin-top:16px; border-top:1px solid var(--line); }
+  .subprog-head{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--mut); margin:12px 0 4px; }
+  .subitem-row{ width:100%; display:flex; align-items:center; gap:12px; padding:10px 2px; border-top:1px solid var(--line); background:transparent; border-left:0; border-right:0; border-bottom:0; cursor:pointer; text-align:left; color:inherit; }
+  .subitem:first-of-type .subitem-row{ border-top:0; }
+  .subitem-title{ flex:1; font-family:var(--f-display); font-weight:700; font-size:clamp(19px,1.7vw,24px); line-height:1; letter-spacing:0.02em; color:var(--fg); }
+  .subitem-time{ font-family:var(--f-mono); font-size:11px; color:var(--mut); }
+  .subitem-chev{ font-family:var(--f-mono); font-size:15px; line-height:1; color:var(--acc); width:16px; text-align:center; }
+  .subitem-body{ overflow:hidden; max-height:0; opacity:0; transition:max-height 0.55s cubic-bezier(0.22,0.61,0.36,1), opacity 0.4s ease; }
+  .subitem-body.open{ max-height:800px; opacity:1; }
+  .subitem-body p{ margin:6px 0 12px; font-size:14px; line-height:1.6; color:var(--mut); max-width:52ch; }
 
   /* figure interludes: painted ghosts tucked between sections */
   .interlude{ position:relative; height:clamp(280px,42vh,460px); margin:calc(-1 * clamp(27px,3vw,48px)) 0; pointer-events:none; }
@@ -230,12 +243,30 @@
     transition:left 1.25s cubic-bezier(0.16,1,0.3,1), opacity 0.55s ease, width 0.7s ease, filter 0.7s ease; }
   .seam.flare{ filter:blur(6px); width:150px; opacity:0.9; }
 
-  .vignette{ position:absolute; inset:0; z-index:40; pointer-events:none; background:radial-gradient(ellipse 80% 70% at 50% 45%, transparent 50%, rgba(0,0,0,0.55) 100%); }
+  /* vignette lifted/enlarged so it no longer leaves the TOP of the panel (the
+     face artwork + its figures) in shadow — it now only deepens the lower
+     corners for mood */
+  .vignette{ position:absolute; inset:0; z-index:40; pointer-events:none; background:radial-gradient(ellipse 96% 92% at 50% 38%, transparent 60%, rgba(0,0,0,0.5) 100%); }
   .grain{ position:absolute; inset:-50%; z-index:41; pointer-events:none; opacity:0.06; mix-blend-mode:soft-light; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>'); background-size:160px 160px; animation:grainShift 0.9s steps(4) infinite; }
 
-  .controls{ position:absolute; top:18px; left:50%; transform:translateX(-50%); z-index:60; display:flex; gap:12px; align-items:center; }
-  .segwrap{ display:flex; align-items:center; background:rgba(14,13,11,0.72); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; overflow:hidden; }
-  .segwrap .label{ padding:0 12px 0 14px; font-family:var(--f-mono); font-size:9px; letter-spacing:0.18em; color:rgba(255,255,255,0.35); }
+  /* ===== shared top banner: one SPOKEN wordmark + living eye across both
+     cities; also the reliable home for the mobile city toggle ===== */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:70;
+    min-height:var(--topbar-h); padding-top:env(safe-area-inset-top,0px);
+    display:flex; align-items:center; justify-content:flex-end; gap:14px; padding-left:clamp(14px,2.4vw,26px); padding-right:clamp(14px,2.4vw,26px);
+    /* mostly transparent so the festival artwork fills the whole page, banner
+       included — a light frosted wash keeps scrolling content legible under it */
+    background:rgba(11,10,9,0.30); backdrop-filter:blur(16px) saturate(1.1); -webkit-backdrop-filter:blur(16px) saturate(1.1);
+    border-bottom:1px solid rgba(239,233,221,0.08);
+  }
+  /* the one SPOKEN eye sits dead-centre of the banner — on desktop that lands
+     it right over the seam / the face's nose, where the two cities meet */
+  .tb-brand{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; align-items:center; pointer-events:none; }
+  .topbar .wordmark{ width:clamp(108px,12vw,152px); flex-shrink:0; }
+
+  .segwrap{ display:flex; align-items:center; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; overflow:hidden; }
+  .segwrap .label{ padding:0 12px 0 14px; font-family:var(--f-mono); font-size:9px; letter-spacing:0.18em; color:rgba(255,255,255,0.4); }
   .seg{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase; padding:8px 14px; border:0; cursor:pointer; background:transparent; color:rgba(255,255,255,0.45); transition:all .3s ease; }
   .seg.on{ background:rgba(255,255,255,0.13); color:#fff; }
 
@@ -258,14 +289,17 @@
   .intro .intro-label{ position:absolute; z-index:3; bottom:calc(30px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); padding:12px 22px; border:1.5px solid var(--yellow); border-radius:999px; background:rgba(11,10,9,0.35); font-family:var(--f-display); font-weight:700; font-size:22px; letter-spacing:0.16em; color:var(--yellow); animation:hintPulse 2.4s ease-in-out infinite; white-space:nowrap; text-align:center; }
   @media (max-width: 640px){ .intro .intro-label{ font-size:19px; padding:11px 18px; } }
 
-  /* city toggle — mobile only */
-  .citytoggle-scrim{ display:none; }
-  .citytoggle{ position:fixed; left:50%; transform:translate(-50%, calc(-1 * var(--vv-lift))); bottom:calc(22px + env(safe-area-inset-bottom,0px)); z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,13,11,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
-  .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
+  /* city toggle — lives in the top banner, shown on mobile only. Being
+     top-fixed (in the banner) it stays reliably visible on Android, unlike
+     the old bottom-fixed pill that the URL bar could hide. */
+  .citytoggle{ display:none; align-items:center; gap:4px; padding:4px; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; }
+  .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:9px clamp(14px,4.5vw,22px); border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#141210; background:var(--toggle-acc,#e6d33b); font-weight:700; }
 
   /* ===== MOBILE: one city at a time, tap to switch ===== */
   @media (max-width: 860px){
+    /* taller banner: eye centred on top, toggle centred below */
+    :root{ --topbar-h:96px; }
     .stage{ display:block; }
     .panel{ position:absolute; inset:0; width:100%; transition:opacity .8s ease, transform .8s cubic-bezier(0.16,1,0.3,1); }
     .panel .edge, .panel .rail{ display:none; }
@@ -274,10 +308,13 @@
     .stage[data-mobile-city="kor"] .panel[data-id="ant"]{ opacity:0; transform:translateX(-36px); pointer-events:none; }
     .stage[data-mobile-city="ant"] .panel[data-id="ant"],
     .stage[data-mobile-city="kor"] .panel[data-id="kor"]{ opacity:1; transform:none; z-index:3; }
-    .content{ padding-bottom:112px; min-width:0; }
+    .content{ padding-bottom:clamp(48px,10vw,72px); min-width:0; }
     .content > section{ min-width:0; }
     .face-bg{ background-size:cover; }
-    .controls{ display:none; }
+    .topbar{ flex-direction:column; justify-content:center; gap:8px; padding-top:calc(env(safe-area-inset-top,0px) + 8px); padding-bottom:8px; padding-left:12px; padding-right:12px; }
+    .tb-brand{ position:static; transform:none; }
+    .topbar .wordmark{ width:clamp(96px,26vw,124px); }
+    .topbar .split-seg{ display:none; }
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
     .slot-stage{ display:none; }
@@ -290,10 +327,6 @@
     .panel-fig{ width:clamp(150px,42vw,220px); height:clamp(260px,46vh,420px); }
     .interlude{ height:clamp(180px,30vh,300px); }
     .interlude-fig{ width:72%; opacity:0.7; }
-    /* city-switch pill sits at a fixed screen position while the programme
-       list scrolls underneath it; fade the content out behind it so it never
-       visually collides with a row of text. */
-    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:82px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(11,10,9,0.78) 20%, rgba(11,10,9,0)); display:block; transform:translateY(calc(-1 * var(--vv-lift))); }
     .citytoggle{ display:flex; }
     /* the "KLIK VOOR INFO" tap target was only ~16px tall (text line-height) —
        well under a comfortable touch target. Pad it out and pull the margin
@@ -311,21 +344,36 @@
   <div class="vignette"></div>
   <div class="grain"></div>
 
-  <div class="controls">
+  <!-- shared top banner: one SPOKEN wordmark whose "O" is the living eye
+       (follows the cursor across the whole page, scrolls-with), plus the
+       mobile city toggle (reliably visible at the top) and the desktop split
+       control. This is the combining element between Antwerpen & Kortrijk. -->
+  <header class="topbar" id="topbar">
+    <div class="tb-brand">
+      <div class="wordmark">
+        <img class="wm-img" src="assets/img/wordmark.png" alt="SPOKEN">
+        <div class="eye" data-eye data-frame="0">
+          <div class="eye-clip"><div class="eye-iris" data-iris><img src="assets/img/wordmark.png" alt=""></div></div>
+          <img class="eye-lid" data-lid="1" src="assets/img/eye-half.png" alt="">
+          <img class="eye-lid" data-lid="2" src="assets/img/eye-75.png" alt="">
+          <img class="eye-lid" data-lid="3" src="assets/img/eye-closed.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="citytoggle" id="citytoggle">
+      <button data-city="ant">Antwerpen</button>
+      <button data-city="kor">Kortrijk</button>
+    </div>
+
     <div class="segwrap split-seg">
       <span class="label">SPLIT</span>
       <button class="seg" data-mech="follow">Hover</button>
       <button class="seg" data-mech="lock">Klik</button>
     </div>
-  </div>
+  </header>
 
   <div class="hint" id="hint"></div>
-
-  <div class="citytoggle-scrim"></div>
-  <div class="citytoggle" id="citytoggle">
-    <button data-city="ant">Antwerpen</button>
-    <button data-city="kor">Kortrijk</button>
-  </div>
 
 <!-- BUILD:DATA --> <!-- build.mjs injects window.__SITE__ here for instant, SEO-friendly load -->
 <script type="module">
@@ -351,32 +399,9 @@ const EYE_STRENGTH = 1;   // 0–2, per design handoff
 const mq = window.matchMedia('(max-width: 860px)');
 const TOGGLE_ACC = { ant: '#8ec8d8', kor: '#e0703f' };
 
-/* Mobile browsers report the layout viewport as the full page height even
-   while their address bar is covering part of the screen — so a plain
-   `position:fixed; bottom:22px` element can sit below the area actually
-   visible until the user scrolls (which auto-hides the bar). Track the gap
-   via visualViewport and feed it back as a CSS var the fixed elements read.
-   Uses documentElement.clientHeight (not window.innerHeight, which some
-   browsers report in a different pixel space) as the layout-viewport
-   reference, and skips the correction while pinch-zoomed (scale > 1) so
-   zooming in doesn't get misread as a toolbar change. */
-if (window.visualViewport) {
-  const vv = window.visualViewport;
-  const updateVVLift = () => {
-    const layoutH = document.documentElement.clientHeight;
-    const lift = vv.scale <= 1.02 ? Math.max(0, layoutH - (vv.height + vv.offsetTop)) : 0;
-    document.documentElement.style.setProperty('--vv-lift', lift + 'px');
-  };
-  vv.addEventListener('resize', updateVVLift);
-  vv.addEventListener('scroll', updateVVLift);
-  window.addEventListener('resize', updateVVLift);
-  window.addEventListener('orientationchange', updateVVLift);
-  updateVVLift();
-  // some browsers settle their toolbar/viewport metrics a moment after load,
-  // without firing a visualViewport event — re-check a couple of times to catch that.
-  setTimeout(updateVVLift, 300);
-  setTimeout(updateVVLift, 1200);
-}
+/* (The old bottom-fixed city toggle needed a visualViewport hack to dodge
+   Android's collapsing URL bar. The toggle now lives in the fixed TOP banner,
+   which Android handles reliably, so that hack is gone.) */
 
 const state = { mechanic:'follow', active:null, hinted:false, mobileCity:'ant', introActive:false };
 const panels = {}; // filled by boot() once content is rendered
@@ -413,9 +438,10 @@ function setActive(id){
   applySplit();
 }
 
-/* ---------- the living eye: iris follows the cursor, lids blink ---------- */
+/* ---------- the living eye (single, in the top banner): iris follows the
+   cursor across the whole page, lids blink ---------- */
 let lastMouse = 0;
-function eyeEls(){ return [...stage.querySelectorAll('[data-eye]')]; }
+function eyeEls(){ return [...document.querySelectorAll('[data-eye]')]; }
 
 function moveIrises(fn){
   eyeEls().forEach(eye => {
@@ -510,9 +536,12 @@ function maybeShowIntro(labels){
   video.addEventListener('ended', dismiss);
 }
 
-/* desktop hover-follow (+ eye tracking) */
+/* the eye follows the cursor anywhere on the page (the banner sits above the
+   stage, so this listens on the document, not just the stage) */
+document.addEventListener('mousemove', followCursor, { passive: true });
+
+/* desktop hover-follow split */
 stage.addEventListener('mousemove', e => {
-  followCursor(e);
   if (mq.matches || state.mechanic !== 'follow' || state.introActive) return;
   const w = window.innerWidth, x = e.clientX, c = COMPACTION, buf = 10, a = state.active;
   let z;
@@ -525,8 +554,17 @@ stage.addEventListener('mouseleave', () => {
   if (!mq.matches && state.mechanic === 'follow') setActive(null);
 });
 
-/* clicks: expand-all, slot toggling, click-lock (delegated) */
+/* clicks: sub-programme toggle, expand-all, slot toggling, click-lock (delegated) */
 stage.addEventListener('click', e => {
+  const subRow = e.target.closest('[data-subtoggle]');
+  if (subRow){
+    const key = subRow.getAttribute('data-subtoggle');
+    const body = stage.querySelector('[data-subbody="'+key+'"]');
+    const chev = stage.querySelector('[data-subchev="'+key+'"]');
+    const open = body.classList.toggle('open');
+    if (chev) chev.textContent = open ? '–' : '+';
+    return;
+  }
   const toggleAll = e.target.closest('[data-toggle-all]');
   if (toggleAll){
     const panel = toggleAll.closest('.panel');
@@ -635,7 +673,8 @@ async function boot(){
   });
 
   const labels = labelSet(SITE_DATA);
-  maybeShowIntro(labels);
+  // opener video plays on mobile only (per client: desktop skips straight in)
+  if (mq.matches) maybeShowIntro(labels);
   startEyeLife();
   attachFigureParallax();
   setMobileCity('ant');
