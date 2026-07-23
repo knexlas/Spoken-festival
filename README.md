@@ -44,7 +44,9 @@ niets hardcoded behalve de structuur.
   geen CMS-instelling. Het oude keuze-uit-10-paletten systeem is met v3 verdwenen; de
   krijtblauwe (Antwerpen) / oranje (Kortrijk) / gele kleuren zijn nu definitief.
 - **Artwork** staat in `assets/img/` (`wordmark.png` met het oog, `gezicht.jpg` gezicht-
-  achtergrond, `spook1–5` figuren, `eye-*` knipperframes) en `assets/media/intro.mp4`.
+  achtergrond, `spook1–5` figuren, `eye-*` knipperframes, `poster.jpg` = achtergrond van
+  de openingsvideo) en `assets/media/intro.mp4`. De openingsvideo speelt "contain" met de
+  poster erachter zodat de zwarte letterbox-balken (vooral op mobiel) gevuld worden.
   Bron: de Claude Design v3-export (`Spokenv3_extracted/`, gitignored).
 
 ## SEO — automatisch gegenereerd

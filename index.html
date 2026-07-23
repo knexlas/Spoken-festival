@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>SPOKEN · Griezelfestival — Antwerpen & Kortrijk · 31 OKT – 01 NOV 2026</title>
 <meta name="description" content="SPOKEN — griezelfestival over het spookachtige, één weekend tegelijk in Antwerpen en Kortrijk. Spookverhalen, essays, poëzie en spoken word.">
 <meta name="theme-color" content="#0b0a09">
@@ -245,13 +245,22 @@
   /* intro overlay (injected by JS, once per session) */
   .intro{ position:fixed; inset:0; z-index:100; background:#000; cursor:pointer; opacity:1; transition:opacity 1.25s ease; }
   .intro.fading{ opacity:0; pointer-events:none; }
-  .intro video{ width:100%; height:100%; object-fit:contain; background:#000; display:block; }
-  .intro .intro-vignette{ position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%); }
-  .intro .intro-label{ position:absolute; bottom:34px; left:50%; transform:translateX(-50%); font-family:var(--f-display); font-weight:700; font-size:22px; letter-spacing:0.22em; color:var(--yellow); animation:hintPulse 2.4s ease-in-out infinite; white-space:nowrap; }
+  /* poster backdrop: the painted "world" the opener video sits in. Fills the
+     letterbox bars left by the contained video (esp. big on portrait phones),
+     darkened so the video still reads as the focal point. */
+  .intro .intro-poster{ position:absolute; inset:0; z-index:0; background:#0b0a09 url('assets/img/poster.jpg') center/cover no-repeat; filter:brightness(0.62) saturate(1.05); }
+  .intro video{ position:relative; z-index:1; width:100%; height:100%; object-fit:contain; display:block; }
+  .intro .intro-vignette{ position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%); }
+  /* clear, obviously-tappable skip control — corner button + a button-styled
+     bottom label — so on a phone it's never unclear the opener is skippable */
+  .intro .intro-skip{ position:absolute; top:calc(16px + env(safe-area-inset-top,0px)); right:16px; z-index:3; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1px solid rgba(230,211,59,0.6); border-radius:999px; background:rgba(11,10,9,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); color:var(--yellow); font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer; }
+  .intro .intro-skip .x{ font-size:14px; line-height:1; }
+  .intro .intro-label{ position:absolute; z-index:3; bottom:calc(30px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); padding:12px 22px; border:1.5px solid var(--yellow); border-radius:999px; background:rgba(11,10,9,0.35); font-family:var(--f-display); font-weight:700; font-size:22px; letter-spacing:0.16em; color:var(--yellow); animation:hintPulse 2.4s ease-in-out infinite; white-space:nowrap; text-align:center; }
+  @media (max-width: 640px){ .intro .intro-label{ font-size:19px; padding:11px 18px; } }
 
   /* city toggle — mobile only */
   .citytoggle-scrim{ display:none; }
-  .citytoggle{ position:fixed; left:50%; transform:translate(-50%, calc(-1 * var(--vv-lift))); bottom:22px; z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,13,11,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
+  .citytoggle{ position:fixed; left:50%; transform:translate(-50%, calc(-1 * var(--vv-lift))); bottom:calc(22px + env(safe-area-inset-bottom,0px)); z-index:62; display:none; align-items:center; gap:6px; padding:6px; background:rgba(14,13,11,0.78); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.12); border-radius:999px; }
   .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#141210; background:var(--toggle-acc,#e6d33b); font-weight:700; }
 
@@ -265,16 +274,26 @@
     .stage[data-mobile-city="kor"] .panel[data-id="ant"]{ opacity:0; transform:translateX(-36px); pointer-events:none; }
     .stage[data-mobile-city="ant"] .panel[data-id="ant"],
     .stage[data-mobile-city="kor"] .panel[data-id="kor"]{ opacity:1; transform:none; z-index:3; }
-    .content{ padding-bottom:120px; }
+    .content{ padding-bottom:112px; min-width:0; }
+    .content > section{ min-width:0; }
     .face-bg{ background-size:cover; }
     .controls{ display:none; }
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
     .slot-stage{ display:none; }
+    /* keep the wide timetable scrolling INSIDE its own box on a phone so it
+       never widens the page (its min-width was leaking into the layout) */
+    .schema-scroll{ max-width:100%; }
+    .schema{ min-width:460px; }
+    /* the painted ghosts are generous on a wide desktop panel; on a narrow
+       phone they crowd the text — make them calmer and shorter */
+    .panel-fig{ width:clamp(150px,42vw,220px); height:clamp(260px,46vh,420px); }
+    .interlude{ height:clamp(180px,30vh,300px); }
+    .interlude-fig{ width:72%; opacity:0.7; }
     /* city-switch pill sits at a fixed screen position while the programme
        list scrolls underneath it; fade the content out behind it so it never
        visually collides with a row of text. */
-    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:118px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(11,10,9,0.92), rgba(11,10,9,0)); display:block; transform:translateY(calc(-1 * var(--vv-lift))); }
+    .citytoggle-scrim{ position:fixed; left:0; right:0; bottom:0; height:82px; z-index:61; pointer-events:none; background:linear-gradient(to top, rgba(11,10,9,0.78) 20%, rgba(11,10,9,0)); display:block; transform:translateY(calc(-1 * var(--vv-lift))); }
     .citytoggle{ display:flex; }
     /* the "KLIK VOOR INFO" tap target was only ~16px tall (text line-height) —
        well under a comfortable touch target. Pad it out and pull the margin
@@ -438,11 +457,13 @@ function startEyeLife(){
 }
 
 /* ---------- hero figure parallax: slides up + fades with the hero ---------- */
+function figBase(){ return mq.matches ? 0.6 : 0.9; } // calmer over narrow phone text
 function attachFigureParallax(){
   stage.querySelectorAll('.panel').forEach(panel => {
     const scroll = panel.querySelector('[data-scroll]');
     const fig = panel.querySelector('[data-fig]');
     if (!scroll || !fig) return;
+    fig.style.opacity = figBase();
     let ticking = false;
     scroll.addEventListener('scroll', () => {
       if (ticking) return;
@@ -453,7 +474,7 @@ function attachFigureParallax(){
         const vh = window.innerHeight || 900;
         if (y > vh * 1.4) return; // long past the hero — nothing left to animate
         fig.style.transform = 'translateY(' + (-y * 0.55) + 'px)';
-        fig.style.opacity = (0.9 * Math.max(0, 1 - y / (vh * 0.45))).toFixed(3);
+        fig.style.opacity = (figBase() * Math.max(0, 1 - y / (vh * 0.45))).toFixed(3);
       });
     }, { passive: true });
   });
@@ -468,8 +489,10 @@ function maybeShowIntro(labels){
   const el = document.createElement('div');
   el.className = 'intro';
   el.innerHTML =
+    '<div class="intro-poster"></div>' +
     '<video autoplay muted playsinline src="assets/media/intro.mp4"></video>' +
     '<div class="intro-vignette"></div>' +
+    '<button type="button" class="intro-skip">Overslaan <span class="x">✕</span></button>' +
     '<div class="intro-label"></div>';
   el.querySelector('.intro-label').textContent = labels.introKnop;
   document.body.appendChild(el);
@@ -554,7 +577,14 @@ function syncHint(){
   const lbl = labelSet(SITE_DATA || {});
   hintEl.textContent = state.mechanic === 'follow' ? lbl.hintBeweeg : lbl.hintKlik;
 }
-mq.addEventListener('change', () => { state.active = null; applySplit(); syncHint(); });
+function resetFigBase(){
+  // re-apply the hero-figure base opacity on viewport change (rotate/resize),
+  // but leave a figure that's already scrolled away faded out
+  stage.querySelectorAll('[data-fig]').forEach(f => {
+    if (parseFloat(f.style.opacity || '1') > 0.05) f.style.opacity = figBase();
+  });
+}
+mq.addEventListener('change', () => { state.active = null; applySplit(); syncHint(); resetFigBase(); });
 
 /* boot — load the content files (festival, both cities, artists, news), then render + init */
 document.querySelector('[data-mech="follow"]').classList.add('on');

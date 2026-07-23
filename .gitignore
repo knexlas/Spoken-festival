@@ -7,6 +7,7 @@ Spoken.zip
 Spoken_extracted/
 CMS/
 Spokenv3_extracted/
+Spokenv3b_extracted/
 
 # raw illustrator source art (TIF/PSD, multi-GB) — keep on disk, never in git
 tiforiginals/
