@@ -5,9 +5,11 @@ dist/
 # their assets/skin files are applied into assets/ and admin/)
 Spoken.zip
 Spoken_extracted/
+Spoken1_extracted/
 CMS/
 Spokenv3_extracted/
 Spokenv3b_extracted/
+Spokenlast_extracted/
 
 # raw illustrator source art (TIF/PSD, multi-GB) — keep on disk, never in git
 tiforiginals/

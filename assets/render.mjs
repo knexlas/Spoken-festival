@@ -34,8 +34,8 @@ export const ART = {
   wordmark: 'assets/img/wordmark.png',
   eyeFrames: ['assets/img/eye-half.png', 'assets/img/eye-75.png', 'assets/img/eye-closed.png'],
   face: 'assets/img/gezicht.jpg',
-  ant: { fig: 'assets/img/spook5.jpg', fig2: 'assets/img/spook2.png', fig3: 'assets/img/spook3.png', facePos: 'left top' },
-  kor: { fig: 'assets/img/spook1.jpg', fig2: 'assets/img/spook4.png', fig3: null, facePos: 'right top' },
+  ant: { fig: 'assets/img/spook5.png', fig2: 'assets/img/spook2.png', fig3: 'assets/img/spook3.png', facePos: 'left top' },
+  kor: { fig: 'assets/img/spook1.png', fig2: 'assets/img/spook4.png', fig3: null, facePos: 'right top' },
 };
 
 export const labelSet = data => ({ ...DEFAULT_LABELS, ...(data && data.labels ? data.labels : {}) });
