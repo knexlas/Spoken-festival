@@ -1,20 +1,23 @@
 {
   "festival": {
     "name": "SPOKEN",
+    "subtitle": "Kijk angst in de ogen  - een griezelfestival in Antwerpen & Kortrijk",
     "year": "2026",
-    "subtitle": "Het festival waarbij je angst in de ogen kijkt.",
     "shortDate": "31.10.2026",
     "siteUrl": "https://www.spokenfestival.be",
-    "organizer": "Vonk en Zonen",
+    "organizer": "VONK & Zonen",
     "locale": "nl_BE",
     "startDate": "2026-10-31T19:00:00+01:00",
-    "endDate": "2026-11-01T23:00:00+01:00",
-    "description": "SPOKEN — griezelfestival over het spookachtige, één weekend tegelijk in Antwerpen en Kortrijk. Spookverhalen, essays, poëzie en spoken word.",
+    "endDate": "2026-11-01T00:30",
+    "description": "SPOKEN — een griezelfestival in Antwerpen & Kortrijk met muziek, film, performance, poëzie, debat, en feest!",
     "shareImage": "/assets/og-image.jpg"
   },
   "days": [
-    { "id": "vr", "label": "VR", "date": "31 OKT" },
-    { "id": "za", "label": "ZA", "date": "01 NOV" }
+    {
+      "id": "za",
+      "label": "ZA",
+      "date": "31 OKT"
+    }
   ],
   "labels": {
     "programma": "Programma",
