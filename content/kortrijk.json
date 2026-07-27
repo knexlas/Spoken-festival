@@ -12,7 +12,8 @@
   "ticketUrl": "#tickets",
   "info": [
     "Wat gebeurt er als je niet wegkijkt? SPOKEN is een festival dat je uitnodigt om je angsten recht in de ogen te kijken & te ontdekken wat er dan verandert.",
-    "Zelfde weekend, ander temperament: hier is het woord warm, verteld en fluisterend. De zachte tegenhanger van Antwerpen."
+    "Angst kan sluimerend ontstaan, of heel hevig woekeren - het kan rond je hangen zonder dat het je echt vastgrijpt, of het kan je verstikken. Maar op het moment dat je durft te kijken, echt te kijken, verschuift er iets. Op SPOKEN geven we ruimte aan wat ons bezighoudt, achtervolgt en soms verlamt. Zodat we samen kunnen proberen onze angsten te begrijpen, te delen, en misschien ook te transformeren.",
+    "SPOKEN speelt zich gelijktijdig af in Antwerpen en Kortrijk."
   ],
   "facts": [
     {
@@ -35,23 +36,11 @@
   "practical": [
     {
       "k": "Locatie",
-      "v": "Budafabriek, Kortrijk"
+      "v": "BUDA"
     },
     {
-      "k": "Bereikbaar",
-      "v": "Trein tot Kortrijk, dan 10 min te voet"
-    },
-    {
-      "k": "Openingsuren",
-      "v": "VR 19:00 · ZA 14:00"
-    },
-    {
-      "k": "Boekhandel",
-      "v": "Pop-up boekhandel & signeersessies"
-    },
-    {
-      "k": "Vestiaire",
-      "v": "Gratis aan de ingang"
+      "k": "Timing",
+      "v": "Vanaf 10u tot middernacht"
     },
     {
       "k": "Toegankelijk",
@@ -60,19 +49,19 @@
   ],
   "tickets": [
     {
-      "tier": "Dagticket",
-      "price": "€22",
-      "note": "Vrijdag óf zaterdag"
+      "tier": "Standaard",
+      "price": "€15",
+      "note": "Toegang festival"
     },
     {
-      "tier": "Weekendpas",
-      "price": "€38",
-      "note": "Beide dagen"
+      "tier": "Kortingtarief",
+      "price": "€12",
+      "note": "Toegang festival"
     },
     {
-      "tier": "Spookpas",
-      "price": "€65",
-      "note": "Weekend + signeersessies + boekenpakket"
+      "tier": "Kansentarief",
+      "price": "€2",
+      "note": "Toegang festival"
     }
   ]
 }
