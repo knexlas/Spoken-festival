@@ -1,72 +1,140 @@
 {
   "artists": [
     {
-      "name": "Charlotte Van den Broeck",
+      "name": "Angst om te leven (in tijden van zelfzorg)",
       "photo": "",
-      "bio": "",
+      "bio": "Met Martha Claeys, Lena Bril en 2 mystery guests. In samenwerking met Curieus.",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "19:30", "end": "20:30", "stage": "De Leeszaal", "genre": "Voordracht · Poëzie", "blurb": "De dichteres opent het festival met nieuw werk over verdwijnen, echo en wat blijft naklinken." }
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "19:00",
+          "end": "20:30",
+          "stage": "Studio",
+          "genre": "Debat",
+          "blurb": "Een debat over de keerzijde van zelfzorg."
+        }
       ]
     },
     {
-      "name": "Nachtelijke Spookverhalen",
+      "name": "Ghostwatch (1992)",
       "photo": "",
-      "bio": "",
+      "bio": "Met intro van Jonas Govaerts",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Sint-Annakerk", "genre": "Voorlezing · Gotiek", "blurb": "Vier auteurs lezen bij kaarslicht klassieke en gloednieuwe spookverhalen voor onder het gewelf.",
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "19:00",
+          "end": "20:45",
+          "stage": "Drive-in cinema",
+          "genre": "Film",
+          "blurb": "Een horrorfim met introductie.",
+          "subprogram": []
+        }
+      ]
+    },
+    {
+      "name": "HuiverHuis",
+      "photo": "",
+      "bio": "Sidder en beef bij de alter ego's van 6 dichters.",
+      "link": "",
+      "performances": [
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "21:00",
+          "end": "23:00",
+          "stage": "Lemmers",
+          "genre": "Spookhuis",
+          "blurb": "Reserveer je tijdslot aan de ingang.",
           "subprogram": [
-            { "time": "21:00", "title": "De klopgeest", "text": "Openingsverhaal over een huis dat 's nachts terugklopt. Placeholder-tekst — bewerk via het CMS." },
-            { "time": "21:20", "title": "Wat de mist verbergt", "text": "Een novelle over de kaaien in november, wanneer de grens tussen levenden en doden vervaagt. Placeholder-tekst." },
-            { "time": "21:40", "title": "Brieven aan niemand", "text": "Epistolair spookverhaal, voorgelezen in twee stemmen. Placeholder-tekst — bewerk via het CMS." }
+            {
+              "title": "Deli-balai / Tülin Erkan & Agnes Sabitova",
+              "time": "21:00",
+              "text": "Hallucinogene dialoog tussen twee bijenkoninginnen die zich klaar maken voor de winter."
+            },
+            {
+              "title": "Taziri / Imane Karroumi El Bouchtati",
+              "time": "21:00",
+              "text": "Berbervrouw in psychiatrische instelling."
+            },
+            {
+              "title": "Em / Karlijn Sonderen Smit",
+              "time": "21:00",
+              "text": "Een monster wil graag mens zijn."
+            }
           ]
         }
       ]
     },
     {
-      "name": "Stefan Hertmans",
+      "name": "O L G A",
       "photo": "",
-      "bio": "",
+      "bio": "Muziek",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "vr", "time": "22:30", "end": "23:30", "stage": "De Leeszaal", "genre": "Gesprek · Essay", "blurb": "Een nachtgesprek over geheugen, ruïnes en alles wat blijft spoken in taal." }
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "21:00",
+          "end": "21:30",
+          "stage": "Amfitheater",
+          "genre": "Muziek",
+          "blurb": "Ze kruipt uit een koelkast"
+        }
       ]
     },
     {
-      "name": "Debat: De Onttovering",
+      "name": "Mustaf Ahmeti - Riddle my skin",
       "photo": "",
-      "bio": "",
+      "bio": "performance",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "15:00", "end": "16:00", "stage": "Salon", "genre": "Debat · Essay", "blurb": "Schrijvers en filosofen buigen zich over het verdwijnen van het mysterie uit de moderne wereld." }
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "22:15",
+          "end": "22:45",
+          "stage": "Amfitheater",
+          "genre": "Performance",
+          "blurb": "Lichamelijk en absurd"
+        }
       ]
     },
     {
-      "name": "Delphine Lecompte",
+      "name": "Kleine Kova",
       "photo": "",
-      "bio": "",
+      "bio": "Sluit de avond af",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "17:00", "end": "18:00", "stage": "De Leeszaal", "genre": "Voordracht · Poëzie", "blurb": "Absurde, donkere poëzie met een lach die in de mist blijft hangen." }
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "23:00",
+          "end": "23:45",
+          "stage": "Lemmers",
+          "genre": "Muziek",
+          "blurb": "Horror hiphop"
+        }
       ]
     },
     {
-      "name": "Spoken Word Nacht",
+      "name": "Horrorstage",
       "photo": "",
-      "bio": "",
+      "bio": "Open Call ism Creatief Schrijven",
       "link": "",
       "performances": [
-        { "city": "ant", "day": "za", "time": "20:00", "end": "00:00", "stage": "Sint-Annakerk", "genre": "Spoken word", "blurb": "Een estafette van stemmen tot na middernacht — de festivalnaam ten voeten uit." }
-      ]
-    },
-    {
-      "name": "Lize Spit",
-      "photo": "",
-      "bio": "",
-      "link": "",
-      "performances": [
-        { "city": "kor", "day": "vr", "time": "19:30", "end": "20:30", "stage": "De Verhalenzaal", "genre": "Voordracht · Proza", "blurb": "De schrijfster leest nieuw, beklemmend proza over wat een huis onthoudt en niet loslaat." }
+        {
+          "city": "ant",
+          "day": "za",
+          "time": "21:30",
+          "end": "22:15",
+          "stage": "Jazzbar",
+          "genre": "Open podium",
+          "blurb": "Horrorverhalen, pas geschreven, voor het eerst te horen."
+        }
       ]
     },
     {
@@ -75,7 +143,15 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "vr", "time": "21:00", "end": "22:00", "stage": "Kaarsenzaal", "genre": "Voorlezing", "blurb": "Korte verhalen, één per kaars, voorgelezen tot de laatste vlam dooft." }
+        {
+          "city": "kor",
+          "day": "vr",
+          "time": "21:00",
+          "end": "22:00",
+          "stage": "Kaarsenzaal",
+          "genre": "Voorlezing",
+          "blurb": "Korte verhalen, één per kaars, voorgelezen tot de laatste vlam dooft."
+        }
       ]
     },
     {
@@ -84,7 +160,15 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "vr", "time": "22:30", "end": "23:30", "stage": "De Verhalenzaal", "genre": "Spoken word", "blurb": "Stadsdichter en performer brengt taal die zich aan je vastklampt en blijft." }
+        {
+          "city": "kor",
+          "day": "vr",
+          "time": "22:30",
+          "end": "23:30",
+          "stage": "De Verhalenzaal",
+          "genre": "Spoken word",
+          "blurb": "Stadsdichter en performer brengt taal die zich aan je vastklampt en blijft."
+        }
       ]
     },
     {
@@ -93,10 +177,25 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "15:00", "end": "17:00", "stage": "Atelier", "genre": "Workshop", "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt.",
+        {
+          "city": "kor",
+          "day": "za",
+          "time": "15:00",
+          "end": "17:00",
+          "stage": "Atelier",
+          "genre": "Workshop",
+          "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt.",
           "subprogram": [
-            { "time": "15:00", "title": "Deel 1 — De plek", "text": "Kies een plek die je kent en maak ze onheimelijk. Placeholder-tekst — bewerk via het CMS." },
-            { "time": "16:00", "title": "Deel 2 — De verschijning", "text": "Introduceer iets dat er niet hoort te zijn, en laat het net niet zien. Placeholder-tekst." }
+            {
+              "title": "Deel 1 — De plek",
+              "time": "15:00",
+              "text": "Kies een plek die je kent en maak ze onheimelijk. Placeholder-tekst — bewerk via het CMS."
+            },
+            {
+              "title": "Deel 2 — De verschijning",
+              "time": "16:00",
+              "text": "Introduceer iets dat er niet hoort te zijn, en laat het net niet zien. Placeholder-tekst."
+            }
           ]
         }
       ]
@@ -107,7 +206,15 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "17:00", "end": "18:00", "stage": "De Verhalenzaal", "genre": "Gesprek · Roman", "blurb": "Over onheil, stilte en de dreiging die onder het alledaagse sluimert." }
+        {
+          "city": "kor",
+          "day": "za",
+          "time": "17:00",
+          "end": "18:00",
+          "stage": "De Verhalenzaal",
+          "genre": "Gesprek · Roman",
+          "blurb": "Over onheil, stilte en de dreiging die onder het alledaagse sluimert."
+        }
       ]
     },
     {
@@ -116,7 +223,15 @@
       "bio": "",
       "link": "",
       "performances": [
-        { "city": "kor", "day": "za", "time": "20:00", "end": "23:00", "stage": "Kaarsenzaal", "genre": "Voorlezing · Slot", "blurb": "Een warme slotnacht van vertellers rond het haardvuur, tot sluitingstijd." }
+        {
+          "city": "kor",
+          "day": "za",
+          "time": "20:00",
+          "end": "23:00",
+          "stage": "Kaarsenzaal",
+          "genre": "Voorlezing · Slot",
+          "blurb": "Een warme slotnacht van vertellers rond het haardvuur, tot sluitingstijd."
+        }
       ]
     }
   ]
