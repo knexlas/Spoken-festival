@@ -273,8 +273,12 @@
   .topbar .wordmark{ width:clamp(160px,16vw,224px); flex-shrink:0; }
   /* the wordmark is orange lettering painted on a black ground; lighten drops
      that black so the letters + living eye float over the face artwork behind
-     the header instead of sitting in a dark box */
-  .topbar .wordmark img{ mix-blend-mode:lighten; }
+     the header instead of sitting in a dark box. Applied to the base wordmark
+     and the blue iris follower only — NOT the blink lids: lighten-blending the
+     semi-transparent orange lids let the blue bleed through and flash orange,
+     so the blink read as a muddy orange hue instead of a clean, cool close. */
+  .topbar .wm-img, .topbar .eye-iris img{ mix-blend-mode:lighten; }
+  .topbar .eye-lid{ mix-blend-mode:normal; }
   .tb-date{ font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.1vw,32px); letter-spacing:0.06em; color:var(--yellow); transform:rotate(-3deg); white-space:nowrap; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
 
   .segwrap{ display:flex; align-items:center; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; overflow:hidden; }
