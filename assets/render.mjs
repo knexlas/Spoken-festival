@@ -66,19 +66,13 @@ export const cityPerformances = (data, cityId) =>
       .filter(p => p && p.city === cityId)
       .map(p => ({ ...p, artist: a.name })));
 
-/* ---- derive the per-city programme (day list with sorted slots) ---- */
-export const deriveDays = (data, cityId) => {
-  const perfs = cityPerformances(data, cityId);
-  return ((data && data.days) || [])
-    .map(d => ({
-      id: d.id, day: d.label, date: d.date,
-      slots: perfs.filter(p => p.day === d.id)
-        .sort((a, b) => (parseTime(a.time) ?? 9999) - (parseTime(b.time) ?? 9999)),
-    }))
-    .filter(d => d.slots.length);
-};
+/* ---- the per-city programme: one time-sorted list of performances.
+   The festival is a single day, so there is no day grouping. ---- */
+export const cityProgramme = (data, cityId) =>
+  cityPerformances(data, cityId)
+    .sort((a, b) => (parseTime(a.time) ?? 9999) - (parseTime(b.time) ?? 9999));
 
-function slotHtml(s, key, ctx, cityId, dayId){
+function slotHtml(s, key, ctx, cityId){
   const artist = ctx.byName[String(s.artist || '').trim()];
   const photo = artist && artist.photo
     ? `<div class="slot-photo has-img"><img src="${esc(artist.photo)}" alt="${esc(s.artist)}" loading="lazy"></div>`
@@ -87,10 +81,10 @@ function slotHtml(s, key, ctx, cityId, dayId){
   const link = artist && artist.link
     ? `<a class="slot-artist-link" href="${esc(artist.link)}" target="_blank" rel="noopener">${esc(ctx.labels.meerOver)} ${esc(s.artist)} →</a>` : '';
 
-  // cross-reference: where else does this artist perform (other city/day/time)?
+  // cross-reference: where else does this artist perform (other city / time)?
   const others = ((artist && artist.performances) || [])
-    .filter(p => !(p.city === cityId && p.day === dayId && p.time === s.time))
-    .map(p => `${esc(ctx.cityNames[p.city] || p.city)} · ${esc(ctx.dayLabels[p.day] || p.day)} ${esc(p.time)}`);
+    .filter(p => !(p.city === cityId && p.time === s.time))
+    .map(p => `${esc(ctx.cityNames[p.city] || p.city)} · ${esc(p.time)}`);
   const elsewhere = others.length
     ? `<div class="slot-elsewhere">${esc(ctx.labels.ookTeZien)}: ${others.join(' — ')}</div>` : '';
 
@@ -136,62 +130,54 @@ function slotHtml(s, key, ctx, cityId, dayId){
     </div>`;
 }
 
-/* ---- blokkenschema: one timetable grid per festival day (stages as
-   columns, half-hour rows); blocks span from start to end time ---- */
+/* ---- blokkenschema: one timetable grid per city (stages as columns,
+   half-hour rows); blocks span from start to end time. Single festival day. ---- */
 function schemaSection(city, ctx){
-  const dayGrids = ((ctx.data && ctx.data.days) || []).map(d => {
-    const perfs = cityPerformances(ctx.data, city.id)
-      .filter(p => p.day === d.id)
-      .map(p => {
-        const start = parseTime(p.time);
-        if (start == null) return null;
-        let end = parseTime(p.end);
-        if (end == null || end <= start) end = start + 60;
-        return { ...p, start, end };
-      })
-      .filter(Boolean)
-      .sort((a, b) => a.start - b.start);
-    if (!perfs.length) return '';
+  const perfs = cityPerformances(ctx.data, city.id)
+    .map(p => {
+      const start = parseTime(p.time);
+      if (start == null) return null;
+      let end = parseTime(p.end);
+      if (end == null || end <= start) end = start + 60;
+      return { ...p, start, end };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.start - b.start);
+  if (!perfs.length) return '';
 
-    const stages = [...new Set(perfs.map(p => p.stage))];
-    const rangeStart = Math.floor(Math.min(...perfs.map(p => p.start)) / 30) * 30;
-    const rangeEnd = Math.ceil(Math.max(...perfs.map(p => p.end)) / 30) * 30;
-    const nRows = Math.max(1, (rangeEnd - rangeStart) / 30);
+  const stages = [...new Set(perfs.map(p => p.stage))];
+  const rangeStart = Math.floor(Math.min(...perfs.map(p => p.start)) / 30) * 30;
+  const rangeEnd = Math.ceil(Math.max(...perfs.map(p => p.end)) / 30) * 30;
+  const nRows = Math.max(1, (rangeEnd - rangeStart) / 30);
 
-    const headers = stages.map((st, i) =>
-      `<div class="schema-stage" style="grid-column:${i + 2};grid-row:1;">${esc(st)}</div>`).join('');
+  const headers = stages.map((st, i) =>
+    `<div class="schema-stage" style="grid-column:${i + 2};grid-row:1;">${esc(st)}</div>`).join('');
 
-    let times = '';
-    for (let v = Math.ceil(rangeStart / 60) * 60; v < rangeEnd; v += 60) {
-      times += `<div class="schema-time" style="grid-column:1;grid-row:${(v - rangeStart) / 30 + 2};">${fmtTime(v)}</div>`;
-    }
+  let times = '';
+  for (let v = Math.ceil(rangeStart / 60) * 60; v < rangeEnd; v += 60) {
+    times += `<div class="schema-time" style="grid-column:1;grid-row:${(v - rangeStart) / 30 + 2};">${fmtTime(v)}</div>`;
+  }
 
-    const blocks = perfs.map(p => {
-      const col = stages.indexOf(p.stage) + 2;
-      const row = Math.round((p.start - rangeStart) / 30) + 2;
-      const span = Math.max(1, Math.round((p.end - p.start) / 30));
-      return `<div class="schema-block" style="grid-column:${col};grid-row:${row} / span ${span};">
+  const blocks = perfs.map(p => {
+    const col = stages.indexOf(p.stage) + 2;
+    const row = Math.round((p.start - rangeStart) / 30) + 2;
+    const span = Math.max(1, Math.round((p.end - p.start) / 30));
+    return `<div class="schema-block" style="grid-column:${col};grid-row:${row} / span ${span};">
         <span class="t">${esc(p.time)}–${fmtTime(p.end)}</span>
         <span class="n">${esc(p.artist)}</span>
       </div>`;
-    }).join('');
-
-    return `
-      <div class="schema-day">
-        <div class="day-head"><span>${esc(d.label)}</span><span class="date">${esc(d.date)}</span></div>
-        <div class="schema-scroll">
-          <div class="schema" style="grid-template-columns:48px repeat(${stages.length},minmax(150px,1fr));grid-template-rows:auto repeat(${nRows},24px);">
-            ${headers}${times}${blocks}
-          </div>
-        </div>
-      </div>`;
   }).join('');
 
-  if (!dayGrids.trim()) return '';
   return `
         <section>
           <div class="sec-head"><h2>${esc(ctx.labels.blokkenschema)}</h2><span class="line"></span></div>
-          ${dayGrids}
+          <div class="schema-day">
+            <div class="schema-scroll">
+              <div class="schema" style="grid-template-columns:48px repeat(${stages.length},minmax(150px,1fr));grid-template-rows:auto repeat(${nRows},24px);">
+                ${headers}${times}${blocks}
+              </div>
+            </div>
+          </div>
         </section>`;
 }
 
@@ -240,16 +226,15 @@ function interlude(src, align, deg, dur){
 export function panelHtml(city, ctx){
   const { festival, labels } = ctx;
   const art = ART[city.id] || {};
-  const cityDays = deriveDays(ctx.data, city.id);
-  const days = cityDays.map((d, di) => `
+  // single flat, time-sorted programme (no day grouping — one-day festival)
+  const slots = cityProgramme(ctx.data, city.id);
+  const days = slots.length ? `
     <div class="day">
-      <div class="day-head"><span>${esc(d.day)}</span><span class="date">${esc(d.date)}</span></div>
-      ${d.slots.map((s, si) => slotHtml(s, `${city.id}-${di}-${si}`, ctx, city.id, d.id)).join('')}
+      ${slots.map((s, si) => slotHtml(s, `${city.id}-${si}`, ctx, city.id)).join('')}
       <div class="day-end"></div>
-    </div>`).join('');
-  const facts = city.facts.map(f => `<div class="fact"><span class="k">${esc(f.k)}</span><span class="v">${esc(f.v)}</span></div>`).join('');
+    </div>` : '';
   const practical = city.practical.map(p => `<div class="cell"><span class="k">${esc(p.k)}</span><span class="v">${esc(p.v)}</span></div>`).join('');
-  const info = city.info.map(p => `<p>${esc(p)}</p>`).join('');
+  const info = (city.info || []).map(p => `<p>${esc(p)}</p>`).join('');
   const tickets = city.tickets.map(t => `
     <div class="ticket">
       <div style="flex:1;"><div class="tier">${esc(t.tier)}</div><div class="note">${esc(t.note)}</div></div>
@@ -296,7 +281,6 @@ ${newsSection(ctx)}
           <div class="sec-head"><h2>${esc(labels.info)}</h2><span class="line"></span></div>
           <div class="info-grid">
             <div class="info-text">${info}</div>
-            <div class="info-facts">${facts}</div>
           </div>
         </section>
 
@@ -331,7 +315,6 @@ export function renderPanels(data){
     byName: artistIndex(data),
     news: data.news || { posts: [], posters: [] },
     cityNames: Object.fromEntries((data.cities || []).map(c => [c.id, c.name])),
-    dayLabels: Object.fromEntries((data.days || []).map(d => [d.id, d.label])),
   };
   return data.cities.map(c => panelHtml(c, ctx)).join('');
 }

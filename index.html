@@ -24,7 +24,7 @@
     --disp-tr:none; --disp-sp:0.02em; --disp-wt:700; --radius:0px;
     --yellow:#e6d33b; --on-yellow:#141210;
     /* height of the shared fixed top banner (SPOKEN eye + city toggle) */
-    --topbar-h:96px;
+    --topbar-h:118px;
   }
   html, body { margin:0; height:100%; background:#0b0a09; }
   * { box-sizing:border-box; }
@@ -259,17 +259,17 @@
      cities; also the reliable home for the mobile city toggle ===== */
   .topbar{
     position:fixed; top:0; left:0; right:0; z-index:70;
-    min-height:var(--topbar-h); padding-top:env(safe-area-inset-top,0px);
+    min-height:var(--topbar-h); padding-top:calc(env(safe-area-inset-top,0px) + 16px); padding-bottom:14px;
     display:flex; align-items:center; justify-content:flex-end; gap:14px; padding-left:clamp(14px,2.4vw,26px); padding-right:clamp(14px,2.4vw,26px);
-    /* fully see-through banner so the festival artwork (the painted face)
-       runs straight through the header behind SPOKEN; only a soft top-down
-       scrim keeps the wordmark + any scrolled content legible up here */
-    background:linear-gradient(180deg, rgba(11,10,9,0.60) 0%, rgba(11,10,9,0.26) 55%, rgba(11,10,9,0) 100%);
-    border-bottom:0;
+    /* solid black bar (per Vonk en Zonen): the logo + date read clearly and
+       scrolling content passes cleanly UNDER the header instead of floating
+       behind it. A hairline underline gives the bar a clean edge. */
+    background:#0b0a09;
+    border-bottom:1px solid rgba(239,233,221,0.10);
   }
-  /* the one SPOKEN eye sits dead-centre of the banner — on desktop that lands
-     it right over the seam / the face's nose, where the two cities meet */
-  .tb-brand{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); display:flex; align-items:center; gap:18px; pointer-events:none; }
+  /* the one SPOKEN eye sits centred; the +16px top padding above pushes the
+     wordmark + date down off the very top edge */
+  .tb-brand{ position:absolute; left:50%; top:calc(50% + 8px); transform:translate(-50%,-50%); display:flex; align-items:center; gap:18px; pointer-events:none; }
   .topbar .wordmark{ width:clamp(160px,16vw,224px); flex-shrink:0; }
   /* the wordmark is orange lettering painted on a black ground; lighten drops
      that black so the letters + living eye float over the face artwork behind
@@ -314,8 +314,8 @@
 
   /* ===== MOBILE: one city at a time, tap to switch ===== */
   @media (max-width: 860px){
-    /* taller banner: eye centred on top, toggle centred below */
-    :root{ --topbar-h:96px; }
+    /* taller banner: eye on top, toggle below — with room off the top edge */
+    :root{ --topbar-h:116px; }
     .stage{ display:block; }
     .panel{ position:absolute; inset:0; width:100%; transition:opacity .8s ease, transform .8s cubic-bezier(0.16,1,0.3,1); }
     .panel .edge, .panel .rail{ display:none; }
@@ -327,7 +327,7 @@
     .content{ padding-bottom:clamp(48px,10vw,72px); min-width:0; }
     .content > section{ min-width:0; }
     .face-bg{ background-size:cover; }
-    .topbar{ flex-direction:column; justify-content:center; gap:8px; padding-top:calc(env(safe-area-inset-top,0px) + 8px); padding-bottom:8px; padding-left:12px; padding-right:12px; }
+    .topbar{ flex-direction:column; justify-content:center; gap:8px; padding-top:calc(env(safe-area-inset-top,0px) + 16px); padding-bottom:10px; padding-left:12px; padding-right:12px; }
     .tb-brand{ position:static; transform:none; }
     .topbar .wordmark{ width:clamp(96px,26vw,124px); }
     .tb-date{ display:none; }

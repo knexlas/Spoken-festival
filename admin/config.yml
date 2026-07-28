@@ -72,16 +72,6 @@ city_fields: &city_fields
     collapsed: true
     field: { label: "Paragraaf", name: "paragraph", widget: "text" }
 
-  - label: "Kerncijfers"
-    name: "facts"
-    label_singular: "Cijfer"
-    widget: "list"
-    collapsed: true
-    summary: "{{fields.k}}: {{fields.v}}"
-    fields:
-      - { label: "Label", name: "k", widget: "string" }
-      - { label: "Waarde", name: "v", widget: "string" }
-
   - label: "Praktisch"
     name: "practical"
     label_singular: "Item"
@@ -131,17 +121,6 @@ collections:
               - { label: "Einddatum & -tijd", name: "endDate", widget: "datetime", picker_utc: false, hint: "Officieel einde van het festival (gebruikt door Google)" }
               - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text", hint: "1 à 2 zinnen; dit is de tekst die Google en social media tonen." }
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
-
-          - label: "Festivaldagen"
-            name: "days"
-            label_singular: "Dag"
-            widget: "list"
-            hint: "De dagen van het festival — gelden voor beide steden. De optredens (bij Artiesten & gasten) verwijzen naar deze dagen."
-            summary: "{{fields.label}} {{fields.date}}"
-            fields:
-              - { label: "Code", name: "id", widget: "string", hint: "Kort en uniek, bv. vr of za. NIET meer wijzigen zodra er optredens aan gekoppeld zijn." }
-              - { label: "Naam (zoals getoond)", name: "label", widget: "string", hint: "Bv. VR" }
-              - { label: "Datum (zoals getoond)", name: "date", widget: "string", hint: "Bv. 31 OKT" }
 
           - label: "Teksten & knoppen (site-breed)"
             name: "labels"
@@ -204,7 +183,7 @@ collections:
                 widget: "list"
                 collapsed: true
                 required: false
-                summary: "{{fields.city}} · {{fields.day}} · {{fields.time}}"
+                summary: "{{fields.city}} · {{fields.time}} · {{fields.stage}}"
                 hint: "Wanneer en waar deze artiest optreedt. Eén artiest kan meerdere optredens hebben, ook in beide steden. Dit vult automatisch het programma én het blokkenschema van de juiste stad."
                 fields:
                   - label: "Stad"
@@ -213,15 +192,6 @@ collections:
                     options:
                       - { label: "Antwerpen", value: "ant" }
                       - { label: "Kortrijk", value: "kor" }
-                  - label: "Dag"
-                    name: "day"
-                    widget: "relation"
-                    collection: "site"
-                    file: "festival"
-                    search_fields: ["days.*.label"]
-                    display_fields: ["days.*.label"]
-                    value_field: "days.*.id"
-                    hint: "Festivaldagen beheer je bij Festival-instellingen."
                   - { label: "Starttijd", name: "time", widget: "string", hint: "Bv. 20:00" }
                   - { label: "Eindtijd", name: "end", widget: "string", required: false, hint: "Bv. 21:00 — leeg gelaten telt als 1 uur (voor het blokkenschema)." }
                   - { label: "Podium / zaal", name: "stage", widget: "string" }

@@ -70,7 +70,6 @@
       return createClass({
         render: function () {
           var e = this.props.entry;
-          var facts = toJS(e.getIn(['data', 'facts'])) || [];
           var tickets = toJS(e.getIn(['data', 'tickets'])) || [];
           var info = toJS(e.getIn(['data', 'info'])) || [];
           var practical = toJS(e.getIn(['data', 'practical'])) || [];
@@ -82,14 +81,6 @@
               h('span', {}, val(e, 'venue') || ''),
               h('span', { style: { color: acc } }, val(e, 'dates') || '')
             ),
-            facts.length ? h('div', { style: { display: 'flex', flexWrap: 'wrap', gap: '26px', margin: '20px 0', fontFamily: F_MONO } },
-              facts.map(function (f, i) {
-                return h('div', { key: i },
-                  h('div', { style: { fontSize: '22px', color: acc } }, f.v),
-                  h('div', { style: { fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: MUT, marginTop: '3px' } }, f.k)
-                );
-              })
-            ) : null,
             info.map(function (p, i) {
               return h('p', { key: i, style: { fontSize: '15px', lineHeight: 1.65, color: FG, maxWidth: '60ch' } }, p);
             }),
@@ -129,7 +120,6 @@
       render: function () {
         var e = this.props.entry, getAsset = this.props.getAsset;
         var fest = val(e, 'festival') || {};
-        var days = toJS(e.getIn(['data', 'days'])) || [];
         var labels = val(e, 'labels') || {};
         var shareAsset = fest.shareImage && getAsset ? getAsset(fest.shareImage) : null;
         var labelRows = Object.keys(labels).map(function (k) { return [k, labels[k]]; });
@@ -137,15 +127,6 @@
           h('div', { style: eyebrow(TEAL) }, 'FESTIVAL-INSTELLINGEN'),
           h('h1', { style: title() }, fest.name || 'SPOKEN'),
           fest.subtitle ? h('p', { style: { fontStyle: 'italic', fontSize: '18px', color: MUT, maxWidth: '40ch', margin: '0 0 20px' } }, fest.subtitle) : null,
-          h('div', { style: { display: 'flex', gap: '10px', margin: '6px 0 22px' } },
-            days.map(function (d, i) {
-              return h('div', { key: i, style: { border: '1px solid ' + LINE, borderRadius: '2px', padding: '10px 16px', fontFamily: F_MONO } },
-                h('div', { style: { fontSize: '15px', color: TEAL } }, d.label),
-                h('div', { style: { fontSize: '11px', color: MUT, marginTop: '3px' } }, d.date),
-                h('div', { style: { fontSize: '9px', letterSpacing: '0.1em', color: MUT, marginTop: '5px', opacity: 0.7 } }, 'code: ' + (d.id || '—'))
-              );
-            })
-          ),
           fest.shortDate ? h('div', { style: { fontFamily: F_DISP, fontWeight: 700, fontSize: '30px', letterSpacing: '0.08em', color: YELLOW, transform: 'rotate(-2deg)', margin: '2px 0 14px' } }, fest.shortDate) : null,
           fest.description ? h('p', { style: { fontSize: '14px', lineHeight: 1.6, color: MUT, maxWidth: '60ch', marginTop: '10px', paddingTop: '18px', borderTop: '1px solid ' + LINE } }, fest.description) : null,
 
@@ -187,7 +168,7 @@
                   var acc = p.city === 'kor' ? AMBER : TEAL;
                   return h('div', { key: j, style: { marginTop: '8px' } },
                     h('div', { style: { display: 'flex', alignItems: 'baseline', gap: '12px', fontFamily: F_MONO, fontSize: '12px', flexWrap: 'wrap' } },
-                      h('span', { style: { color: acc, letterSpacing: '0.06em' } }, (p.city === 'kor' ? 'KORTRIJK' : 'ANTWERPEN') + ' · ' + String(p.day || '?').toUpperCase()),
+                      h('span', { style: { color: acc, letterSpacing: '0.06em' } }, (p.city === 'kor' ? 'KORTRIJK' : 'ANTWERPEN')),
                       h('span', { style: { color: MUT } }, (p.time || '') + (p.end ? '–' + p.end : '')),
                       p.stage ? h('span', { style: { color: FG } }, p.stage) : null,
                       p.genre ? h('span', { style: { color: MUT } }, p.genre) : null
