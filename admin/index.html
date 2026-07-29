@@ -70,7 +70,8 @@
   <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
 
   <script>
-    /* Base preview skin (fonts, dark theme, accent) for the preview pane. */
+    /* On-brand styling (fonts, dark theme, accent) for the built-in preview
+       pane. registerPreviewStyle IS fully supported by Sveltia. */
     (function registerSpokenPreview() {
       if (window.CMS && typeof window.CMS.registerPreviewStyle === 'function') {
         window.CMS.registerPreviewStyle('/admin/spoken-preview.css');
@@ -80,8 +81,12 @@
     })();
   </script>
 
-  <!-- SPOKEN preview TEMPLATES — render each collection's preview 1:1 like the
-       public festival site. Self-registers once the CMS global is ready. -->
-  <script src="/admin/preview-templates.js"></script>
+  <!-- NB: we intentionally DO NOT register custom preview TEMPLATES anymore.
+       Sveltia's registerPreviewTemplate support is still incomplete, so a
+       custom template renders but does not refresh as you type — editors saw
+       stale data and thought their edits weren't saving. Removing it lets
+       Sveltia's own native preview pane take over, which DOES update live
+       while typing (and still picks up spoken-preview.css above). See
+       github.com/sveltia/sveltia-cms/discussions/153. -->
 </body>
 </html>

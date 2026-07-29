@@ -140,19 +140,23 @@ committeert de CMS naar de bijhorende `content/*.json` op GitHub, Netlify herbou
 en de site (incl. SEO) is bijgewerkt.
 
 **SPOKEN-skin (uit Claude Design):** de editor draagt de festivalhuisstijl waar
-Sveltia dat toelaat: `app_title` "SPOKEN — Beheer" (login, header, browsertab),
-en een on-brand **live-voorbeeldpaneel** — `admin/spoken-preview.css` (donker
-thema, festival-fonts) plus `admin/preview-templates.js` (rendert per onderdeel
-een 1:1-voorbeeld van de site: stad in teal/amber, artiesten met foto en
-optredens, nieuws & affiches). Geverifieerd: de skin-bestanden laden zonder
-fouten en de preview-API registreert. **Nog niet verifieerbaar zonder login:**
-hoe het voorbeeldpaneel er in de ingelogde editor uitziet — controleer dat na
-de eerstvolgende deploy (oog-icoon in de editor). Beperking van Sveltia zelf:
-de login-achtergrond/editor-chrome zijn niet themebaar (de app tekent zijn
-eigen achtergrond; volgt licht/donker van het besturingssysteem) — volledige
-theming is een open Sveltia-feature-request (issue #29). Een vierkant logo kan
-later via `logo: { src: … }` in `config.yml`. Ontwerpbron: lokale map `CMS/`
-(bewust niet in de repo).
+Sveltia dat toelaat: `app_title` "SPOKEN — Beheer" (login, header, browsertab)
+en `admin/spoken-preview.css` (donker thema + festival-fonts) via
+`registerPreviewStyle`, dat Sveltia wél volledig ondersteunt.
+
+> **Voorbeeldpaneel (2026-07-27):** we gebruiken Sveltia's **ingebouwde**
+> voorbeeldpaneel, dat live meebeweegt terwijl je typt. De eerdere *custom*
+> preview-templates (`preview-templates.js`) zijn verwijderd: Sveltia's
+> `registerPreviewTemplate` is nog niet volledig af, waardoor zo'n eigen
+> voorbeeld wél toonde maar niet ververste tijdens het typen — editors zagen
+> oude data en dachten dat hun wijziging niet opsloeg (het sloeg wél op).
+> Zie github.com/sveltia/sveltia-cms/discussions/153. Het paneel kan aan/uit
+> via het 3-puntjesmenu naast Opslaan.
+
+Beperking van Sveltia zelf: de login-achtergrond/editor-chrome zijn niet
+themebaar (volgt licht/donker van het besturingssysteem) — open feature-request
+(issue #29). Een vierkant logo kan later via `logo: { src: … }` in `config.yml`.
+Ontwerpbron: lokale map `CMS/` (bewust niet in de repo).
 
 **Werkwijze: een artiest boeken (alles op één plek)**
 Open **Artiesten & gasten** → voeg de artiest toe (naam, foto, bio) → voeg onder
