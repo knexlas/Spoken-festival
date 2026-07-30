@@ -40,6 +40,9 @@
   @keyframes figFloat { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-14px) rotate(0.6deg);} }
   @keyframes faceBreathe { 0%,100%{opacity:0.20;} 50%{opacity:0.30;} }
   @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+  /* gentle "guttering candle" flicker (like the old séance wordmark): mostly
+     lit, with a quick double-dip near the end of each cycle */
+  @keyframes dateFlicker { 0%,100%{opacity:1;} 90%{opacity:1;} 91%{opacity:0.42;} 92%{opacity:1;} 94%{opacity:0.68;} 95%{opacity:1;} }
 
   .stage{ position:fixed; inset:0; display:flex; overflow:hidden; background:#0b0a09; }
 
@@ -91,7 +94,7 @@
   .masthead{ display:flex; align-items:center; gap:16px; }
   .masthead .line{ flex:1; height:1px; background:var(--line); }
   .masthead-eyebrow{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:var(--acc); white-space:nowrap; }
-  .masthead-date{ font-family:var(--f-display); font-weight:700; font-size:26px; letter-spacing:0.1em; color:var(--yellow); transform:rotate(-2deg); white-space:nowrap; }
+  .masthead-date{ font-family:var(--f-display); font-weight:700; font-size:26px; letter-spacing:0.1em; color:var(--yellow); transform:rotate(-2deg); white-space:nowrap; text-shadow:0 0 14px rgba(230,211,59,0.4); animation:dateFlicker 7s linear infinite; }
 
   /* the painted SPOKEN wordmark — its O is a living eye */
   .wordmark{
@@ -278,7 +281,7 @@
      masks, so SPOKEN falls into the background instead of the busy face-art
      showing through the letters. The eye iris/lids stay normal too. */
   .topbar .eye-lid{ mix-blend-mode:normal; }
-  .tb-date{ font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.1vw,32px); letter-spacing:0.06em; color:var(--yellow); transform:rotate(-3deg) translateZ(0); backface-visibility:hidden; white-space:nowrap; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
+  .tb-date{ font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.1vw,32px); letter-spacing:0.06em; color:var(--yellow); transform:rotate(-3deg) translateZ(0); backface-visibility:hidden; white-space:nowrap; text-shadow:0 2px 12px rgba(0,0,0,0.6), 0 0 14px rgba(230,211,59,0.45); animation:dateFlicker 6s linear infinite; }
 
   .segwrap{ display:flex; align-items:center; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; overflow:hidden; }
   .segwrap .label{ padding:0 12px 0 14px; font-family:var(--f-mono); font-size:9px; letter-spacing:0.18em; color:rgba(255,255,255,0.4); }
