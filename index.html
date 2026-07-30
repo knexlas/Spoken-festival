@@ -96,13 +96,9 @@
   /* the painted SPOKEN wordmark — its O is a living eye */
   .wordmark{
     position:relative; width:clamp(200px,21vw,330px); flex-shrink:0;
-    -webkit-mask-image:linear-gradient(0deg, transparent, black 14%, black 86%, transparent);
-    mask-image:linear-gradient(0deg, transparent, black 14%, black 86%, transparent);
   }
   .wm-img{
     width:100%; display:block;
-    -webkit-mask-image:linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
-    mask-image:linear-gradient(90deg, transparent, black 7%, black 93%, transparent);
   }
   .eye{ position:absolute; left:42.6%; top:1.5%; width:16%; height:97%; pointer-events:none; }
   .eye-clip{ position:absolute; inset:0; clip-path:ellipse(26% 30% at 50% 48%); overflow:hidden; }
@@ -261,11 +257,11 @@
     position:fixed; top:0; left:0; right:0; z-index:70;
     min-height:var(--topbar-h); padding-top:calc(env(safe-area-inset-top,0px) + 16px); padding-bottom:14px;
     display:flex; align-items:center; justify-content:flex-end; gap:14px; padding-left:clamp(14px,2.4vw,26px); padding-right:clamp(14px,2.4vw,26px);
-    /* solid black bar (per Vonk en Zonen): the logo + date read clearly and
-       scrolling content passes cleanly UNDER the header instead of floating
-       behind it. A hairline underline gives the bar a clean edge. */
-    background:#0b0a09;
-    border-bottom:1px solid rgba(239,233,221,0.10);
+    /* soft top-down scrim instead of a hard black bar: no divider line, and the
+       painted face artwork shows THROUGH the header, while the gradient keeps
+       the logo + date legible and lets scrolled content fade under the edge. */
+    background:linear-gradient(180deg, rgba(11,10,9,0.96) 0%, rgba(11,10,9,0.86) 52%, rgba(11,10,9,0.45) 80%, rgba(11,10,9,0) 100%);
+    border-bottom:0;
   }
   /* the one SPOKEN eye sits centred; the +16px top padding above pushes the
      wordmark + date down off the very top edge */
@@ -277,9 +273,12 @@
      and the blue iris follower only — NOT the blink lids: lighten-blending the
      semi-transparent orange lids let the blue bleed through and flash orange,
      so the blink read as a muddy orange hue instead of a clean, cool close. */
-  .topbar .wm-img, .topbar .eye-iris img{ mix-blend-mode:lighten; }
+  /* orange wordmark keeps its OWN black ground (normal blend, not lighten): the
+     black background stays black and melts into the dark header via the edge
+     masks, so SPOKEN falls into the background instead of the busy face-art
+     showing through the letters. The eye iris/lids stay normal too. */
   .topbar .eye-lid{ mix-blend-mode:normal; }
-  .tb-date{ font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.1vw,32px); letter-spacing:0.06em; color:var(--yellow); transform:rotate(-3deg); white-space:nowrap; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
+  .tb-date{ font-family:var(--f-display); font-weight:700; font-size:clamp(21px,2.1vw,32px); letter-spacing:0.06em; color:var(--yellow); transform:rotate(-3deg) translateZ(0); backface-visibility:hidden; white-space:nowrap; text-shadow:0 2px 12px rgba(0,0,0,0.6); }
 
   .segwrap{ display:flex; align-items:center; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; overflow:hidden; }
   .segwrap .label{ padding:0 12px 0 14px; font-family:var(--f-mono); font-size:9px; letter-spacing:0.18em; color:rgba(255,255,255,0.4); }
