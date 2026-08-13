@@ -26,7 +26,7 @@
     /* height of the shared fixed top banner (SPOKEN eye + city toggle) */
     --topbar-h:118px;
   }
-  html, body { margin:0; height:100%; background:#0b0a09; overflow-x:hidden; max-width:100%; }
+  html, body { margin:0; height:100%; background:#0b0a09; max-width:100%; overflow-x:hidden; overflow-x:clip; }
   * { box-sizing:border-box; }
   body{ font-family:var(--f-body); color:#f3ede2; overflow:hidden; }
   a { color:var(--yellow); } a:hover { color:#fff; }
@@ -324,13 +324,17 @@
     /* taller banner: eye on top, toggle below — with room off the top edge */
     :root{ --topbar-h:116px; }
     .stage{ display:block; }
-    .panel{ position:absolute; inset:0; width:100%; transition:opacity .8s ease, transform .8s cubic-bezier(0.16,1,0.3,1); }
+    /* Crossfade the two city panels — NO horizontal translate. A full-width
+       panel slid sideways sticks out past the screen edge (overflow:hidden
+       does not stop it from widening the mobile layout viewport), which made
+       the page zoom/pan. Fade only = it can never overflow. */
+    .panel{ position:absolute; inset:0; width:100%; transition:opacity .6s ease; }
     .panel .edge, .panel .rail{ display:none; }
     .seam{ display:none; }
-    .stage[data-mobile-city="ant"] .panel[data-id="kor"]{ opacity:0; transform:translateX(36px); pointer-events:none; }
-    .stage[data-mobile-city="kor"] .panel[data-id="ant"]{ opacity:0; transform:translateX(-36px); pointer-events:none; }
+    .stage[data-mobile-city="ant"] .panel[data-id="kor"]{ opacity:0; pointer-events:none; }
+    .stage[data-mobile-city="kor"] .panel[data-id="ant"]{ opacity:0; pointer-events:none; }
     .stage[data-mobile-city="ant"] .panel[data-id="ant"],
-    .stage[data-mobile-city="kor"] .panel[data-id="kor"]{ opacity:1; transform:none; z-index:3; }
+    .stage[data-mobile-city="kor"] .panel[data-id="kor"]{ opacity:1; z-index:3; }
     .content{ padding-bottom:clamp(48px,10vw,72px); min-width:0; }
     .content > section{ min-width:0; }
     .face-bg{ background-size:cover; }
