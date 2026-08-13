@@ -292,13 +292,13 @@
   .hint.hide{ display:none; }
 
   /* intro overlay (injected by JS, once per session) */
-  .intro{ position:fixed; inset:0; height:100vh; height:100dvh; z-index:100; background:#000; cursor:pointer; opacity:1; transition:opacity 1.25s ease; }
+  .intro{ position:fixed; inset:0; z-index:100; background:#000; cursor:pointer; opacity:1; transition:opacity 1.25s ease; }
   .intro.fading{ opacity:0; pointer-events:none; }
   /* poster backdrop: the painted "world" the opener video sits in. Fills the
      letterbox bars left by the contained video (esp. big on portrait phones),
      darkened so the video still reads as the focal point. */
   .intro .intro-poster{ position:absolute; inset:0; z-index:0; background:#0b0a09 url('assets/img/poster.jpg') center/cover no-repeat; filter:brightness(0.62) saturate(1.05); }
-  .intro video{ position:absolute; inset:0; z-index:1; width:100%; height:100%; max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  .intro video{ position:absolute; inset:0; z-index:1; width:100%; height:100%; object-fit:contain; display:block; }
   .intro .intro-vignette{ position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%); }
   /* clear, obviously-tappable skip control — corner button + a button-styled
      bottom label — so on a phone it's never unclear the opener is skippable */
