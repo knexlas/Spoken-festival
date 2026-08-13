@@ -529,31 +529,50 @@ function attachFigureParallax(){
 
 /* ---------- intro overlay: painted opener, once per session ---------- */
 function maybeShowIntro(labels){
-  let seen = false;
-  try { seen = sessionStorage.getItem('spoken-intro-v3') === '1'; } catch (e) {}
-  if (seen) return;
+  // Plays on every visit (the client wants it to greet returning visitors),
+  // so there is no "already seen" gate anymore.
   state.introActive = true;
   const el = document.createElement('div');
-  el.className = 'intro';
+  el.className = 'intro muted';
   el.innerHTML =
     '<div class="intro-poster"></div>' +
     '<video autoplay muted playsinline src="assets/media/intro.mp4"></video>' +
     '<div class="intro-vignette"></div>' +
     '<button type="button" class="intro-skip">Overslaan <span class="x">✕</span></button>' +
     '<div class="intro-label"></div>';
-  el.querySelector('.intro-label').textContent = labels.introKnop;
+  const labelEl = el.querySelector('.intro-label');
+  // Mobile browsers block autoplay WITH sound, so we start muted (which is
+  // allowed) and invite one tap to switch the sound on.
+  labelEl.textContent = '🔊 ' + (labels.introGeluid || 'TIK VOOR GELUID');
   document.body.appendChild(el);
   const video = el.querySelector('video');
   if (video.play) video.play().catch(() => {});
+
+  let soundOn = false;
+  const enableSound = () => {
+    soundOn = true;
+    el.classList.remove('muted');
+    video.muted = false;
+    try { video.volume = 1; } catch (e) {}
+    // Restart so they hear the soundtrack from the top, not mid-clip.
+    try { video.currentTime = 0; } catch (e) {}
+    video.play().catch(() => {});
+    labelEl.textContent = labels.introKnop;
+  };
+
   let done = false;
   const dismiss = () => {
     if (done) return;
     done = true;
-    try { sessionStorage.setItem('spoken-intro-v3', '1'); } catch (e) {}
     el.classList.add('fading');
     setTimeout(() => { el.remove(); state.introActive = false; }, 1300);
   };
-  el.addEventListener('click', dismiss);
+
+  el.addEventListener('click', (e) => {
+    if (e.target.closest('.intro-skip')) { dismiss(); return; } // ✕ always closes
+    if (!soundOn) { enableSound(); return; }                    // first tap = sound
+    dismiss();                                                  // then tap to enter
+  });
   video.addEventListener('ended', dismiss);
 }
 

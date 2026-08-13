@@ -26,6 +26,7 @@ export const DEFAULT_LABELS = {
   hintBeweeg: 'beweeg naar links of rechts', hintKlik: 'klik een stad',
   blokkenschema: 'Blokkenschema', ookTeZien: 'Ook te zien',
   footerTag: 'GRIEZELFESTIVAL', introKnop: 'KLIK OM BINNEN TE GAAN',
+  introGeluid: 'TIK VOOR GELUID',
   subprogramma: 'Subprogramma',
 };
 
