@@ -174,7 +174,7 @@ function schemaSection(city, ctx){
           <div class="sec-head"><h2>${esc(ctx.labels.blokkenschema)}</h2><span class="line"></span></div>
           <div class="schema-day">
             <div class="schema-scroll">
-              <div class="schema" style="grid-template-columns:48px repeat(${stages.length},minmax(150px,1fr));grid-template-rows:auto repeat(${nRows},24px);">
+              <div class="schema" style="grid-template-columns:48px repeat(${stages.length},minmax(var(--sch-col,150px),1fr));grid-template-rows:auto repeat(${nRows},24px);">
                 ${headers}${times}${blocks}
               </div>
             </div>

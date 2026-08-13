@@ -26,7 +26,7 @@
     /* height of the shared fixed top banner (SPOKEN eye + city toggle) */
     --topbar-h:118px;
   }
-  html, body { margin:0; height:100%; background:#0b0a09; }
+  html, body { margin:0; height:100%; background:#0b0a09; overflow-x:hidden; max-width:100%; }
   * { box-sizing:border-box; }
   body{ font-family:var(--f-body); color:#f3ede2; overflow:hidden; }
   a { color:var(--yellow); } a:hover { color:#fff; }
@@ -81,7 +81,12 @@
   }
 
   .scroll{ position:absolute; inset:0; z-index:2; overflow-y:auto; overflow-x:hidden; }
-  .content{ min-height:100%; padding:clamp(34px,4.2vw,76px); padding-top:calc(var(--topbar-h) + env(safe-area-inset-top,0px) + clamp(22px,2.4vw,40px)); display:flex; flex-direction:column; gap:clamp(54px,6vw,96px); }
+  .content{ min-height:100%; padding:clamp(34px,4.2vw,76px); padding-top:calc(var(--topbar-h) + env(safe-area-inset-top,0px) + clamp(22px,2.4vw,40px)); display:flex; flex-direction:column; gap:clamp(54px,6vw,96px); min-width:0; }
+  /* flex children default to min-width:auto and refuse to shrink below their
+     content, which lets a wide child (e.g. the Blokkenschema grid) push the
+     whole page wider than the screen and trigger a zoom/pan on mobile. Let
+     them shrink so overflow-x:auto wrappers can actually clip + scroll. */
+  .content > *{ min-width:0; max-width:100%; }
 
   /* ---- hero ---- */
   .hero{ min-height:74vh; position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:20px; padding-bottom:8px; }
@@ -185,7 +190,7 @@
   .interlude-fig{ position:absolute; top:0; bottom:0; width:60%; background-size:contain; background-repeat:no-repeat; opacity:0.9; animation:figFloat 11s ease-in-out infinite; -webkit-mask-image:linear-gradient(180deg, black 60%, transparent 92%); mask-image:linear-gradient(180deg, black 60%, transparent 92%); }
 
   .schema-day{ margin-bottom:30px; }
-  .schema-scroll{ overflow-x:auto; padding-bottom:6px; }
+  .schema-scroll{ overflow-x:auto; max-width:100%; min-width:0; padding-bottom:6px; }
   .schema{ display:grid; gap:3px; min-width:540px; }
   .schema-stage{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--acc); padding:6px 8px 10px; border-bottom:1px solid var(--line); margin-bottom:4px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .schema-time{ font-family:var(--f-mono); font-size:10px; color:var(--mut); align-self:start; padding-top:1px; }
@@ -337,10 +342,21 @@
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
     .slot-stage{ display:none; }
-    /* keep the wide timetable scrolling INSIDE its own box on a phone so it
-       never widens the page (its min-width was leaking into the layout) */
-    .schema-scroll{ max-width:100%; }
-    .schema{ min-width:460px; }
+    /* On a phone the timetable's fixed 150px-per-stage columns made the grid
+       ~800px wide (48px + N*150px). That single wide element expanded the
+       mobile layout viewport, so the browser zoomed/panned the WHOLE page
+       (the symptom users saw as a shifting, zoomed-in screen). An overflow-x
+       scroller could not contain it (the grid's intrinsic width still leaked
+       into the layout). Fix: drop the per-column minimum to 0 so the columns
+       collapse to share the available width — the grid then always fits the
+       screen and can never widen the page. Smaller type keeps it legible. */
+    .schema-scroll{ max-width:100%; overflow-x:hidden; }
+    .schema{ min-width:0; --sch-col:0px; }
+    .schema-block{ padding:4px 5px; }
+    .schema-block .n{ font-size:11.5px; line-height:1.05; }
+    .schema-block .t{ font-size:8px; }
+    .schema-stage{ font-size:8px; padding:5px 3px 7px; letter-spacing:0.06em; }
+    .schema-time{ font-size:8.5px; }
     /* show the hero figures in the FOREGROUND on mobile too (same as desktop) —
        just a touch smaller. They still fade out on scroll so they never sit
        over the programme text below the hero. */
