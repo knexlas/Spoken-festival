@@ -36,7 +36,10 @@
 
   @keyframes hintPulse { 0%,100%{opacity:0.35;} 50%{opacity:0.85;} }
   @keyframes echoDrift { 0%,100%{transform:translate(0,0); opacity:0.16;} 50%{transform:translate(7px,-5px); opacity:0.30;} }
-  @keyframes grainShift { 0%{transform:translate(0,0);} 20%{transform:translate(-12%,6%);} 40%{transform:translate(8%,-10%);} 60%{transform:translate(-6%,10%);} 80%{transform:translate(10%,4%);} 100%{transform:translate(0,0);} }
+  /* Drift the grain TEXTURE (background-position), not the element box. Moving
+     the box (transform:translate on an oversized layer) changed the page's
+     width every frame and made mobile browsers zoom in/out constantly. */
+  @keyframes grainShift { 0%{background-position:0 0;} 20%{background-position:-19px 10px;} 40%{background-position:13px -16px;} 60%{background-position:-10px 16px;} 80%{background-position:16px 6px;} 100%{background-position:0 0;} }
   @keyframes figFloat { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-14px) rotate(0.6deg);} }
   @keyframes faceBreathe { 0%,100%{opacity:0.20;} 50%{opacity:0.30;} }
   @keyframes rise { from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
@@ -257,7 +260,7 @@
      face artwork + its figures) in shadow — it now only deepens the lower
      corners for mood */
   .vignette{ position:absolute; inset:0; z-index:40; pointer-events:none; background:radial-gradient(ellipse 96% 92% at 50% 38%, transparent 60%, rgba(0,0,0,0.5) 100%); }
-  .grain{ position:absolute; inset:-50%; z-index:41; pointer-events:none; opacity:0.06; mix-blend-mode:soft-light; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>'); background-size:160px 160px; animation:grainShift 0.9s steps(4) infinite; }
+  .grain{ position:absolute; inset:0; z-index:41; pointer-events:none; opacity:0.06; mix-blend-mode:soft-light; background-image:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22160%22 height=%22160%22><filter id=%22n%22><feTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%222%22 stitchTiles=%22stitch%22/></filter><rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/></svg>'); background-size:160px 160px; animation:grainShift 0.9s steps(4) infinite; }
 
   /* ===== shared top banner: one SPOKEN wordmark + living eye across both
      cities; also the reliable home for the mobile city toggle ===== */
