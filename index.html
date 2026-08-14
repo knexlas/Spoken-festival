@@ -349,21 +349,22 @@
     .hint{ display:none; }
     .slot-inner{ flex-direction:column; padding-left:48px; }
     .slot-stage{ display:none; }
-    /* On a phone the timetable's fixed 150px-per-stage columns made the grid
-       ~800px wide (48px + N*150px). That single wide element expanded the
-       mobile layout viewport, so the browser zoomed/panned the WHOLE page
-       (the symptom users saw as a shifting, zoomed-in screen). An overflow-x
-       scroller could not contain it (the grid's intrinsic width still leaked
-       into the layout). Fix: drop the per-column minimum to 0 so the columns
-       collapse to share the available width — the grid then always fits the
-       screen and can never widen the page. Smaller type keeps it legible. */
-    .schema-scroll{ max-width:100%; overflow-x:hidden; }
-    .schema{ min-width:0; --sch-col:0px; }
-    .schema-block{ padding:4px 5px; }
-    .schema-block .n{ font-size:11.5px; line-height:1.05; }
-    .schema-block .t{ font-size:8px; }
-    .schema-stage{ font-size:8px; padding:5px 3px 7px; letter-spacing:0.06em; }
-    .schema-time{ font-size:8.5px; }
+    /* Phone timetable: a full-bleed horizontal scroller. The scroll box is
+       pinned to exactly the viewport width (100vw, edge to edge) and the wide
+       grid scrolls left/right inside it with readable columns, so it never
+       widens the page. (This works now that the grain layer no longer resizes
+       the layout viewport — before, an unstable viewport broke the 100vw math.) */
+    .schema-scroll{ width:100vw; margin-left:calc(50% - 50vw); overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; padding:2px clamp(16px,4.2vw,34px) 12px; scrollbar-width:none; }
+    .schema-scroll::-webkit-scrollbar{ display:none; }
+    .schema{ min-width:0; --sch-col:118px; }
+    .schema-block .n{ font-size:13px; line-height:1.08; }
+    .schema-block .t{ font-size:9px; }
+    .schema-stage{ font-size:9px; padding:5px 6px 8px; }
+    /* keep the eyebrow + date on one line without the date clipping off the
+       right edge on narrow phones */
+    .masthead{ gap:10px; }
+    .masthead-eyebrow{ font-size:10px; letter-spacing:0.12em; }
+    .masthead-date{ font-size:21px; }
     /* show the hero figures in the FOREGROUND on mobile too (same as desktop) —
        just a touch smaller. They still fade out on scroll so they never sit
        over the programme text below the hero. */
