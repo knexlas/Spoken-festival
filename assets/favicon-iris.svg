@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="iris" cx="50%" cy="43%" r="62%">
+      <stop offset="0%" stop-color="#eef7f6"/>
+      <stop offset="30%" stop-color="#b7dadd"/>
+      <stop offset="64%" stop-color="#6fa4b2"/>
+      <stop offset="100%" stop-color="#31596a"/>
+    </radialGradient>
+    <filter id="rough" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.07" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+  <g filter="url(#rough)">
+    <ellipse cx="32" cy="32" rx="9.8" ry="14.4" fill="url(#iris)"/>
+    <ellipse cx="32" cy="32.5" rx="3.6" ry="7.6" fill="#080505"/>
+  </g>
+  <path d="M29.4 26.5 C28.9 29 28.9 30.5 29.2 32" stroke="#eef7ff" stroke-width="1" opacity="0.55" fill="none" stroke-linecap="round"/>
+</svg>

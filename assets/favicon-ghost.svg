@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="76%">
+      <stop offset="0%" stop-color="#1b130c"/>
+      <stop offset="55%" stop-color="#110b08"/>
+      <stop offset="100%" stop-color="#070505"/>
+    </radialGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2e8d0"/>
+      <stop offset="60%" stop-color="#e2d3b3"/>
+      <stop offset="100%" stop-color="#c9b892"/>
+    </linearGradient>
+    <radialGradient id="socket" cx="50%" cy="52%" r="60%">
+      <stop offset="60%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.45"/>
+    </radialGradient>
+    <filter id="rough" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.045 0.06" numOctaves="2" seed="5" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.2"/></filter>
+  </defs>
+
+  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
+
+  <!-- cold spectral halo -->
+  <path d="M18 44 C18 26 24 15 32 15 C40 15 46 26 46 44 Z" fill="#8bc0cc" opacity="0.20" filter="url(#soft)"/>
+
+  <g filter="url(#rough)">
+    <!-- ghost body: rounded head, wavy shroud -->
+    <path d="M15 46 C15 25 22 12 32 12 C42 12 49 25 49 46
+             C49 50 47 53.2 44 50.6 C41.4 48.3 39.9 48.3 37.8 50.6
+             C35.4 53.2 32.9 53.2 30.6 50.6 C28.5 48.3 27 48.3 24.4 50.6
+             C21.2 53.2 16.8 51.8 15 46 Z" fill="url(#body)"/>
+    <!-- inner shroud shadow near the feet -->
+    <path d="M15 46 C21 49 27 50 32 50 C37 50 43 49 49 46 C49 49 47 52 44 50.5 C41 48.3 40 48.3 38 50.6 C35.4 53 33 53 31 50.6 C29 48.3 27 48.3 25 50.6 C22 52 17 52 15 46 Z" fill="#000000" opacity="0.10"/>
+    <!-- hollow eyes, wide with fear -->
+    <ellipse cx="25.5" cy="30" rx="3.3" ry="4.8" fill="#0b0807"/>
+    <ellipse cx="38.5" cy="30" rx="3.3" ry="4.8" fill="#0b0807"/>
+    <!-- moaning mouth -->
+    <ellipse cx="32" cy="40.5" rx="2.5" ry="3.6" fill="#0b0807"/>
+  </g>
+
+  <!-- faint cold light inside the sockets -->
+  <ellipse cx="25.5" cy="28.6" rx="1" ry="1.5" fill="#bfe6ee" opacity="0.5"/>
+  <ellipse cx="38.5" cy="28.6" rx="1" ry="1.5" fill="#bfe6ee" opacity="0.5"/>
+
+  <!-- socket vignette to sink it into the dark -->
+  <ellipse cx="32" cy="33" rx="19" ry="21" fill="url(#socket)"/>
+</svg>

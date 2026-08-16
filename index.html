@@ -608,6 +608,55 @@ function maybeShowIntro(labels){
    stage, so this listens on the document, not just the stage) */
 document.addEventListener('mousemove', followCursor, { passive: true });
 
+/* ---------- the FAVICON eye follows the cursor too (desktop only) ----------
+   Composite a static base (tile/rim/sclera/veins/socket) with the iris+pupil
+   layer shifted toward the cursor, and feed the result to a live <link> icon.
+   Skipped on touch devices (no pointer) and when reduced-motion is set. */
+(function faviconEye(){
+  if (!matchMedia('(pointer:fine)').matches) return;
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const S = 64, cv = document.createElement('canvas'); cv.width = cv.height = S;
+  const ctx = cv.getContext('2d');
+  const base = new Image(), iris = new Image();
+  // our own <link> we fully control; leave the SVG icon as the static fallback
+  let link = document.querySelector('link#eye-favicon');
+  if (!link){ link = document.createElement('link'); link.id = 'eye-favicon'; link.rel = 'icon'; link.type = 'image/png'; document.head.appendChild(link); }
+  const MAX = 4.5;               // how far the iris can travel, in canvas px
+  let tx = 0, ty = 0, px = 0, py = 0, raf = 0, lastMove = 0;
+  function paint(ox, oy){
+    ctx.clearRect(0, 0, S, S);
+    ctx.drawImage(base, 0, 0, S, S);
+    ctx.drawImage(iris, ox, oy, S, S);
+    try { link.href = cv.toDataURL('image/png'); } catch(e){}
+  }
+  function tick(){
+    raf = 0;
+    px += (tx - px) * 0.3; py += (ty - py) * 0.3;
+    paint(px, py);
+    if (Math.abs(tx - px) > 0.15 || Math.abs(ty - py) > 0.15) schedule();
+  }
+  function schedule(){ if (!raf) raf = requestAnimationFrame(tick); }
+  let ready = 0;
+  base.onload = iris.onload = () => { if (++ready === 2){
+    paint(0, 0);
+    // hand the tab icon fully over to the live eye: drop the static icon
+    // links so the browser can't prefer the SVG over our dynamic PNG.
+    document.querySelectorAll('link[rel="icon"]').forEach(l => { if (l !== link) l.remove(); });
+    start();
+  } };
+  base.src = 'assets/favicon-base.svg';
+  iris.src = 'assets/favicon-iris.svg';
+  function aim(nx, ny){ const l = Math.hypot(nx, ny) || 1, k = Math.min(1, l * 2.2); tx = (nx / l) * MAX * k; ty = (ny / l) * MAX * k; schedule(); }
+  function start(){
+    document.addEventListener('mousemove', e => {
+      lastMove = Date.now();
+      aim(e.clientX / innerWidth - 0.5, e.clientY / innerHeight - 0.5);
+    }, { passive: true });
+    // idle drift when the cursor rests, echoing the on-page eye
+    setInterval(() => { if (Date.now() - lastMove > 3500) aim(Math.random() - 0.5, Math.random() - 0.5); }, 2900);
+  }
+})();
+
 /* desktop hover-follow split */
 stage.addEventListener('mousemove', e => {
   if (mq.matches || state.mechanic !== 'follow' || state.introActive) return;

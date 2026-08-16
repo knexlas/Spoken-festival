@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="44%" r="76%">
+      <stop offset="0%" stop-color="#1b130c"/>
+      <stop offset="55%" stop-color="#110b08"/>
+      <stop offset="100%" stop-color="#070505"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0%" stop-color="#df6f2d"/>
+      <stop offset="55%" stop-color="#bd4f1a"/>
+      <stop offset="100%" stop-color="#843410"/>
+    </linearGradient>
+    <radialGradient id="socket" cx="50%" cy="48%" r="54%">
+      <stop offset="50%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.62"/>
+    </radialGradient>
+    <filter id="rough" x="-25%" y="-25%" width="150%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05 0.07" numOctaves="2" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="soft" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.8"/></filter>
+  </defs>
+  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
+  <path d="M32 11 C43 16 49 24 49 32 C49 40 43 48 32 53 C21 48 15 40 15 32 C15 24 21 16 32 11 Z"
+        fill="#6ba6b2" opacity="0.20" filter="url(#soft)"/>
+  <g filter="url(#rough)">
+    <path d="M32 7 C47 13 53.5 23 53.5 32 C53.5 41 47 51 32 57 C17 51 10.5 41 10.5 32 C10.5 23 17 13 32 7 Z" fill="url(#rim)"/>
+    <path d="M32 12.5 C43.5 17.5 48 25 48 32 C48 39 43.5 46.5 32 51.5 C20.5 46.5 16 39 16 32 C16 25 20.5 17.5 32 12.5 Z" fill="#e6d9bd"/>
+    <path d="M32 12.5 C43 17 48 24.5 48 31 C40 25.5 36 24.5 32 24.5 C28 24.5 24 25.5 16 31 C16 24.5 21 17 32 12.5 Z" fill="#37271a" opacity="0.5"/>
+    <g stroke="#9a2c18" stroke-width="0.85" opacity="0.78" fill="none" stroke-linecap="round">
+      <path d="M18 24 C24 28 27 30 30 31.5"/>
+      <path d="M46 23 C40 27 36.5 30 34 31.5"/>
+      <path d="M17.5 41 C24 37 28 35.5 31 33.5"/>
+      <path d="M46.5 42 C40 38 36 36 33 33.5"/>
+    </g>
+  </g>
+  <ellipse cx="32" cy="32" rx="17" ry="21" fill="url(#socket)"/>
+</svg>
