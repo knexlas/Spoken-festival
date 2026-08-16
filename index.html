@@ -608,6 +608,24 @@ function maybeShowIntro(labels){
    stage, so this listens on the document, not just the stage) */
 document.addEventListener('mousemove', followCursor, { passive: true });
 
+/* ---------- split personality: the ghost takes over on touch devices ----------
+   The following eye is a desktop treat (needs a cursor). On phones/tablets there
+   is nothing to follow, so swap the whole icon set to the ghost instead. The
+   static <head> icons stay the eye, so no-JS still gets the brand eye. */
+(function ghostOnTouch(){
+  if (matchMedia('(pointer:fine)').matches) return;   // desktop keeps the eye
+  document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(l => l.remove());
+  [['icon','assets/favicon-ghost.svg','image/svg+xml',null],
+   ['icon','assets/favicon-ghost-32.png','image/png','32x32'],
+   ['icon','assets/favicon-ghost-16.png','image/png','16x16'],
+   ['apple-touch-icon','assets/apple-touch-icon-ghost.png',null,null]
+  ].forEach(([rel,href,type,sizes]) => {
+    const l = document.createElement('link');
+    l.rel = rel; l.href = href; if (type) l.type = type; if (sizes) l.setAttribute('sizes', sizes);
+    document.head.appendChild(l);
+  });
+})();
+
 /* ---------- the FAVICON eye follows the cursor too (desktop only) ----------
    Composite a static base (tile/rim/sclera/veins/socket) with the iris+pupil
    layer shifted toward the cursor, and feed the result to a live <link> icon.
