@@ -15,28 +15,10 @@
     "Angst kan sluimerend ontstaan, of heel hevig woekeren - het kan rond je hangen zonder dat het je echt vastgrijpt, of het kan je verstikken. Maar op het moment dat je durft te kijken, echt te kijken, verschuift er iets. Op SPOKEN geven we ruimte aan wat ons bezighoudt, achtervolgt en soms verlamt. Zodat we samen kunnen proberen onze angsten te begrijpen, te delen, en misschien ook te transformeren.",
     "SPOKEN speelt zich gelijktijdig af in Antwerpen en Kortrijk."
   ],
-  "facts": [
-    {
-      "k": "Auteurs",
-      "v": "18"
-    },
-    {
-      "k": "Zalen",
-      "v": "3"
-    },
-    {
-      "k": "Talen",
-      "v": "NL / EN"
-    },
-    {
-      "k": "Steden",
-      "v": "2"
-    }
-  ],
   "practical": [
     {
       "k": "Locatie",
-      "v": "Blikfabriek, Antwerpen"
+      "v": "Blikfabriek (Krugerstraat 232, 2660 Antwerpen)"
     },
     {
       "k": "Timing",
@@ -62,6 +44,24 @@
       "tier": "Kansentarief",
       "price": "€2",
       "note": "Toegang festival"
+    }
+  ],
+  "facts": [
+    {
+      "k": "Auteurs",
+      "v": "18"
+    },
+    {
+      "k": "Zalen",
+      "v": "3"
+    },
+    {
+      "k": "Talen",
+      "v": "NL / EN"
+    },
+    {
+      "k": "Steden",
+      "v": "2"
     }
   ]
 }
