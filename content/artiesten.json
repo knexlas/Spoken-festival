@@ -2,235 +2,238 @@
   "artists": [
     {
       "name": "Angst om te leven (in tijden van zelfzorg)",
-      "photo": "",
+      "photo": "/assets/uploads/Lena & Martha.jpg",
       "bio": "Met Martha Claeys, Lena Bril en 2 mystery guests. In samenwerking met Curieus.",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
           "time": "19:00",
           "end": "20:30",
           "stage": "Studio",
           "genre": "Debat",
-          "blurb": "Een debat over de keerzijde van zelfzorg."
+          "blurb": "Een debat over de keerzijde van zelfzorg.",
+          "subprogram": [],
+          "day": "za"
         }
       ]
     },
     {
       "name": "Ghostwatch (1992)",
-      "photo": "",
-      "bio": "Met intro van Jonas Govaerts",
+      "photo": "/assets/uploads/ghostwatch.jpg",
+      "bio": "Zeven jaar vóór The Blair Witch Project was er Ghostwatch: een BBC-horror-mockumentary die zoveel controverse en paniek veroorzaakte dat de zender besloot ze nooit meer te heruitzenden. Ondanks de expliciete waarschuwing dat het om fictie ging, geloofde een groot deel van de Engelse kijkers dat ze naar een échte live-uitzending over het paranormale zaten te kijken, waarin een poltergeist genaamd Pipes niet alleen een Brits gezin terroriseert, maar uiteindelijk ook de presentatoren zelf, onder wie televisiecoryfee Michael Parkinson. Het resultaat: naar schatting een miljoen paniektelefoontjes naar de BBC, en een tiener die vijf dagen na de uitzending zelfmoord pleegde. Vierendertig jaar later heeft dit ingenieuze, visionaire horrormeesterwerkje uit de koker van horrorlegende Stephen Volk nog niets van zijn sinistere kracht ingeboet. Sterker nog: in een tijd waarin de grens tussen feit en fictie alsmaar meer vervaagt, voelt Ghostwatch zelfs profetisch aan.\n\nMet een inleiding door Jonas Govaerts. In samenwerking met DeCinema.",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
           "time": "19:00",
           "end": "20:45",
           "stage": "Drive-in cinema",
           "genre": "Film",
           "blurb": "Een horrorfim met introductie.",
-          "subprogram": []
+          "subprogram": [],
+          "day": "za"
         }
       ]
     },
     {
       "name": "HuiverHuis",
-      "photo": "",
-      "bio": "Sidder en beef bij de alter ego's van 6 dichters.",
+      "photo": "/assets/uploads/Website_Spoken (1).png",
+      "bio": "Speciaal voor SPOKEN creëren twaalf literaire makers (zes in Antwerpen en zes in Kortrijk) een beangstigend alter ego. Een heks, een Berberse vrouw, een moderne Faust, een bijenkoningin… Ze vinden samen onderdak in het HuiverHuis, een literair spookhuis waarbij je als bezoeker griezelig dichtbij komt. Een mix tussen voordracht, performance en theater. \n\nIn het HuiverHuis in Antwerpen kan je op bezoek bij Maud Vanhauwaert, Agnes Sabitova & Tülin Erkan, Yentl van Stokkum, Imane Karroumi El Bouchtati, en Karlijn Sonderen Smit.",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
           "time": "21:00",
           "end": "23:00",
           "stage": "Lemmers",
           "genre": "Spookhuis",
-          "blurb": "Reserveer je tijdslot aan de ingang.",
+          "blurb": "De bezoeken aan het HuiverHuis zijn beperkt. Om je plaats bij de performances te garanderen, reserveer je een tijdslot aan de ingang. Wees er dus vroeg bij! Maximum twee reservaties per persoon.",
           "subprogram": [
             {
               "title": "Deli-balai / Tülin Erkan & Agnes Sabitova",
               "time": "21:00",
-              "text": "Hallucinogene dialoog tussen twee bijenkoninginnen die zich klaar maken voor de winter."
+              "text": "Een hallucinogene dialoog tussen twee bijenkoninginnen die zich klaar maken voor de winter."
             },
             {
               "title": "Taziri / Imane Karroumi El Bouchtati",
               "time": "21:00",
-              "text": "Berbervrouw in psychiatrische instelling."
+              "text": "Een Berbervrouw in woont in een psychiatrische instelling."
             },
             {
               "title": "Em / Karlijn Sonderen Smit",
               "time": "21:00",
               "text": "Een monster wil graag mens zijn."
+            },
+            {
+              "title": "Het Secreet / Yentl van Stokkum",
+              "time": "",
+              "text": "Een heks nodigt je uit op seance."
+            },
+            {
+              "title": "Maud Vanhauwaert",
+              "time": "",
+              "text": ""
             }
-          ]
+          ],
+          "day": "za"
         }
       ]
     },
     {
-      "name": "O L G A",
-      "photo": "",
-      "bio": "Muziek",
+      "name": "OLGA",
+      "photo": "/assets/uploads/olga.jpg",
+      "bio": "OLGA is gespecialiseerd in de ‘dansbare identiteitscrisis’ en vervaagt de grenzen tussen elektronische muziek, theater en performance. Na de release van haar debuut-EP My feet are wet in 2023 en haar drie magische singles, kwam haar unieke universum in een stroomversnelling: ze werd gekozen als één van de laureaten van Sound Track (2025) en verfijnt momenteel haar geluid als Artist in Residence bij Trix (2025). OLGA speelde al op Sound of the Belgian Underground 2025, Doel festival, Ik Zie U Graag Breda, We Are Open 2026, en gaf support-shows in Cactus & Trix.",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
-          "time": "21:00",
-          "end": "21:30",
-          "stage": "Amfitheater",
+          "time": "20:30",
+          "end": "21:00",
+          "stage": "Podium",
           "genre": "Muziek",
-          "blurb": "Ze kruipt uit een koelkast"
-        }
-      ]
-    },
-    {
-      "name": "Mustaf Ahmeti - Riddle my skin",
-      "photo": "",
-      "bio": "performance",
-      "link": "",
-      "performances": [
-        {
-          "city": "ant",
-          "day": "za",
-          "time": "22:15",
-          "end": "22:45",
-          "stage": "Amfitheater",
-          "genre": "Performance",
-          "blurb": "Lichamelijk en absurd"
+          "blurb": "OLGA is het alter ego van Zita de Aguirre. Alsof ze ontsnapte uit een desoriënterende Lynchfilm, maakt ze vanuit haar slaapkamer minimalistische elektronische darkpop. Door middel van meeslepende beats en verdwaalde soundscapes geeft ze vorm aan haar angsten en verlangens in deze dystopische, aardse wereld. \n\nMomenteel probeert ze uit een koelkast te komen die haar gevangen houdt... help :/",
+          "subprogram": [],
+          "day": "za"
         }
       ]
     },
     {
       "name": "Kleine Kova",
-      "photo": "",
-      "bio": "Sluit de avond af",
+      "photo": "/assets/uploads/kleine kova.jpg",
+      "bio": "Deel van het Antwerpse VHS-collectief, Kleine Kova brengt duistere rap die zich beweegt door donkere beats en dreigende sferen, ergens tussen horrorfilm en middeleeuwse folterkamer. Op het podium verschijnt ze vaak met een balaclava over haar gezicht, wat het mysterie alleen maar groter maakt. Samen met producer Slagter bracht ze meerdere releases uit.",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
           "time": "23:00",
           "end": "23:45",
-          "stage": "Lemmers",
+          "stage": "Podium",
           "genre": "Muziek",
-          "blurb": "Horror hiphop"
+          "blurb": "Grimmig, bezeten en waarschijnlijk niet bedoeld voor goed verlichte ruimtes. Kleine Kova sluit het festival af.",
+          "subprogram": [],
+          "day": "za"
         }
       ]
     },
     {
       "name": "Horrorstage",
-      "photo": "",
-      "bio": "Open Call ism Creatief Schrijven",
+      "photo": "/assets/uploads/Website_Spoken (1).png",
+      "bio": "Op het podium verschijnen 9 jonge horrorschrijvers. Samen met Creatief Schrijven spendeerden zij de dag in het Sprookjeshuis in het Rivierenhof om er elk een horrorverhaal te schrijven. Tijdens SPOKEN brengen ze die verse verhalen op het podium. Sidder en beef!",
       "link": "",
       "performances": [
         {
           "city": "ant",
-          "day": "za",
           "time": "21:30",
-          "end": "22:15",
-          "stage": "Jazzbar",
+          "end": "22:30",
+          "stage": "Horrorstage",
           "genre": "Open podium",
-          "blurb": "Horrorverhalen, pas geschreven, voor het eerst te horen."
+          "blurb": "Wil jij graag een workshop horrorschrijven volgen, en je verhaal op het podium brengen? Kijk dan uit naar de open call voor de horrorstage!",
+          "subprogram": [],
+          "day": "za"
         }
       ]
     },
     {
-      "name": "Fluisterproza",
-      "photo": "",
-      "bio": "",
+      "name": "SPOKEN in de bib",
+      "photo": "/assets/uploads/Website_Spoken (1).png",
+      "bio": "Op Halloween verandert de benedenverdieping van de bibliotheek in een geheimzinnige griezelwereld. De lichten gaan uit, de zaklampen aan...\n\nDwaal door donkere gangen, luister naar spannende griezelverhalen, laat je omtoveren met een griezelige grime of een angstaanjagend kapsel en laat je verrassen door poëtische interventies van Rani Simoens & Alice Boudry (uit het stadsdichterscollectief Letterzetter).\n\nMaar pas op... de benedenverdieping verken je alleen met een zaklamp. Tenminste, als je durft.",
       "link": "",
       "performances": [
         {
           "city": "kor",
-          "day": "vr",
-          "time": "21:00",
-          "end": "22:00",
-          "stage": "Kaarsenzaal",
-          "genre": "Voorlezing",
-          "blurb": "Korte verhalen, één per kaars, voorgelezen tot de laatste vlam dooft."
+          "time": "10:00",
+          "end": "12:00",
+          "stage": "Centrale bibliotheek (-1)",
+          "genre": "Belevingsparcours",
+          "blurb": "Kom op zaterdag 31 oktober tussen 10u en 12u naar SPOKEN en beleef een Halloweentochtend vol kleine bibbermomenten voor stoere kinderen (en hun minstens even dappere begeleiders).",
+          "subprogram": [],
+          "day": "vr"
         }
       ]
     },
     {
-      "name": "Maud Vanhauwaert",
-      "photo": "",
-      "bio": "",
+      "name": "Red Rooms (2023)",
+      "photo": "/assets/uploads/red rooms.jpg",
+      "bio": "De spraakmakende zaak rond seriemoordenaar Ludovic Chevalier is net voor de rechter gekomen, en model Kelly-Anne is erdoor geobsedeerd. Hij staat bekend als de ‘Demon van Rosemont’ en wordt ervan beschuldigd drie tienermeisjes te hebben ontvoerd en gemarteld in een zogenaamde ‘red room’, een plek uit de stedelijke folklore op het dark web waar naar verluidt livestreams van snuffporno te bekijken zijn in ruil voor betaling in cryptovaluta. Wanneer de werkelijkheid vervaagt en versmelt met haar morbide fantasieën, slaat Kelly-Anne een duister pad in op zoek naar het laatste stukje van de puzzel in deze zaak.",
       "link": "",
       "performances": [
         {
           "city": "kor",
-          "day": "vr",
-          "time": "22:30",
+          "time": "19:45",
+          "end": "21:30",
+          "stage": "BUDA: filmzaal",
+          "genre": "Film",
+          "blurb": "“Unsettling dark-web horror “\nThe Guardian",
+          "subprogram": [],
+          "day": "vr"
+        }
+      ]
+    },
+    {
+      "name": "Yet, Light, You Are Blind",
+      "photo": "/assets/uploads/Website_Spoken (1).png",
+      "bio": "Een voorstelling van Loucka Fiagan.",
+      "link": "",
+      "performances": [
+        {
+          "city": "kor",
+          "time": "20:15",
+          "end": "21:00",
+          "stage": "BUDA: zaal 2",
+          "genre": "Podium",
+          "blurb": "What if Being itself is haunted by its own absence?",
+          "subprogram": [],
+          "day": "za"
+        }
+      ]
+    },
+    {
+      "name": "HuiverHuis",
+      "photo": "/assets/uploads/Website_Spoken (1).png",
+      "bio": "Speciaal voor SPOKEN creëren twaalf literaire makers (zes in Antwerpen en zes in Kortrijk) een beangstigend alter ego. Een heks, een Berberse vrouw, een moderne Faust, een bijenkoningin… Ze vinden samen onderdak in het HuiverHuis, een literair spookhuis waarbij je als bezoeker griezelig dichtbij komt. Een mix tussen voordracht, performance en theater. \n\nIn het HuiverHuis in Kortrijk kan je op bezoek bij Jeroen Olyslaegers, Uschi Cop, Hans Depelchin, Lotte Lola Vermeer, Maaike Neuville, en Martijn Verhelst.",
+      "link": "",
+      "performances": [
+        {
+          "city": "kor",
+          "time": "21:30",
           "end": "23:30",
-          "stage": "De Verhalenzaal",
-          "genre": "Spoken word",
-          "blurb": "Stadsdichter en performer brengt taal die zich aan je vastklampt en blijft."
-        }
-      ]
-    },
-    {
-      "name": "Schrijfatelier: Geestverschijningen",
-      "photo": "",
-      "bio": "",
-      "link": "",
-      "performances": [
-        {
-          "city": "kor",
-          "day": "za",
-          "time": "15:00",
-          "end": "17:00",
-          "stage": "Atelier",
-          "genre": "Workshop",
-          "blurb": "Schrijf onder begeleiding je eigen spookverhaal — plekken beperkt.",
+          "stage": "Budascoop",
+          "genre": "Spookhuis",
+          "blurb": "De bezoeken aan het HuiverHuis zijn beperkt. Om je plaats bij de performances te garanderen, reserveer je een tijdslot aan de ingang. Wees er dus vroeg bij! Maximum twee reservaties per persoon.",
           "subprogram": [
             {
-              "title": "Deel 1 — De plek",
-              "time": "15:00",
-              "text": "Kies een plek die je kent en maak ze onheimelijk. Placeholder-tekst — bewerk via het CMS."
+              "title": "Paula Maxa / Hans Depelchin",
+              "time": "",
+              "text": "Hans Depelchin kruipt in de huid van Paula Maxa, de legendarische ster van het beruchte Grand Guignol. Nacht na nacht stierf zij op het toneel, tot ze bekendstond als de meest vermoorde vrouw ter wereld. Met poëzie, zang en bezwerende woorden wekt Depelchin haar opnieuw tot leven. Of keert ze terug om eindelijk haar eigen verhaal te vertellen?"
             },
             {
-              "title": "Deel 2 — De verschijning",
-              "time": "16:00",
-              "text": "Introduceer iets dat er niet hoort te zijn, en laat het net niet zien. Placeholder-tekst."
+              "title": "Faust / Jeroen Olyslaegers",
+              "time": "",
+              "text": "Stap alleen naar binnen. Daar wacht Faust. Zijn ziel werd lang geleden verslonden en sindsdien hongert hij naar een nieuwe. Jeroen Olyslaegers nodigt je uit voor een intieme, beklemmende ontmoeting waarin één vraag blijft nazinderen: wat ben jij bereid af te staan?"
+            },
+            {
+              "title": "Thérèse / Maaike Neuville",
+              "time": "",
+              "text": "In het schijnsel van een eenzame lichtstraal ontmoet je Thérèse, een geest die blijft dwalen tussen leven en dood. Te midden van brekende golven deelt Maaike Neuville haar laatste gedachten: breekbaar, poëtisch en beklijvend. Sommige stemmen verdwijnen nooit. Ze blijven fluisteren in het donker."
+            },
+            {
+              "title": "Marktkramer / Martijn Verhelst",
+              "time": "",
+              "text": "Martijn Verhelst opent de deuren van een wel heel bijzondere zaak. Als marktkramer verkoopt hij paranoia, twijfel en mentale ontwrichting: van verdwenen linkersokken tot zorgvuldig georkestreerde waanzin. Zijn diensten lijken onschuldig, tot de werkelijkheid langzaam begint te schuiven. Voor je het beseft, vertrouw je niemand meer… zelfs je eigen gedachten niet."
+            },
+            {
+              "title": "Formida / Uschi Cop",
+              "time": "",
+              "text": "De wereld is gevallen. Alleen de Duisternis bleef achter. Uschi Cop verschijnt als Formida, een post-menselijke priesteres die angst leest als een arts een diagnose stelt. Eén voor één ontleedt ze haar bezoekers, benoemt hun diepste vrees en markeert hen voor wat in het donker op hen wacht. Durf jij haar blik te ontmoeten?"
+            },
+            {
+              "title": "Lotte Lola Vermeer",
+              "time": "",
+              "text": ""
             }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "Peter Terrin",
-      "photo": "",
-      "bio": "",
-      "link": "",
-      "performances": [
-        {
-          "city": "kor",
-          "day": "za",
-          "time": "17:00",
-          "end": "18:00",
-          "stage": "De Verhalenzaal",
-          "genre": "Gesprek · Roman",
-          "blurb": "Over onheil, stilte en de dreiging die onder het alledaagse sluimert."
-        }
-      ]
-    },
-    {
-      "name": "Verhalen bij het Vuur",
-      "photo": "",
-      "bio": "",
-      "link": "",
-      "performances": [
-        {
-          "city": "kor",
-          "day": "za",
-          "time": "20:00",
-          "end": "23:00",
-          "stage": "Kaarsenzaal",
-          "genre": "Voorlezing · Slot",
-          "blurb": "Een warme slotnacht van vertellers rond het haardvuur, tot sluitingstijd."
+          ],
+          "day": "za"
         }
       ]
     }
