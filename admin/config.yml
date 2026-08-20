@@ -70,7 +70,7 @@ city_fields: &city_fields
     label_singular: "Paragraaf"
     widget: "list"
     collapsed: true
-    field: { label: "Paragraaf", name: "paragraph", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], hint: "Selecteer tekst en gebruik de knoppen voor vet/cursief of een link." }
+    field: { label: "Paragraaf", name: "paragraph", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], hint: "Selecteer tekst en gebruik de knoppen voor vet/cursief, een lijst, een tussenkop of een link." }
 
   - label: "Praktisch"
     name: "practical"
@@ -122,6 +122,31 @@ collections:
               - { label: "Einddatum & -tijd", name: "endDate", widget: "datetime", picker_utc: false, hint: "Officieel einde van het festival (gebruikt door Google)" }
               - { label: "Omschrijving (voor Google & delen)", name: "description", widget: "text", hint: "1 à 2 zinnen; dit is de tekst die Google en social media tonen." }
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
+
+              # --- Programma-onthulling: line-up al tonen, rooster nog verbergen ---
+              - { label: "Toon blokkenschema op de site", name: "showSchema", widget: "boolean", default: false, required: false, hint: "Uit = het blokkenschema (de roostertabel) blijft nog verborgen. Zet aan zodra het rooster definitief is." }
+              - { label: "Verberg de tijden bij de artiesten", name: "hideTimes", widget: "boolean", default: false, required: false, hint: "Aan = de tijdstippen naast de artiesten worden nog niet getoond." }
+              - { label: "Verberg de locatie/podium bij de artiesten", name: "hideStages", widget: "boolean", default: false, required: false, hint: "Aan = het podium/de zaal naast de artiesten wordt nog niet getoond." }
+
+              # --- 'Met de steun van'-logobalk onderaan ---
+              - label: "Steun & partners (logobalk onderaan)"
+                name: "support"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "De 'met de steun van'-balk onderaan de pagina. Voeg logo's toe; zonder logo's verschijnt de balk niet."
+                fields:
+                  - { label: "Tekst boven de logo's", name: "label", widget: "string", required: false, default: "Met de steun van", hint: "Bv. 'Met de steun van'." }
+                  - label: "Logo's"
+                    name: "logos"
+                    label_singular: "Logo"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.alt}}"
+                    fields:
+                      - { label: "Logo (afbeelding)", name: "image", widget: "image", hint: "Bij voorkeur een PNG/SVG met transparante achtergrond." }
+                      - { label: "Naam (voor toegankelijkheid)", name: "alt", widget: "string", required: false, hint: "Bv. Literatuur Vlaanderen" }
+                      - { label: "Link (optioneel)", name: "link", widget: "string", required: false, hint: "Website van de partner (https://…)" }
 
           - label: "Teksten & knoppen (site-breed)"
             name: "labels"
@@ -177,7 +202,7 @@ collections:
               - { label: "Naam", name: "name", widget: "string", hint: "Deze naam verschijnt in het programma en op de site." }
               - { label: "Foto", name: "photo", widget: "image", required: false, hint: "Liggende foto werkt het best (bv. 800×600)." }
               - { label: "Copyright / fotograaf (optioneel)", name: "photoCredit", widget: "string", required: false, hint: "Naam van de fotograaf of maker. Verschijnt als © op de foto." }
-              - { label: "Beschrijving / bio", name: "bio", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false, hint: "Korte introductie; verschijnt onder het programmaonderdeel. Vet/cursief kan via de knoppen." }
+              - { label: "Beschrijving / bio", name: "bio", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false, hint: "Introductie; verschijnt onder het programmaonderdeel. Gebruik de knoppen voor vet/cursief, lijsten of een tussenkop." }
               - { label: "Website of social-link", name: "link", widget: "string", required: false, hint: "https://… (optioneel)" }
               - label: "Optredens"
                 name: "performances"
@@ -210,32 +235,4 @@ collections:
                     fields:
                       - { label: "Titel", name: "title", widget: "string" }
                       - { label: "Tijd", name: "time", widget: "string", required: false, hint: "Optioneel, bv. 21:20" }
-                      - { label: "Tekst", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false }
-
-      - name: "nieuws"
-        label: "Nieuws & affiches"
-        file: "content/nieuws.json"
-        description: "Nieuwsberichten en affiches/posters. Verschijnen vanzelf op de site zodra er iets in staat."
-        fields:
-          - label: "Nieuwsberichten"
-            name: "posts"
-            label_singular: "Bericht"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.date}} — {{fields.title}}"
-            fields:
-              - { label: "Titel", name: "title", widget: "string" }
-              - { label: "Datum (zoals getoond)", name: "date", widget: "string", hint: "Bv. 15 juni 2026" }
-              - { label: "Afbeelding", name: "image", widget: "image", required: false }
-              - { label: "Copyright / fotograaf (optioneel)", name: "imageCredit", widget: "string", required: false, hint: "Verschijnt als © op de afbeelding." }
-              - { label: "Tekst", name: "body", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], hint: "Witregel = nieuwe alinea. Vet/cursief via de knoppen." }
-          - label: "Affiches / posters"
-            name: "posters"
-            label_singular: "Affiche"
-            widget: "list"
-            collapsed: true
-            summary: "{{fields.caption}}"
-            fields:
-              - { label: "Afbeelding", name: "image", widget: "image" }
-              - { label: "Onderschrift", name: "caption", widget: "string", required: false }
-              - { label: "Copyright / fotograaf (optioneel)", name: "credit", widget: "string", required: false, hint: "Verschijnt als © op de affiche." }
+                      - { label: "Tekst", name: "text", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false }

@@ -181,6 +181,14 @@
   .slot-genre{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--acc); margin-bottom:9px; }
   .slot-blurb{ margin:0; font-size:15px; line-height:1.6; color:var(--fg); max-width:48ch; }
   .slot-bio{ margin:10px 0 0; font-size:13.5px; line-height:1.55; color:var(--mut); max-width:48ch; }
+  /* rich text coming from the CMS toolbar (lists, headings, quotes, paragraphs) */
+  .slot-bio p, .info-text p, .subitem-body p{ margin:0 0 .55em; }
+  .slot-bio p:last-child, .info-text p:last-child, .subitem-body p:last-child{ margin-bottom:0; }
+  .slot-body ul, .info-text ul, .subitem-body ul, .slot-body ol, .info-text ol, .subitem-body ol{ margin:.4em 0 .7em; padding-left:1.3em; }
+  .slot-body li, .info-text li, .subitem-body li{ margin:.2em 0; }
+  .slot-body blockquote, .info-text blockquote, .subitem-body blockquote{ margin:.6em 0; padding-left:.9em; border-left:2px solid var(--line); color:var(--mut); font-style:italic; }
+  .md-h{ font-family:var(--f-display); font-weight:700; font-size:1.12em; letter-spacing:0.01em; margin:.7em 0 .25em; color:var(--fg); }
+  .md-h:first-child{ margin-top:0; }
   .slot-elsewhere{ margin-top:10px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.06em; color:var(--acc); }
   .slot-artist-link{ display:inline-block; margin-top:10px; font-family:var(--f-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--yellow); text-decoration:none; }
   .slot-artist-link:hover{ text-decoration:underline; }
@@ -246,6 +254,13 @@
   .ticket .buy:hover{ background:var(--yellow); color:var(--on-yellow); }
   .tickets-list{ display:flex; flex-direction:column; gap:14px; }
   .foot{ margin-top:48px; padding-top:22px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:var(--f-mono); font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:var(--mut); }
+  /* "met de steun van" logo bar — logos sit on a light chip so they read on the dark ground */
+  .support{ margin-top:26px; display:flex; flex-direction:column; gap:12px; }
+  .support-label{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mut); }
+  .support-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+  .support-logo{ display:inline-flex; align-items:center; justify-content:center; background:#f4f1ea; border-radius:8px; padding:10px 16px; }
+  .support-logo img{ height:38px; width:auto; max-width:210px; display:block; object-fit:contain; }
+  @media (max-width:640px){ .support-logo{ padding:8px 12px; } .support-logo img{ height:30px; } }
 
   .edge{ position:absolute; top:0; bottom:0; width:140px; z-index:4; pointer-events:none; }
   .panel[data-side="left"] .edge{ right:-1px; z-index:3; background:linear-gradient(90deg, transparent, rgba(0,0,0,0.45)); }
