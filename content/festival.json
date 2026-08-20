@@ -11,9 +11,12 @@
     "endDate": "2026-11-01T00:30:00+01:00",
     "description": "SPOKEN — een griezelfestival in Antwerpen & Kortrijk met muziek, film, performance, poëzie, debat, en feest!",
     "shareImage": "/assets/og-image.jpg",
-    "showSchema": false,
-    "hideTimes": true,
-    "hideStages": true,
+    "programmeReveal": {
+      "showSchema": false,
+      "hideTimes": true,
+      "hideStages": true
+    },
+    "hideCities": false,
     "support": {
       "label": "Met de steun van",
       "logos": []

@@ -124,9 +124,19 @@ collections:
               - { label: "Deelafbeelding (1200×630)", name: "shareImage", widget: "image", required: false, hint: "Afbeelding die verschijnt als de site gedeeld wordt op social media." }
 
               # --- Programma-onthulling: line-up al tonen, rooster nog verbergen ---
-              - { label: "Toon blokkenschema op de site", name: "showSchema", widget: "boolean", default: false, required: false, hint: "Uit = het blokkenschema (de roostertabel) blijft nog verborgen. Zet aan zodra het rooster definitief is." }
-              - { label: "Verberg de tijden bij de artiesten", name: "hideTimes", widget: "boolean", default: false, required: false, hint: "Aan = de tijdstippen naast de artiesten worden nog niet getoond." }
-              - { label: "Verberg de locatie/podium bij de artiesten", name: "hideStages", widget: "boolean", default: false, required: false, hint: "Aan = het podium/de zaal naast de artiesten wordt nog niet getoond." }
+              - label: "Programma-onthulling (rooster nog verbergen)"
+                name: "programmeReveal"
+                widget: "object"
+                collapsed: true
+                required: false
+                hint: "Toon de line-up al terwijl het rooster nog niet definitief is. Staat los van de stadsnamen hieronder."
+                fields:
+                  - { label: "Toon blokkenschema op de site", name: "showSchema", widget: "boolean", default: false, required: false, hint: "Uit = het blokkenschema (de roostertabel) blijft nog verborgen. Zet aan zodra het rooster definitief is." }
+                  - { label: "Verberg de tijden bij de artiesten", name: "hideTimes", widget: "boolean", default: false, required: false, hint: "Aan = de tijdstippen naast de artiesten worden nog niet getoond." }
+                  - { label: "Verberg de locatie/podium bij de artiesten", name: "hideStages", widget: "boolean", default: false, required: false, hint: "Aan = het podium/de zaal naast de artiesten wordt nog niet getoond." }
+
+              # --- Losse schakelaar (los van het programma): stadsnamen verbergen ---
+              - { label: "Verberg de stadsnamen (Antwerpen/Kortrijk)", name: "hideCities", widget: "boolean", default: false, required: false, hint: "Aparte schakelaar, los van de programma-onthulling hierboven. Aan = de twee tabbladen blijven, maar de namen Antwerpen/Kortrijk (titel, tabs, zijbalk en locatie) worden verborgen. NB: pas ook de ondertitel en 'Praktisch' aan als daar nog stadsnamen in staan." }
 
               # --- 'Met de steun van'-logobalk onderaan ---
               - label: "Steun & partners (logobalk onderaan)"

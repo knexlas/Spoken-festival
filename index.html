@@ -821,10 +821,14 @@ async function boot(){
   if (!preRendered) stage.innerHTML = renderPanels(SITE_DATA);
   SITE_DATA.cities.forEach(c => { panels[c.id] = stage.querySelector('.panel[data-id="'+c.id+'"]'); });
 
-  // mobile city-switch labels come from the content, not hardcoded text
-  citytoggle.querySelectorAll('button').forEach(b => {
+  // mobile city-switch labels come from the content, not hardcoded text.
+  // While the city split is masked (hideCities) the tabs stay but lose their
+  // city name — they read as an unlabelled A/B switch.
+  const maskCities = !!(SITE_DATA.festival && SITE_DATA.festival.hideCities);
+  citytoggle.classList.toggle('masked', maskCities);
+  citytoggle.querySelectorAll('button').forEach((b, i) => {
     const c = SITE_DATA.cities.find(x => x.id === b.dataset.city);
-    if (c) b.textContent = c.name;
+    b.textContent = maskCities ? String(i + 1) : (c ? c.name : b.textContent);
   });
 
   const labels = labelSet(SITE_DATA);
