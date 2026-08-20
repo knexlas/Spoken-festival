@@ -56,7 +56,7 @@ city_fields: &city_fields
   - { label: "ID", name: "id", widget: "hidden" }
   - { label: "Zijde", name: "side", widget: "hidden" }
   - { label: "Naam van de stad", name: "name", widget: "string" }
-  - { label: "Tagline (korte sfeerbeschrijving onder de stadsnaam)", name: "tagline", widget: "text" }
+  - { label: "Tagline (korte sfeerbeschrijving onder de stadsnaam)", name: "tagline", widget: "markdown", buttons: ["bold", "italic"], editor_components: [], hint: "Gebruik de knoppen voor **vet** of *cursief*." }
   - { label: "Datums (zoals getoond op de site)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
   - { label: "Locatie / venue", name: "venue", widget: "string", hint: "Bv. Blikfabriek" }
   - { label: "Stad (voor Google/kaarten)", name: "addressLocality", widget: "string", hint: "Bv. Antwerpen" }
@@ -70,7 +70,7 @@ city_fields: &city_fields
     label_singular: "Paragraaf"
     widget: "list"
     collapsed: true
-    field: { label: "Paragraaf", name: "paragraph", widget: "text" }
+    field: { label: "Paragraaf", name: "paragraph", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], hint: "Selecteer tekst en gebruik de knoppen voor vet/cursief of een link." }
 
   - label: "Praktisch"
     name: "practical"
@@ -92,6 +92,7 @@ city_fields: &city_fields
       - { label: "Type", name: "tier", widget: "string" }
       - { label: "Prijs", name: "price", widget: "string", hint: "Bv. €39" }
       - { label: "Toelichting", name: "note", widget: "string" }
+      - { label: "Ticket-link (optioneel)", name: "link", widget: "string", required: false, hint: "Eigen link voor dít ticket. Leeg laten = de algemene Ticket-link van deze stad wordt gebruikt." }
 
 collections:
   - name: "site"
@@ -175,7 +176,8 @@ collections:
             fields:
               - { label: "Naam", name: "name", widget: "string", hint: "Deze naam verschijnt in het programma en op de site." }
               - { label: "Foto", name: "photo", widget: "image", required: false, hint: "Liggende foto werkt het best (bv. 800×600)." }
-              - { label: "Beschrijving / bio", name: "bio", widget: "text", required: false, hint: "Korte introductie; verschijnt onder het programmaonderdeel." }
+              - { label: "Copyright / fotograaf (optioneel)", name: "photoCredit", widget: "string", required: false, hint: "Naam van de fotograaf of maker. Verschijnt als © op de foto." }
+              - { label: "Beschrijving / bio", name: "bio", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false, hint: "Korte introductie; verschijnt onder het programmaonderdeel. Vet/cursief kan via de knoppen." }
               - { label: "Website of social-link", name: "link", widget: "string", required: false, hint: "https://… (optioneel)" }
               - label: "Optredens"
                 name: "performances"
@@ -196,7 +198,7 @@ collections:
                   - { label: "Eindtijd", name: "end", widget: "string", required: false, hint: "Bv. 21:00 — leeg gelaten telt als 1 uur (voor het blokkenschema)." }
                   - { label: "Podium / zaal", name: "stage", widget: "string" }
                   - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
-                  - { label: "Omschrijving van dit optreden", name: "blurb", widget: "text", required: false }
+                  - { label: "Omschrijving van dit optreden", name: "blurb", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false }
                   - label: "Subprogramma (onderdelen binnen dit optreden)"
                     name: "subprogram"
                     label_singular: "Onderdeel"
@@ -208,7 +210,7 @@ collections:
                     fields:
                       - { label: "Titel", name: "title", widget: "string" }
                       - { label: "Tijd", name: "time", widget: "string", required: false, hint: "Optioneel, bv. 21:20" }
-                      - { label: "Tekst", name: "text", widget: "text", required: false }
+                      - { label: "Tekst", name: "text", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false }
 
       - name: "nieuws"
         label: "Nieuws & affiches"
@@ -225,7 +227,8 @@ collections:
               - { label: "Titel", name: "title", widget: "string" }
               - { label: "Datum (zoals getoond)", name: "date", widget: "string", hint: "Bv. 15 juni 2026" }
               - { label: "Afbeelding", name: "image", widget: "image", required: false }
-              - { label: "Tekst", name: "body", widget: "text", hint: "Witregel = nieuwe alinea." }
+              - { label: "Copyright / fotograaf (optioneel)", name: "imageCredit", widget: "string", required: false, hint: "Verschijnt als © op de afbeelding." }
+              - { label: "Tekst", name: "body", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], hint: "Witregel = nieuwe alinea. Vet/cursief via de knoppen." }
           - label: "Affiches / posters"
             name: "posters"
             label_singular: "Affiche"
@@ -235,3 +238,4 @@ collections:
             fields:
               - { label: "Afbeelding", name: "image", widget: "image" }
               - { label: "Onderschrift", name: "caption", widget: "string", required: false }
+              - { label: "Copyright / fotograaf (optioneel)", name: "credit", widget: "string", required: false, hint: "Verschijnt als © op de affiche." }

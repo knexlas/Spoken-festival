@@ -170,7 +170,12 @@
      clipped; short slots just don't use the extra room */
   .slot-body.open{ max-height:2600px; opacity:1; }
   .slot-inner{ display:flex; gap:22px; padding:6px 4px 26px 66px; align-items:flex-start; }
-  .slot-photo{ width:128px; height:96px; flex-shrink:0; border:1px solid var(--line); background-image:repeating-linear-gradient(45deg, var(--line) 0 1px, transparent 1px 9px); display:flex; align-items:flex-end; padding:7px; font-family:var(--f-mono); font-size:8px; letter-spacing:0.1em; color:var(--mut); }
+  .slot-photo{ position:relative; width:128px; height:96px; flex-shrink:0; border:1px solid var(--line); background-image:repeating-linear-gradient(45deg, var(--line) 0 1px, transparent 1px 9px); display:flex; align-items:flex-end; padding:7px; font-family:var(--f-mono); font-size:8px; letter-spacing:0.1em; color:var(--mut); }
+  /* photographer / copyright credit on an image: small © chip, bottom-right */
+  .credit{ position:absolute; right:5px; bottom:5px; z-index:2; font-family:var(--f-mono); font-size:9px; letter-spacing:0.02em; line-height:1; color:rgba(255,255,255,0.9); background:rgba(10,8,7,0.5); padding:3px 6px; border-radius:4px; -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px); pointer-events:none; max-width:calc(100% - 10px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .news-fig{ position:relative; display:inline-block; margin-top:14px; max-width:440px; }
+  .news-fig .news-img{ margin-top:0; }
+  .poster-img{ position:relative; display:block; }
   .slot-photo.has-img{ padding:0; overflow:hidden; background:none; }
   .slot-photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:saturate(0.85) contrast(1.05); }
   .slot-genre{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--acc); margin-bottom:9px; }
@@ -809,7 +814,9 @@ async function boot(){
 
   const labels = labelSet(SITE_DATA);
   // opener video plays on mobile only (per client: desktop skips straight in)
-  if (mq.matches) maybeShowIntro(labels);
+  // Intro video removed at the illustrator's request — no longer shown.
+  // (maybeShowIntro is kept below but intentionally not called.)
+  // if (mq.matches) maybeShowIntro(labels);
   startEyeLife();
   attachFigureParallax();
   setMobileCity('ant');
