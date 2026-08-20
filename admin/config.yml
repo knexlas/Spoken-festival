@@ -57,12 +57,16 @@ city_fields: &city_fields
   - { label: "Zijde", name: "side", widget: "hidden" }
   - { label: "Naam van de stad", name: "name", widget: "string" }
   - { label: "Tagline (korte sfeerbeschrijving onder de stadsnaam)", name: "tagline", widget: "markdown", buttons: ["bold", "italic"], editor_components: [], hint: "Gebruik de knoppen voor **vet** of *cursief*." }
+  - { label: "🇬🇧 Tagline — English", name: "tagline_en", widget: "markdown", buttons: ["bold", "italic"], editor_components: [], required: false, hint: "Engelse versie. Leeg = de Nederlandse tekst wordt getoond op de Engelse site." }
   - { label: "Datums (zoals getoond op de site)", name: "dates", widget: "string", hint: "Bv. 31 OKT – 01 NOV 2026" }
+  - { label: "🇬🇧 Datums — English", name: "dates_en", widget: "string", required: false, hint: "Bv. 31 OCT – 01 NOV 2026. Leeg = Nederlandse datums." }
   - { label: "Locatie / venue", name: "venue", widget: "string", hint: "Bv. Blikfabriek" }
   - { label: "Stad (voor Google/kaarten)", name: "addressLocality", widget: "string", hint: "Bv. Antwerpen" }
   - { label: "Landcode (voor Google/kaarten)", name: "addressCountry", widget: "string", hint: "BE voor België — normaal niet wijzigen" }
   - { label: "Tekstje dat naar de andere stad verwijst", name: "twin", widget: "string", hint: "Bv. 'Tegelijk in Kortrijk →'" }
+  - { label: "🇬🇧 Verwijzing andere stad — English", name: "twin_en", widget: "string", required: false, hint: "Bv. 'Simultaneously in Kortrijk →'. Leeg = Nederlandse tekst." }
   - { label: "Tekstje in de smalle zijbalk (alleen desktop)", name: "railCue", widget: "string", hint: "Kort woord dat uitnodigt om deze stad open te klappen, bv. 'verken →'" }
+  - { label: "🇬🇧 Zijbalk-tekst — English", name: "railCue_en", widget: "string", required: false, hint: "Bv. 'explore →'. Leeg = Nederlandse tekst." }
   - { label: "Ticket-link", name: "ticketUrl", widget: "string", hint: "Volledige link naar de ticketshop (https://…), of #tickets zolang die er nog niet is" }
 
   - label: "Info-paragrafen"
@@ -72,6 +76,15 @@ city_fields: &city_fields
     collapsed: true
     field: { label: "Paragraaf", name: "paragraph", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], hint: "Selecteer tekst en gebruik de knoppen voor vet/cursief, een lijst, een tussenkop of een link." }
 
+  - label: "🇬🇧 Info-paragrafen — English"
+    name: "info_en"
+    label_singular: "Paragraph"
+    widget: "list"
+    collapsed: true
+    required: false
+    hint: "Engelse versie van de info-paragrafen. Houd dezelfde volgorde en hetzelfde aantal aan als hierboven. Leeg = de Nederlandse paragrafen worden getoond."
+    field: { label: "Paragraph", name: "paragraph", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [] }
+
   - label: "Praktisch"
     name: "practical"
     label_singular: "Item"
@@ -80,7 +93,9 @@ city_fields: &city_fields
     summary: "{{fields.k}}: {{fields.v}}"
     fields:
       - { label: "Label", name: "k", widget: "string" }
+      - { label: "🇬🇧 Label — English", name: "k_en", widget: "string", required: false }
       - { label: "Waarde", name: "v", widget: "string" }
+      - { label: "🇬🇧 Waarde — English", name: "v_en", widget: "string", required: false }
 
   - label: "Tickets"
     name: "tickets"
@@ -90,8 +105,10 @@ city_fields: &city_fields
     summary: "{{fields.tier}} — {{fields.price}}"
     fields:
       - { label: "Type", name: "tier", widget: "string" }
+      - { label: "🇬🇧 Type — English", name: "tier_en", widget: "string", required: false }
       - { label: "Prijs", name: "price", widget: "string", hint: "Bv. €39" }
       - { label: "Toelichting", name: "note", widget: "string" }
+      - { label: "🇬🇧 Toelichting — English", name: "note_en", widget: "string", required: false }
       - { label: "Ticket-link (optioneel)", name: "link", widget: "string", required: false, hint: "Eigen link voor dít ticket. Leeg laten = de algemene Ticket-link van deze stad wordt gebruikt." }
 
 collections:
@@ -113,6 +130,7 @@ collections:
             fields:
               - { label: "Naam van het festival", name: "name", widget: "string" }
               - { label: "Ondertitel", name: "subtitle", widget: "string", required: false, hint: "Korte, krachtige zin die op de homepage verschijnt, onder het SPOKEN-logo." }
+              - { label: "🇬🇧 Ondertitel — English", name: "subtitle_en", widget: "string", required: false, hint: "Engelse versie van de ondertitel. Leeg = de Nederlandse tekst." }
               - { label: "Jaar (editie)", name: "year", widget: "string", hint: "Bv. 2026" }
               - { label: "Korte datum (naast het logo)", name: "shortDate", widget: "string", required: false, hint: "Bv. 31.10.2026 — het gele, schuine datumlabel bovenaan." }
               - { label: "Website-adres", name: "siteUrl", widget: "string", hint: "Bv. https://www.spokenfestival.be — normaal niet wijzigen" }
@@ -150,6 +168,7 @@ collections:
                 hint: "De 'met de steun van'-balk onderaan de pagina. Voeg logo's toe; zonder logo's verschijnt de balk niet."
                 fields:
                   - { label: "Tekst boven de logo's", name: "label", widget: "string", required: false, default: "Met de steun van", hint: "Bv. 'Met de steun van'." }
+                  - { label: "🇬🇧 Tekst boven de logo's — English", name: "label_en", widget: "string", required: false, hint: "Bv. 'With the support of'. Leeg = de Nederlandse tekst." }
                   - label: "Logo's"
                     name: "logos"
                     label_singular: "Logo"
@@ -216,6 +235,7 @@ collections:
               - { label: "Foto", name: "photo", widget: "image", required: false, hint: "Liggende foto werkt het best (bv. 800×600)." }
               - { label: "Copyright / fotograaf (optioneel)", name: "photoCredit", widget: "string", required: false, hint: "Naam van de fotograaf of maker. Verschijnt als © op de foto." }
               - { label: "Beschrijving / bio", name: "bio", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false, hint: "Introductie; verschijnt onder het programmaonderdeel. Gebruik de knoppen voor vet/cursief, lijsten of een tussenkop." }
+              - { label: "🇬🇧 Beschrijving / bio — English", name: "bio_en", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false, hint: "Engelse versie van de bio. Leeg = de Nederlandse tekst wordt getoond op de Engelse site." }
               - { label: "Website of social-link", name: "link", widget: "string", required: false, hint: "https://… (optioneel)" }
               - label: "Optredens"
                 name: "performances"
@@ -236,7 +256,9 @@ collections:
                   - { label: "Eindtijd", name: "end", widget: "string", required: false, hint: "Bv. 21:00 — leeg gelaten telt als 1 uur (voor het blokkenschema)." }
                   - { label: "Podium / zaal", name: "stage", widget: "string" }
                   - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
+                  - { label: "🇬🇧 Genre / vorm — English", name: "genre_en", widget: "string", required: false, hint: "Bv. Talk, Interview, Poetry. Leeg = Nederlandse tekst." }
                   - { label: "Omschrijving van dit optreden", name: "blurb", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false }
+                  - { label: "🇬🇧 Omschrijving — English", name: "blurb_en", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false, hint: "Engelse versie. Leeg = de Nederlandse tekst." }
                   - label: "Subprogramma (onderdelen binnen dit optreden)"
                     name: "subprogram"
                     label_singular: "Onderdeel"
@@ -247,5 +269,7 @@ collections:
                     hint: "Optioneel. Voor optredens die uit meerdere onderdelen bestaan (bv. meerdere lezingen of workshopdelen). Op de site kan de bezoeker elk onderdeel verder openklappen voor de tekst."
                     fields:
                       - { label: "Titel", name: "title", widget: "string" }
+                      - { label: "🇬🇧 Titel — English", name: "title_en", widget: "string", required: false, hint: "Leeg = de Nederlandse titel." }
                       - { label: "Tijd", name: "time", widget: "string", required: false, hint: "Optioneel, bv. 21:20" }
                       - { label: "Tekst", name: "text", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false }
+                      - { label: "🇬🇧 Tekst — English", name: "text_en", widget: "markdown", buttons: ["bold", "italic", "link", "heading-three", "bulleted-list", "numbered-list", "quote"], editor_components: [], required: false, hint: "Engelse versie. Leeg = de Nederlandse tekst." }

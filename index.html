@@ -345,6 +345,11 @@
   .citytoggle{ display:none; align-items:center; gap:4px; padding:4px; background:rgba(11,10,9,0.5); border:1px solid rgba(255,255,255,0.14); border-radius:999px; }
   .citytoggle button{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; padding:9px clamp(14px,4.5vw,22px); border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.5); cursor:pointer; transition:all .35s ease; }
   .citytoggle button.on{ color:#141210; background:var(--toggle-acc,#e6d33b); font-weight:700; }
+  /* language switch (NL/EN) — small pill pinned top-right of the banner */
+  .langtoggle{ position:absolute; top:calc(env(safe-area-inset-top,0px) + 12px); left:12px; z-index:60; display:flex; gap:2px; padding:3px; background:rgba(11,10,9,0.55); border:1px solid rgba(255,255,255,0.16); border-radius:999px; -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); }
+  .langtoggle button{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.12em; padding:5px 9px; border:0; border-radius:999px; background:transparent; color:rgba(255,255,255,0.55); cursor:pointer; transition:all .3s ease; }
+  .langtoggle button.on{ background:var(--yellow); color:#141210; font-weight:700; }
+  @media (max-width: 860px){ .langtoggle{ top:calc(env(safe-area-inset-top,0px) + 10px); left:10px; } }
 
   /* ===== MOBILE: one city at a time, tap to switch ===== */
   @media (max-width: 860px){
@@ -440,6 +445,11 @@
       <button class="seg" data-mech="follow">Hover</button>
       <button class="seg" data-mech="lock">Klik</button>
     </div>
+
+    <div class="langtoggle" id="langtoggle" aria-label="Taal / Language">
+      <button type="button" data-lang="nl">NL</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
   </header>
 
   <div class="hint" id="hint"></div>
@@ -472,7 +482,9 @@ const TOGGLE_ACC = { ant: '#8ec8d8', kor: '#e0703f' };
    Android's collapsing URL bar. The toggle now lives in the fixed TOP banner,
    which Android handles reliably, so that hack is gone.) */
 
-const state = { mechanic:'follow', active:null, hinted:false, mobileCity:'ant', introActive:false };
+const state = { mechanic:'follow', active:null, hinted:false, mobileCity:'ant', introActive:false, lang:'nl' };
+try { const saved = localStorage.getItem('spoken-lang'); if (saved === 'en' || saved === 'nl') state.lang = saved; } catch(e){}
+const curLabels = () => labelSet(SITE_DATA || {}, state.lang);
 const panels = {}; // filled by boot() once content is rendered
 
 function applySplit(){
@@ -727,7 +739,7 @@ stage.addEventListener('click', e => {
     const anyClosed = [...bodies].some(b => !b.classList.contains('open'));
     bodies.forEach(b => b.classList.toggle('open', anyClosed));
     panel.querySelectorAll('.slot-chev').forEach(c => c.textContent = anyClosed ? '–' : '+');
-    const lbl = labelSet(SITE_DATA || {});
+    const lbl = curLabels();
     toggleAll.textContent = anyClosed ? lbl.verbergInfo : lbl.klikVoorInfo;
     return;
   }
@@ -767,7 +779,7 @@ document.querySelectorAll('[data-mech]').forEach(b => b.addEventListener('click'
 function syncHint(){
   if (mq.matches || state.hinted || state.introActive){ hintEl.classList.add('hide'); return; }
   hintEl.classList.remove('hide');
-  const lbl = labelSet(SITE_DATA || {});
+  const lbl = curLabels();
   hintEl.textContent = state.mechanic === 'follow' ? lbl.hintBeweeg : lbl.hintKlik;
 }
 function resetFigBase(){
@@ -818,30 +830,43 @@ async function boot(){
     }
   }
 
-  if (!preRendered) stage.innerHTML = renderPanels(SITE_DATA);
-  SITE_DATA.cities.forEach(c => { panels[c.id] = stage.querySelector('.panel[data-id="'+c.id+'"]'); });
+  document.documentElement.lang = state.lang;
+  langtoggle.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.lang === state.lang));
+  // pre-rendered HTML is Dutch (for SEO); only re-render if the visitor wants
+  // English or nothing was pre-rendered.
+  mountPanels(!preRendered || state.lang !== 'nl');
+  startEyeLife();
+}
 
-  // mobile city-switch labels come from the content, not hardcoded text.
-  // While the city split is masked (hideCities) the tabs stay but lose their
-  // city name — they read as an unlabelled A/B switch.
+/* (re)mount the two city panels and (re)wire their per-panel behaviour. Called
+   on boot and again whenever the language switches. */
+function mountPanels(rerender){
+  if (rerender) stage.innerHTML = renderPanels(SITE_DATA, state.lang);
+  SITE_DATA.cities.forEach(c => { panels[c.id] = stage.querySelector('.panel[data-id="'+c.id+'"]'); });
+  // mobile city-switch labels come from the content; masked to 1/2 when hideCities
   const maskCities = !!(SITE_DATA.festival && SITE_DATA.festival.hideCities);
   citytoggle.classList.toggle('masked', maskCities);
   citytoggle.querySelectorAll('button').forEach((b, i) => {
     const c = SITE_DATA.cities.find(x => x.id === b.dataset.city);
     b.textContent = maskCities ? String(i + 1) : (c ? c.name : b.textContent);
   });
-
-  const labels = labelSet(SITE_DATA);
-  // opener video plays on mobile only (per client: desktop skips straight in)
-  // Intro video removed at the illustrator's request — no longer shown.
-  // (maybeShowIntro is kept below but intentionally not called.)
-  // if (mq.matches) maybeShowIntro(labels);
-  startEyeLife();
   attachFigureParallax();
-  setMobileCity('ant');
+  setMobileCity(state.mobileCity || 'ant');
   applySplit();
   syncHint();
 }
+
+/* language switch: NL ⇄ EN, re-renders the panels and remembers the choice */
+const langtoggle = document.getElementById('langtoggle');
+function applyLang(lang){
+  state.lang = (lang === 'en') ? 'en' : 'nl';
+  try { localStorage.setItem('spoken-lang', state.lang); } catch(e){}
+  document.documentElement.lang = state.lang;
+  langtoggle.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.lang === state.lang));
+  mountPanels(true);
+}
+langtoggle.querySelectorAll('button').forEach(b => b.addEventListener('click', () => applyLang(b.dataset.lang)));
+
 boot();
 </script>
 </body>

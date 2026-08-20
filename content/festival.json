@@ -31,8 +31,10 @@
           "alt": "Vlaanderen — verbeelding werkt",
           "link": "https://www.vlaanderen.be"
         }
-      ]
-    }
+      ],
+      "label_en": "With the support of"
+    },
+    "subtitle_en": "Look fear in the eye — a horror festival in Antwerpen & Kortrijk"
   },
   "labels": {
     "programma": "Programma",
