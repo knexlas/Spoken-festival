@@ -3,59 +3,71 @@
   "side": "left",
   "name": "Antwerpen",
   "tagline": "Een avond vol film, performance, muziek, poëzie en debat.",
+  "tagline_en": "An evening full of film, performance, music, poetry and debate.",
   "dates": "31 OKT 2026",
+  "dates_en": "31 OCT 2026",
   "venue": "Blikfabriek",
   "addressLocality": "Antwerpen",
   "addressCountry": "BE",
   "twin": "Tegelijk in Kortrijk →",
+  "twin_en": "Simultaneously in Kortrijk →",
   "railCue": "verken →",
+  "railCue_en": "explore →",
   "ticketUrl": "#tickets",
   "info": [
     "Wat gebeurt er als je niet wegkijkt? SPOKEN is een festival dat je uitnodigt om je angsten recht in de ogen te kijken & te ontdekken wat er dan verandert.",
     "Angst kan sluimerend ontstaan, of heel hevig woekeren - het kan rond je hangen zonder dat het je echt vastgrijpt, of het kan je verstikken. Maar op het moment dat je durft te kijken, echt te kijken, verschuift er iets. Op SPOKEN geven we ruimte aan wat ons bezighoudt, achtervolgt en soms verlamt. Zodat we samen kunnen proberen onze angsten te begrijpen, te delen, en misschien ook te transformeren.",
     "SPOKEN speelt zich gelijktijdig af in Antwerpen en Kortrijk."
   ],
+  "info_en": [
+    "What happens when you don’t look away? SPOKEN is a festival that invites you to look your fears straight in the eyes & discover what changes when you do.",
+    "Fear can arise quietly, or run rampant — it can hang around you without really taking hold, or it can suffocate you. But the moment you dare to look, really look, something shifts. At SPOKEN we make room for what preoccupies, haunts and sometimes paralyses us. So that together we can try to understand our fears, share them, and perhaps transform them too.",
+    "SPOKEN takes place simultaneously in Antwerpen and Kortrijk."
+  ],
   "practical": [
     {
       "k": "Locatie",
-      "v": "Blikfabriek (Krugerstraat 232, 2660 Antwerpen)",
       "k_en": "Location",
+      "v": "Blikfabriek (Krugerstraat 232, 2660 Antwerpen)",
       "v_en": "Blikfabriek (Krugerstraat 232, 2660 Antwerpen)"
     },
     {
       "k": "Timing",
-      "v": "Deuren open vanaf 18u, start programma om 19u",
       "k_en": "Timing",
+      "v": "Deuren open vanaf 18u, start programma om 19u",
       "v_en": "Doors open from 6pm, programme starts at 7pm"
     },
     {
       "k": "Toegankelijk",
-      "v": "Rolstoeltoegankelijk",
       "k_en": "Accessibility",
+      "v": "Rolstoeltoegankelijk",
       "v_en": "Wheelchair accessible"
     }
   ],
   "tickets": [
     {
       "tier": "Standaard",
+      "tier_en": "Standard",
       "price": "€15",
       "note": "Toegang festival",
-      "tier_en": "Standard",
-      "note_en": "Festival admission"
+      "note_en": "Festival admission",
+      "link": ""
     },
     {
       "tier": "Inwoners Hoboken & -26",
+      "tier_en": "Hoboken residents & under-26",
       "price": "€12",
       "note": "Toegang festival",
-      "tier_en": "Hoboken residents & under-26",
-      "note_en": "Festival admission"
+      "note_en": "Festival admission",
+      "link": ""
     },
     {
       "tier": "Kansentarief",
+      "tier_en": "Concession rate",
       "price": "€2",
       "note": "Toegang festival",
-      "tier_en": "Concession rate",
-      "note_en": "Festival admission"
+      "note_en": "Festival admission",
+      "link": ""
     }
   ],
   "facts": [
@@ -75,14 +87,5 @@
       "k": "Steden",
       "v": "2"
     }
-  ],
-  "tagline_en": "An evening full of film, performance, music, poetry and debate.",
-  "twin_en": "Simultaneously in Kortrijk →",
-  "railCue_en": "explore →",
-  "dates_en": "31 OCT 2026",
-  "info_en": [
-    "What happens when you don’t look away? SPOKEN is a festival that invites you to look your fears straight in the eye & discover what changes when you do.",
-    "Fear can arise quietly, or run rampant — it can hang around you without really taking hold, or it can suffocate you. But the moment you dare to look, really look, something shifts. At SPOKEN we make room for what preoccupies, haunts and sometimes paralyses us. So that together we can try to understand our fears, share them, and perhaps transform them too.",
-    "SPOKEN takes place simultaneously in Antwerpen and Kortrijk."
   ]
 }
