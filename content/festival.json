@@ -19,7 +19,10 @@
     "hideCities": false,
     "support": {
       "label": "Met de steun van",
-      "logos": []
+      "logos": [
+        { "image": "/assets/img/steun-literatuur-vlaanderen.png", "alt": "Literatuur Vlaanderen", "link": "https://www.literatuurvlaanderen.be" },
+        { "image": "/assets/img/steun-vlaanderen.png", "alt": "Vlaanderen — verbeelding werkt", "link": "https://www.vlaanderen.be" }
+      ]
     }
   },
   "days": [
