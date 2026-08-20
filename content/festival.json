@@ -11,27 +11,24 @@
     "endDate": "2026-11-01T00:30:00+01:00",
     "description": "SPOKEN — een griezelfestival in Antwerpen & Kortrijk met muziek, film, performance, poëzie, debat, en feest!",
     "shareImage": "/assets/og-image.jpg",
-    "programmeReveal": {
-      "showSchema": false,
-      "hideTimes": true,
-      "hideStages": true
-    },
+    "programmeReveal": null,
     "hideCities": false,
     "support": {
       "label": "Met de steun van",
       "logos": [
-        { "image": "/assets/img/steun-literatuur-vlaanderen.png", "alt": "Literatuur Vlaanderen", "link": "https://www.literatuurvlaanderen.be" },
-        { "image": "/assets/img/steun-vlaanderen.png", "alt": "Vlaanderen — verbeelding werkt", "link": "https://www.vlaanderen.be" }
+        {
+          "image": "/assets/img/steun-literatuur-vlaanderen.png",
+          "alt": "Literatuur Vlaanderen",
+          "link": "https://www.literatuurvlaanderen.be"
+        },
+        {
+          "image": "/assets/img/steun-vlaanderen.png",
+          "alt": "Vlaanderen — verbeelding werkt",
+          "link": "https://www.vlaanderen.be"
+        }
       ]
     }
   },
-  "days": [
-    {
-      "id": "za",
-      "label": "ZA",
-      "date": "31 OKT"
-    }
-  ],
   "labels": {
     "programma": "Programma",
     "nieuws": "Nieuws",
@@ -51,7 +48,14 @@
     "ookTeZien": "Ook te zien",
     "footerTag": "GRIEZELFESTIVAL",
     "introKnop": "KLIK OM BINNEN TE GAAN",
-    "introGeluid": "TIK VOOR GELUID",
-    "subprogramma": "Subprogramma"
-  }
+    "subprogramma": "Subprogramma",
+    "introGeluid": "TIK VOOR GELUID"
+  },
+  "days": [
+    {
+      "id": "za",
+      "label": "ZA",
+      "date": "31 OKT"
+    }
+  ]
 }
