@@ -138,6 +138,9 @@ collections:
               # --- Losse schakelaar (los van het programma): stadsnamen verbergen ---
               - { label: "Verberg de stadsnamen (Antwerpen/Kortrijk)", name: "hideCities", widget: "boolean", default: false, required: false, hint: "Aparte schakelaar, los van de programma-onthulling hierboven. Aan = de twee tabbladen blijven, maar de namen Antwerpen/Kortrijk (titel, tabs, zijbalk en locatie) worden verborgen. NB: pas ook de ondertitel en 'Praktisch' aan als daar nog stadsnamen in staan." }
 
+              # --- Losse schakelaar: de volledige ticketsectie verbergen ---
+              - { label: "Verberg de ticketsectie", name: "hideTickets", widget: "boolean", default: false, required: false, hint: "Aan = de hele 'Tickets'-sectie én de Tickets-knop bovenaan worden verborgen (handig zolang de ticketlinks nog niet bestaan). De footer en de logobalk blijven staan. Zet uit zodra de tickets online staan." }
+
               # --- 'Met de steun van'-logobalk onderaan ---
               - label: "Steun & partners (logobalk onderaan)"
                 name: "support"

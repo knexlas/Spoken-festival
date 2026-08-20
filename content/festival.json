@@ -17,6 +17,7 @@
       "hideStages": false
     },
     "hideCities": false,
+    "hideTickets": true,
     "support": {
       "label": "Met de steun van",
       "logos": [
