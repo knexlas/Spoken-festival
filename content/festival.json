@@ -2,6 +2,7 @@
   "festival": {
     "name": "SPOKEN",
     "subtitle": "Kijk angst in de ogen  - een griezelfestival in Antwerpen & Kortrijk",
+    "subtitle_en": "Look fear in the eyes — a horror festival in Antwerpen & Kortrijk",
     "year": "2026",
     "shortDate": "31.10.26",
     "siteUrl": "https://www.spokenfestival.be",
@@ -20,6 +21,7 @@
     "hideTickets": true,
     "support": {
       "label": "Met de steun van",
+      "label_en": "With the support of",
       "logos": [
         {
           "image": "/assets/img/steun-literatuur-vlaanderen.png",
@@ -31,10 +33,8 @@
           "alt": "Vlaanderen — verbeelding werkt",
           "link": "https://www.vlaanderen.be"
         }
-      ],
-      "label_en": "With the support of"
-    },
-    "subtitle_en": "Look fear in the eye — a horror festival in Antwerpen & Kortrijk"
+      ]
+    }
   },
   "labels": {
     "programma": "Programma",
