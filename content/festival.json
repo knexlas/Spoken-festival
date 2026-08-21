@@ -33,14 +33,14 @@
           "alt": "Vlaanderen — verbeelding werkt",
           "link": "https://www.vlaanderen.be"
         },
-        { "image": "/assets/img/partner-vonk.png", "alt": "VONK & Zonen" },
-        { "image": "/assets/img/partner-blikfabriek.png", "alt": "Blikfabriek" },
-        { "image": "/assets/img/partner-buda.png", "alt": "BUDA" },
-        { "image": "/assets/img/partner-bib.png", "alt": "Bibliotheek Kortrijk" },
-        { "image": "/assets/img/partner-curieus.png", "alt": "Curieus" },
-        { "image": "/assets/img/partner-groenewaterman.png", "alt": "De Groene Waterman" },
-        { "image": "/assets/img/partner-decinema.png", "alt": "De Cinema" },
-        { "image": "/assets/img/partner-creatiefschrijven.png", "alt": "Creatief Schrijven" }
+        { "image": "/assets/img/partner-vonk.png", "alt": "VONK & Zonen", "link": "https://www.vonkenzonen.be" },
+        { "image": "/assets/img/partner-blikfabriek.png", "alt": "Blikfabriek", "link": "https://blikfabriek.be" },
+        { "image": "/assets/img/partner-buda.png", "alt": "BUDA", "link": "https://www.buda.be" },
+        { "image": "/assets/img/partner-bib.png", "alt": "Bibliotheek Kortrijk", "link": "https://www.kortrijk.be/bibliotheek" },
+        { "image": "/assets/img/partner-curieus.png", "alt": "Curieus", "link": "https://curieus.be" },
+        { "image": "/assets/img/partner-groenewaterman.png", "alt": "De Groene Waterman", "link": "https://www.groenewaterman.be" },
+        { "image": "/assets/img/partner-decinema.png", "alt": "De Cinema", "link": "https://decinema.be" },
+        { "image": "/assets/img/partner-creatiefschrijven.png", "alt": "Creatief Schrijven", "link": "https://creatiefschrijven.be" }
       ]
     }
   },
