@@ -20,8 +20,8 @@
     "hideCities": false,
     "hideTickets": true,
     "support": {
-      "label": "Met de steun van",
-      "label_en": "With the support of",
+      "label": "Met de steun van & in samenwerking met",
+      "label_en": "With the support of & in collaboration with",
       "logos": [
         {
           "image": "/assets/img/steun-literatuur-vlaanderen.png",
@@ -32,7 +32,15 @@
           "image": "/assets/img/steun-vlaanderen.png",
           "alt": "Vlaanderen — verbeelding werkt",
           "link": "https://www.vlaanderen.be"
-        }
+        },
+        { "image": "/assets/img/partner-vonk.png", "alt": "VONK & Zonen" },
+        { "image": "/assets/img/partner-blikfabriek.png", "alt": "Blikfabriek" },
+        { "image": "/assets/img/partner-buda.png", "alt": "BUDA" },
+        { "image": "/assets/img/partner-bib.png", "alt": "Bibliotheek Kortrijk" },
+        { "image": "/assets/img/partner-curieus.png", "alt": "Curieus" },
+        { "image": "/assets/img/partner-groenewaterman.png", "alt": "De Groene Waterman" },
+        { "image": "/assets/img/partner-decinema.png", "alt": "De Cinema" },
+        { "image": "/assets/img/partner-creatiefschrijven.png", "alt": "Creatief Schrijven" }
       ]
     }
   },

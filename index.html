@@ -259,10 +259,11 @@
   /* "met de steun van" logo bar — logos sit on a light chip so they read on the dark ground */
   .support{ margin-top:26px; display:flex; flex-direction:column; gap:12px; }
   .support-label{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--mut); }
-  .support-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
-  .support-logo{ display:inline-flex; align-items:center; justify-content:center; background:#ffffff; border-radius:8px; padding:10px 16px; }
-  .support-logo img{ height:38px; width:auto; max-width:210px; display:block; object-fit:contain; }
-  @media (max-width:640px){ .support-logo{ padding:8px 12px; } .support-logo img{ height:30px; } }
+  .support-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:26px; }
+  .support-logo{ display:inline-flex; align-items:center; justify-content:center; background:transparent; padding:0; }
+  .support-logo img{ height:34px; width:auto; max-width:190px; display:block; object-fit:contain; opacity:.85; transition:opacity .2s ease; }
+  .support-logo:hover img{ opacity:1; }
+  @media (max-width:640px){ .support-logo img{ height:27px; } .support-logos{ gap:20px; } }
 
   .edge{ position:absolute; top:0; bottom:0; width:140px; z-index:4; pointer-events:none; }
   .panel[data-side="left"] .edge{ right:-1px; z-index:3; background:linear-gradient(90deg, transparent, rgba(0,0,0,0.45)); }

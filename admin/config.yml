@@ -159,16 +159,16 @@ collections:
               # --- Losse schakelaar: de volledige ticketsectie verbergen ---
               - { label: "Verberg de ticketsectie", name: "hideTickets", widget: "boolean", default: false, required: false, hint: "Aan = de hele 'Tickets'-sectie én de Tickets-knop bovenaan worden verborgen (handig zolang de ticketlinks nog niet bestaan). De footer en de logobalk blijven staan. Zet uit zodra de tickets online staan." }
 
-              # --- 'Met de steun van'-logobalk onderaan ---
-              - label: "Steun & partners (logobalk onderaan)"
+              # --- gecombineerde logobalk onderaan (steun + partners) ---
+              - label: "Logobalk onderaan (steun & partners)"
                 name: "support"
                 widget: "object"
                 collapsed: true
                 required: false
-                hint: "De 'met de steun van'-balk onderaan de pagina. Voeg logo's toe; zonder logo's verschijnt de balk niet."
+                hint: "Eén logobalk onderaan de pagina — steungevers én partners samen. De logo's staan transparant op de donkere footer, dus gebruik witte logo's op een transparante achtergrond. Zonder logo's verschijnt de balk niet."
                 fields:
-                  - { label: "Tekst boven de logo's", name: "label", widget: "string", required: false, default: "Met de steun van", hint: "Bv. 'Met de steun van'." }
-                  - { label: "🇬🇧 Tekst boven de logo's — English", name: "label_en", widget: "string", required: false, hint: "Bv. 'With the support of'. Leeg = de Nederlandse tekst." }
+                  - { label: "Tekst boven de logo's", name: "label", widget: "string", required: false, default: "Met de steun van & in samenwerking met", hint: "Bv. 'Met de steun van & in samenwerking met'." }
+                  - { label: "🇬🇧 Tekst boven de logo's — English", name: "label_en", widget: "string", required: false, hint: "Bv. 'With the support of & in collaboration with'. Leeg = de Nederlandse tekst." }
                   - label: "Logo's"
                     name: "logos"
                     label_singular: "Logo"
@@ -176,8 +176,8 @@ collections:
                     required: false
                     summary: "{{fields.alt}}"
                     fields:
-                      - { label: "Logo (afbeelding)", name: "image", widget: "image", hint: "Bij voorkeur een PNG/SVG met transparante achtergrond." }
-                      - { label: "Naam (voor toegankelijkheid)", name: "alt", widget: "string", required: false, hint: "Bv. Literatuur Vlaanderen" }
+                      - { label: "Logo (afbeelding)", name: "image", widget: "image", hint: "Wit logo op een transparante achtergrond (PNG/SVG) werkt het best op de donkere footer." }
+                      - { label: "Naam (voor toegankelijkheid)", name: "alt", widget: "string", required: false, hint: "Bv. Literatuur Vlaanderen of Blikfabriek" }
                       - { label: "Link (optioneel)", name: "link", widget: "string", required: false, hint: "Website van de partner (https://…)" }
 
           - label: "Teksten & knoppen (site-breed)"
