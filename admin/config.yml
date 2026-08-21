@@ -149,8 +149,8 @@ collections:
                 required: false
                 hint: "Toon de line-up al terwijl het rooster nog niet definitief is. Staat los van de stadsnamen hieronder."
                 fields:
-                  - { label: "Toon blokkenschema op de site", name: "showSchema", widget: "boolean", default: false, required: false, hint: "Uit = het blokkenschema (de roostertabel) blijft nog verborgen. Zet aan zodra het rooster definitief is." }
-                  - { label: "Verberg de tijden bij de artiesten", name: "hideTimes", widget: "boolean", default: false, required: false, hint: "Aan = de tijdstippen naast de artiesten worden nog niet getoond." }
+                  - { label: "Toon blokkenschema op de site", name: "showSchema", widget: "boolean", default: false, required: false, hint: "Uit = het blokkenschema (de roostertabel) blijft nog verborgen. Zet aan zodra het rooster definitief is. NB: zolang dit uit staat worden de tijden naast de artiesten automatisch óók verborgen." }
+                  - { label: "Verberg de tijden bij de artiesten", name: "hideTimes", widget: "boolean", default: false, required: false, hint: "Aan = de tijdstippen naast de artiesten worden nog niet getoond. (Ze zijn sowieso verborgen zolang het blokkenschema hierboven uit staat.)" }
                   - { label: "Verberg de locatie/podium bij de artiesten", name: "hideStages", widget: "boolean", default: false, required: false, hint: "Aan = het podium/de zaal naast de artiesten wordt nog niet getoond." }
 
               # --- Losse schakelaar (los van het programma): stadsnamen verbergen ---
