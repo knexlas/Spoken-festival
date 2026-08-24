@@ -12,6 +12,29 @@
   status = 301
   force = true
 
+# Browsers/OSes probe these icon paths at the site root even though the real
+# icons are declared in <head>. Serve the existing assets in place (200 rewrite)
+# so those requests stop 404-ing — no separate .ico file needed.
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/assets/favicon-32.png"
+  status = 200
+
+[[redirects]]
+  from = "/apple-touch-icon.png"
+  to = "/assets/apple-touch-icon.png"
+  status = 200
+
+[[redirects]]
+  from = "/apple-touch-icon-precomposed.png"
+  to = "/assets/apple-touch-icon.png"
+  status = 200
+
+[[redirects]]
+  from = "/apple-touch-icon-120x120-precomposed.png"
+  to = "/assets/apple-touch-icon.png"
+  status = 200
+
 [[headers]]
   for = "/*"
   [headers.values]
