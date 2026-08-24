@@ -15,7 +15,7 @@
     "programmeReveal": {
       "showSchema": false,
       "hideTimes": false,
-      "hideStages": false
+      "hideStages": true
     },
     "hideCities": false,
     "hideTickets": true,
