@@ -18,7 +18,7 @@
       "hideStages": true
     },
     "hideCities": false,
-    "hideTickets": false,
+    "hideTickets": true,
     "support": {
       "label": "Met de steun van & in samenwerking met",
       "label_en": "With the support of & in collaboration with",
