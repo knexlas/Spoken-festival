@@ -13,7 +13,7 @@
   "twin_en": "Simultaneously in Kortrijk →",
   "railCue": "verken →",
   "railCue_en": "explore →",
-  "ticketUrl": "#tickets",
+  "ticketUrl": "#https://vonkenzonen.stager.co/shop/spoken",
   "info": [
     "Wat gebeurt er als je niet wegkijkt? SPOKEN is een festival dat je uitnodigt om je angsten recht in de ogen te kijken & te ontdekken wat er dan verandert.",
     "Angst kan sluimerend ontstaan, of heel hevig woekeren - het kan rond je hangen zonder dat het je echt vastgrijpt, of het kan je verstikken. Maar op het moment dat je durft te kijken, echt te kijken, verschuift er iets. Op SPOKEN geven we ruimte aan wat ons bezighoudt, achtervolgt en soms verlamt. Zodat we samen kunnen proberen onze angsten te begrijpen, te delen, en misschien ook te transformeren.",
@@ -54,18 +54,18 @@
       "link": ""
     },
     {
-      "tier": "Inwoners Hoboken & -26",
+      "tier": "Inwoners Hoboken, studenten & -26",
       "tier_en": "Hoboken residents & under-26",
       "price": "€12",
-      "note": "Toegang festival",
+      "note": "Geldig bij vertoon van identiteitskaart of studentenkaart.",
       "note_en": "Festival admission",
       "link": ""
     },
     {
       "tier": "Kansentarief",
       "tier_en": "Concession rate",
-      "price": "€2",
-      "note": "Toegang festival",
+      "price": "€3",
+      "note": "Geldig bij vertoon van A-kaart. Beperkt verkrijgbaar.",
       "note_en": "Festival admission",
       "link": ""
     }
