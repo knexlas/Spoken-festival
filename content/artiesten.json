@@ -214,9 +214,9 @@
     },
     {
       "name": "Yet, Light, You Are Blind",
-      "photo": "/assets/uploads/website-spoken.png",
-      "photoCredit": "",
-      "bio": "Een voorstelling van Loucka Fiagan.",
+      "photo": "/assets/uploads/Yet, Light, you are Blind.jpg",
+      "photoCredit": "Luce Fiagan",
+      "bio": "In _Yet, Light, you are Blind_ vertrekt Luce Fiagan vanuit het werk van Denise Ferreira da Silva, Fred Moten en de woorden van Cheikh Ath — “…alles wat ondenkbaar is in het licht, kan mogelijk zijn in het duister” — om het archetype van de schaduw te verkennen. De performance stelt de vraag hoe schaduwen vorm geven aan wie we zijn, zowel individueel als collectief, en hoe ze ruimte kunnen openen voor vernieuwing. Ze nodigt uit om identiteit niet te zien als vast of coherent, maar als dynamisch, gefragmenteerd en voortdurend in wording — in het bijzonder in relatie tot Zwarte identiteit.\n\nOp scène, begeleid door muzikant Luis Ramirez Munos en lichtkunstenaar Maureen Beguin, roept Luce schaduwen op en verbergt ze, schakelend tussen clown, wezen, geest en kind. Slam, stand-up en rap worden verweven tot een rusteloze stroom van vormen en stijlen — een lichaam met zijn schaduwen, dat eindeloos instort, zich herschikt en weigert zich vast te zetten in een definitieve vorm.",
       "bio_en": "A performance by Loucka Fiagan.",
       "link": "",
       "performances": [
@@ -227,7 +227,7 @@
           "stage": "BUDA: zaal 2",
           "genre": "Podium",
           "genre_en": "Stage",
-          "blurb": "What if Being itself is haunted by its own absence?",
+          "blurb": "_Wat als het bestaan zelf wordt achtervolgd door zijn eigen afwezigheid?_",
           "blurb_en": "What if Being itself is haunted by its own absence?",
           "subprogram": [],
           "day": "za"
@@ -286,6 +286,13 @@
               "time": "",
               "text": "De wereld is gevallen. Alleen de Duisternis bleef achter. Uschi Cop verschijnt als Formida, een post-menselijke priesteres die angst leest als een arts een diagnose stelt. Eén voor één ontleedt ze haar bezoekers, benoemt hun diepste vrees en markeert hen voor wat in het donker op hen wacht. Durf jij haar blik te ontmoeten?",
               "text_en": "The world has fallen. Only the Darkness remained. Uschi Cop appears as Formida, a post-human priestess who reads fear the way a doctor makes a diagnosis. One by one she dissects her visitors, names their deepest dread and marks them for what awaits them in the dark. Do you dare meet her gaze?"
+            },
+            {
+              "title": "Lotte Lola Vermeer",
+              "title_en": "",
+              "time": "",
+              "text": "Lotte Lola Vermeer laat je gezellig nestelen in de cinemazetels van de Budascoop. Ze neemt je mee op een digitale ontdekkingstocht doorheen Google Maps en Streetview. Het gezellig nestelen kan echter al snel wat verontrustend worden… Is dit digitaal bezoek wel zo onschuldig? Komen we toevallig op akelige plekken terecht? Hoe trekt onze eigen nieuwsgierigheid ons hierin verder mee?",
+              "text_en": ""
             }
           ],
           "day": "za"
