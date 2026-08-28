@@ -157,7 +157,10 @@ collections:
               - { label: "Verberg de stadsnamen (Antwerpen/Kortrijk)", name: "hideCities", widget: "boolean", default: false, required: false, hint: "Aparte schakelaar, los van de programma-onthulling hierboven. Aan = de twee tabbladen blijven, maar de namen Antwerpen/Kortrijk (titel, tabs, zijbalk en locatie) worden verborgen. NB: pas ook de ondertitel en 'Praktisch' aan als daar nog stadsnamen in staan." }
 
               # --- Losse schakelaar: de volledige ticketsectie verbergen ---
-              - { label: "Verberg de ticketsectie", name: "hideTickets", widget: "boolean", default: false, required: false, hint: "Aan = de hele 'Tickets'-sectie én de Tickets-knop bovenaan worden verborgen (handig zolang de ticketlinks nog niet bestaan). De footer en de logobalk blijven staan. Zet uit zodra de tickets online staan." }
+              - { label: "Verberg de ticketsectie", name: "hideTickets", widget: "boolean", default: false, required: false, hint: "Aan = de hele 'Tickets'-sectie én de Tickets-knop bovenaan worden verborgen, ongeacht de datum hieronder. Zet dit alleen aan als je de tickets volledig wil verbergen. De footer en de logobalk blijven staan." }
+
+              # --- Automatische onthulling van de tickets op een datum ---
+              - { label: "Tickets tonen vanaf", name: "ticketsFrom", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ", date_format: "DD-MM-YYYY", time_format: "HH:mm", hint: "Optioneel. De ticketsectie én de Tickets-knop verschijnen automatisch vanaf dit moment (Belgische tijd) — je hoeft dan niets handmatig aan te zetten. Leeg = meteen tonen (tenzij hierboven verborgen)." }
 
               # --- gecombineerde logobalk onderaan (steun + partners) ---
               - label: "Logobalk onderaan (steun & partners)"

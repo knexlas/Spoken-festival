@@ -18,7 +18,8 @@
       "hideStages": true
     },
     "hideCities": false,
-    "hideTickets": true,
+    "hideTickets": false,
+    "ticketsFrom": "2026-08-31T00:00:00+02:00",
     "support": {
       "label": "Met de steun van & in samenwerking met",
       "label_en": "With the support of & in collaboration with",

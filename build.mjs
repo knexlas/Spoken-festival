@@ -45,14 +45,7 @@ const pageTitle = `${f.name} · ${titleTag} — ${cityNames} · ${data.cities[0]
 const pageDesc = f.description;
 const shareImg = absUrl(f.shareImage);
 
-/* ---- JSON-LD: one LiteraryEvent per city, sharing one Festival as superEvent ---- */
-const festivalNode = {
-  '@type': 'Festival',
-  name: `${f.name} Festival ${f.year}`,
-  startDate: f.startDate,
-  endDate: f.endDate,
-  url: base + '/',
-};
+/* ---- JSON-LD: one fully-specified LiteraryEvent per city ---- */
 const events = data.cities.map(c => ({
   '@context': 'https://schema.org',
   '@type': 'LiteraryEvent',
@@ -87,8 +80,8 @@ const events = data.cities.map(c => ({
     url: absUrl(c.ticketUrl),
     availability: 'https://schema.org/InStock',
     category: t.note,
+    ...(f.ticketsFrom ? { validFrom: f.ticketsFrom } : {}),
   })),
-  superEvent: festivalNode,
 }));
 
 /* ---- head tags ---- */

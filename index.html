@@ -889,8 +889,12 @@ async function boot(){
   document.documentElement.lang = state.lang;
   langtoggle.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.lang === state.lang));
   // pre-rendered HTML is Dutch (for SEO); only re-render if the visitor wants
-  // English or nothing was pre-rendered.
-  mountPanels(!preRendered || state.lang !== 'nl');
+  // English, nothing was pre-rendered, or a timed ticket reveal is now due
+  // (so the ticket section appears on its own once ticketsFrom has passed,
+  // without waiting for a rebuild).
+  var _tf = SITE_DATA.festival && SITE_DATA.festival.ticketsFrom;
+  var ticketRevealDue = !!_tf && Date.now() >= Date.parse(_tf);
+  mountPanels(!preRendered || state.lang !== 'nl' || ticketRevealDue);
   startEyeLife();
 }
 
