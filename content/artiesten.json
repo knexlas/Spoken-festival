@@ -319,6 +319,48 @@
           "subprogram": []
         }
       ]
+    },
+    {
+      "name": "De Stroate",
+      "photo": "/assets/uploads/Showcase De Stroate1 ©Ayen Monserez.jpg",
+      "photoCredit": "Ayen Monserez",
+      "bio": "Jongeren uit hun community laten je griezelen vanuit hun eigen discipline. Verwacht je aan dans, slam, zang en rap waar de eigen angsten nooit uit de weg worden gegaan.",
+      "bio_en": "",
+      "link": "",
+      "performances": [
+        {
+          "city": "kor",
+          "time": "20:00",
+          "end": "20:15",
+          "stage": "BUDA",
+          "genre": "Slam",
+          "genre_en": "",
+          "blurb": "",
+          "blurb_en": "De Stroate is een jeugdcultuurcentrum met Hiphop als verbindende factor.",
+          "subprogram": []
+        }
+      ]
+    },
+    {
+      "name": "Kimme Tigra",
+      "photo": "/assets/uploads/Kimme Tigra (c) Sarah Vanheuverzwijn.png",
+      "photoCredit": "Sarah Vanheuverzwijn",
+      "bio": "Kimme Tigra schrijft zeer korte verhaaltjes die meestal gaan over katten, seriemoordenaars of haar jeugd. Soms over alledrie tegelijk. Haar bundel 'Proza(c) en gezelschapsdieren' kwam uit in 2022 bij uitgeverij Fluxenberg.",
+      "bio_en": "",
+      "link": "",
+      "performances": [
+        {
+          "city": "kor",
+          "time": "20:00",
+          "end": "21:15",
+          "stage": "BUDA",
+          "genre": "Podcast",
+          "genre_en": "",
+          "blurb": "Voor het HuiverHuis maakte Kimme Tigra een podcast: een Gen Z spookverhaal over angst, trauma en wonen in een spookhuis.",
+          "blurb_en": "",
+          "subprogram": []
+        }
+      ]
     }
   ]
 }
