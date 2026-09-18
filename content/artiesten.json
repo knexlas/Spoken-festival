@@ -288,10 +288,10 @@
               "text_en": "The world has fallen. Only the Darkness remained. Uschi Cop appears as Formida, a post-human priestess who reads fear the way a doctor makes a diagnosis. One by one she dissects her visitors, names their deepest dread and marks them for what awaits them in the dark. Do you dare meet her gaze?"
             },
             {
-              "title": "Lotte Lola Vermeer",
+              "title": "Leela Revoltemort / Lotte Lola Vermeer",
               "title_en": "",
               "time": "",
-              "text": "Lotte Lola Vermeer laat je gezellig nestelen in de cinemazetels van de Budascoop. Ze neemt je mee op een digitale ontdekkingstocht doorheen Google Maps en Streetview. Het gezellig nestelen kan echter al snel wat verontrustend worden… Is dit digitaal bezoek wel zo onschuldig? Komen we toevallig op akelige plekken terecht? Hoe trekt onze eigen nieuwsgierigheid ons hierin verder mee?",
+              "text": "Leela Revoltemort laat je gezellig nestelen in de cinemazetels van de Budascoop. Ze neemt je mee op een digitale ontdekkingstocht doorheen Google Maps en Streetview. Het gezellig nestelen kan echter al snel wat verontrustend worden… Is dit digitaal bezoek wel zo onschuldig? Komen we toevallig op akelige plekken terecht? Hoe trekt onze eigen nieuwsgierigheid ons hierin verder mee?",
               "text_en": ""
             }
           ],
@@ -303,7 +303,7 @@
       "name": "Curieuze interventies",
       "photo": "/assets/uploads/beeld spoken 1.jpg",
       "photoCredit": "",
-      "bio": "In Kunstencentrum Buda vind je een kauwgomballenautomaat waar je oog in oog komt te staan met je nieuwste angst. Iets grappigs, iets waar je nog nooit bij had stilgestaan, iets dat toch helemaal onder je vel kruipt? Het lot beslist.\n\nIn de centrale bibliotheek kan je dan weer het resultaat aanschouwen van een traject rond angst. Samen met Curieus en Wisper kijken de deelnemers 3 woensdagavonden lang hun angsten in de ogen en vertalen die naar beeldende werken.",
+      "bio": "In Kunstencentrum Buda vind je een kauwgomballenautomaat waar je oog in oog komt te staan met je nieuwste angst. Iets grappigs, iets waar je nog nooit bij had stilgestaan, iets dat toch helemaal onder je vel kruipt? Het lot beslist.\n\n\nIn de centrale bibliotheek kan je dan weer het resultaat aanschouwen van een traject rond angst. Samen met een professionele docent kijken de deelnemers 3 woensdagavonden lang hun angsten in de ogen en vertalen die naar beeldende werken.",
       "bio_en": "At the Buda Arts Centre, you’ll find a gumball machine that brings you face-to-face with your latest fear. Something funny, something you’d never considered before, or something that really gets under your skin? Fate decides.\n\nMeanwhile, at the central library, you can view the results of a project exploring fear. Over the course of three Wednesday evenings, participants—in collaboration with Curieus and Wisper—confront their fears and translate them into visual artworks.",
       "link": "",
       "performances": [
@@ -357,6 +357,27 @@
           "genre": "Podcast",
           "genre_en": "",
           "blurb": "Voor het HuiverHuis maakte Kimme Tigra een podcast: een Gen Z spookverhaal over angst, trauma en wonen in een spookhuis.",
+          "blurb_en": "",
+          "subprogram": []
+        }
+      ]
+    },
+    {
+      "name": "Mooni Van Tichel",
+      "photo": "/assets/uploads/mooni.jpg",
+      "photoCredit": "",
+      "bio": "Mooni Van Tichel maakt met danseres Manon Kanjinga Janssen een korte performance voor SPOKEN. Deze performance zal enkele bewegingsmaterialen samenvoegen, elk gebaseerd op hoe angst en het huidige politieke klimaat zich nestelen in onze lichamen, in onze relaties met elkaar. Ze beginnen niet vanuit een verondersteld gemak van het in relatie gaan met elkaar (zoals soms in hedendaagse dans het geval is), maar net vanuit de moeilijkheden die er kan bestaan met proximiteit (door machtsdynamieken, ieders geleefde ervaring, angsten).",
+      "bio_en": "",
+      "link": "",
+      "performances": [
+        {
+          "city": "kor",
+          "time": "21:00",
+          "end": "",
+          "stage": "Buda",
+          "genre": "Performance",
+          "genre_en": "",
+          "blurb": "Hoe ga je onderling om met verschillende niveaus van kennis, agency, vrijheid en vertrouwen? Wat doen we met die frictie? Hoe uiten die dynamieken zich in onze lichamen?",
           "blurb_en": "",
           "subprogram": []
         }
