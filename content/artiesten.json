@@ -403,6 +403,27 @@
           "subprogram": []
         }
       ]
+    },
+    {
+      "name": "Griezelig voorleesuurtje (GRATIS)",
+      "photo": "/assets/uploads/website-spoken.png",
+      "photoCredit": "Lisa van der Auwera",
+      "bio": "Een vrolijk, griezelig prentenboek vol humor en omgekeerde angsten. Voor kinderen vanaf 4 jaar.",
+      "bio_en": "",
+      "link": "",
+      "performances": [
+        {
+          "city": "ant",
+          "time": "10:30",
+          "end": "11:30",
+          "stage": "Groene Waterman",
+          "genre": "Voorleessessie",
+          "genre_en": "",
+          "blurb": "**Kim Crabeels** leest voor uit haar nieuwe boek ‘Schimmie Spook: het kinderuur’",
+          "blurb_en": "",
+          "subprogram": []
+        }
+      ]
     }
   ]
 }
