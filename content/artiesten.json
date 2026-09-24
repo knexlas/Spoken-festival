@@ -306,7 +306,19 @@
       "bio": "In Kunstencentrum Buda vind je een kauwgomballenautomaat waar je oog in oog komt te staan met je nieuwste angst. Iets grappigs, iets waar je nog nooit bij had stilgestaan, iets dat toch helemaal onder je vel kruipt? Het lot beslist.\n\nIn de centrale bibliotheek kan je dan weer het resultaat aanschouwen van een traject rond angst. Samen met een professionele docent kijken de deelnemers 3 woensdagavonden lang hun angsten in de ogen en vertalen die naar beeldende werken.",
       "bio_en": "At the Buda Arts Centre, you’ll find a gumball machine that brings you face-to-face with your latest fear. Something funny, something you’d never considered before, or something that really gets under your skin? Fate decides.\n\nMeanwhile, at the central library, you can view the results of a project exploring fear. Over the course of three Wednesday evenings, participants—in collaboration with Curieus and Wisper—confront their fears and translate them into visual artworks.",
       "link": "",
-      "performances": []
+      "performances": [
+        {
+          "city": "kor",
+          "time": "10:00",
+          "end": "23:00",
+          "stage": "Bibliotheek & BUDA",
+          "genre": "Interventie",
+          "genre_en": "",
+          "blurb": "In aanloop van SPOKEN werkt Curieus twee interventies uit.",
+          "blurb_en": "",
+          "subprogram": []
+        }
+      ]
     },
     {
       "name": "De Stroate",
@@ -362,7 +374,7 @@
           "city": "kor",
           "time": "21:45",
           "end": "22:00",
-          "stage": "BUDA: rotonde",
+          "stage": "BUDA: Rotonde",
           "genre": "Performance",
           "genre_en": "",
           "blurb": "Hoe ga je onderling om met verschillende niveaus van kennis, agency, vrijheid en vertrouwen? Wat doen we met die frictie? Hoe uiten die dynamieken zich in onze lichamen?",
@@ -383,7 +395,7 @@
           "city": "kor",
           "time": "21:15",
           "end": "21:30",
-          "stage": "BUDA: rotonde",
+          "stage": "BUDA: Rotonde",
           "genre": "Woord",
           "genre_en": "",
           "blurb": "Ilona ging samen met collectiefleden Bart Vanhee, Emma De Poortere en Kato Vancraeynest aan de slag om voor SPOKEN een poëtische performance uit te werken.",
