@@ -153,7 +153,10 @@
   .sec-head{ display:flex; align-items:baseline; gap:16px; margin-bottom:26px; }
   .sec-head h2{ margin:0; font-family:var(--f-display); font-weight:700; font-size:clamp(42px,4.4vw,66px); line-height:1; letter-spacing:0.03em; }
   .sec-head .line{ flex:1; height:1px; background:var(--line); }
-  .schema-zoom{ align-self:center; flex-shrink:0; font-family:var(--f-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--acc); background:transparent; border:1px solid var(--acc); border-radius:999px; padding:6px 14px; cursor:pointer; transition:background .15s ease, color .15s ease; }
+  .schema-tools{ display:flex; margin-top:-6px; margin-bottom:14px; }
+  .schema-tools.tools-start{ justify-content:flex-start; }
+  .schema-tools.tools-end{ justify-content:flex-end; }
+  .schema-zoom{ flex-shrink:0; font-family:var(--f-mono); font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--acc); background:transparent; border:1px solid var(--acc); border-radius:999px; padding:6px 14px; cursor:pointer; transition:background .15s ease, color .15s ease; }
   .schema-zoom:hover{ background:var(--acc); color:var(--bg); }
   .schema.is-zoomed{ --sch-row:48px; }
   .expand-hint{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.2em; color:var(--mut); cursor:pointer; transition:color .2s ease; }
@@ -224,9 +227,9 @@
   .schema-block:hover{ border-color:var(--fg); }
   .schema-block .t{ font-family:var(--f-mono); font-size:9.5px; letter-spacing:0.06em; color:var(--acc); white-space:nowrap; }
   .schema-block .n{ font-family:var(--f-display); font-weight:700; font-size:17px; line-height:1.05; letter-spacing:0.03em; color:var(--fg); overflow:hidden; text-overflow:ellipsis; }
-  /* brief highlight on the programme-list item a schema block points to */
-  .slot.slot-flash{ animation:slotFlash 1.6s ease-out; }
-  @keyframes slotFlash{ from{ background:var(--glow); } to{ background:transparent; } }
+  /* click a block to reveal its full act name in place (short blocks clip it) */
+  .schema-block.is-open{ position:relative; z-index:6; overflow:visible; background:var(--bg); border-color:var(--fg); box-shadow:0 6px 18px rgba(0,0,0,.55); }
+  .schema-block.is-open .n{ white-space:normal; overflow:visible; text-overflow:clip; }
 
   .news-item{ padding:20px 0; border-top:1px solid var(--line); }
   .news-date{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--yellow); }
@@ -827,21 +830,14 @@ stage.addEventListener('click', e => {
     }
     return;
   }
-  // a block in the blokkenschema (often too short to show its title) opens the
-  // matching programme-list item: scroll to it, expand it, briefly highlight it.
-  const block = e.target.closest('.schema-block[data-goto]');
+  // a block in the blokkenschema is often too short to fit its title, so clicking
+  // it reveals the full act name in place. Only one open at a time per schema.
+  const block = e.target.closest('.schema-block');
   if (block){
-    const pk = block.getAttribute('data-goto');
-    const sel = (window.CSS && CSS.escape) ? CSS.escape(pk) : pk.replace(/"/g, '\\"');
-    const slot = stage.querySelector('.slot[data-pk="'+sel+'"]');
-    if (slot){
-      const body = slot.querySelector('.slot-body');
-      const chev = slot.querySelector('.slot-chev');
-      if (body && !body.classList.contains('open')){ body.classList.add('open'); if (chev) chev.textContent = '–'; }
-      slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      slot.classList.remove('slot-flash'); void slot.offsetWidth; slot.classList.add('slot-flash');
-      setTimeout(function(){ slot.classList.remove('slot-flash'); }, 1600);
-    }
+    const wasOpen = block.classList.contains('is-open');
+    const sch = block.closest('.schema');
+    if (sch) sch.querySelectorAll('.schema-block.is-open').forEach(function(b){ b.classList.remove('is-open'); });
+    if (!wasOpen) block.classList.add('is-open');
     return;
   }
   if (mq.matches || state.mechanic !== 'lock') return;
