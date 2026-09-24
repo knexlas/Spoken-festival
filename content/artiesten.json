@@ -12,7 +12,7 @@
           "city": "ant",
           "time": "19:00",
           "end": "20:30",
-          "stage": "Studio",
+          "stage": "Cantin",
           "genre": "Debat",
           "genre_en": "Debate",
           "blurb": "Grenzen stellen, je energie bewaken, voor jezelf zorgen; het is een antwoord op onze prestatiemaatschappij, maar wanneer slaan die acties van verzet om in iets anders?  Wanneer wordt zelfzorg een angst voor het leven zelf?",
@@ -34,7 +34,7 @@
           "city": "ant",
           "time": "19:00",
           "end": "20:45",
-          "stage": "Drive-in cinema",
+          "stage": "Studio",
           "genre": "Film",
           "genre_en": "Film",
           "blurb": "Een horrorfim met introductie.",
@@ -56,7 +56,7 @@
           "city": "ant",
           "time": "21:00",
           "end": "23:00",
-          "stage": "Lemmers",
+          "stage": "Stelling",
           "genre": "Spookhuis",
           "genre_en": "Haunted house",
           "blurb": "De bezoeken aan het HuiverHuis zijn beperkt. Om je plaats bij de performances te garanderen, reserveer je een tijdslot tijdens het festival. Wees er dus vroeg bij! Maximum twee reservaties per persoon.",
@@ -112,9 +112,9 @@
       "performances": [
         {
           "city": "ant",
-          "time": "20:30",
-          "end": "21:00",
-          "stage": "Podium",
+          "time": "21:00",
+          "end": "21:30",
+          "stage": "Studio",
           "genre": "Muziek",
           "genre_en": "Music",
           "blurb": "OLGA is het alter ego van Zita de Aguirre. Alsof ze ontsnapte uit een desoriënterende Lynchfilm, maakt ze vanuit haar slaapkamer minimalistische elektronische darkpop. Door middel van meeslepende beats en verdwaalde soundscapes geeft ze vorm aan haar angsten en verlangens in deze dystopische, aardse wereld. \n\nMomenteel probeert ze uit een koelkast te komen die haar gevangen houdt... help :/",
@@ -136,7 +136,7 @@
           "city": "ant",
           "time": "23:00",
           "end": "23:45",
-          "stage": "Podium",
+          "stage": "Studio",
           "genre": "Muziek",
           "genre_en": "Music",
           "blurb": "Grimmig, bezeten en waarschijnlijk niet bedoeld voor goed verlichte ruimtes. Kleine Kova sluit het festival af.",
@@ -156,9 +156,9 @@
       "performances": [
         {
           "city": "ant",
-          "time": "21:30",
-          "end": "22:30",
-          "stage": "Horrorstage",
+          "time": "21:45",
+          "end": "22:45",
+          "stage": "Cantin",
           "genre": "Open podium",
           "genre_en": "Open stage",
           "blurb": "Wil jij graag een workshop horrorschrijven volgen, en je verhaal op het podium brengen? Kijk dan uit naar de open call voor de horrorstage!",
@@ -200,8 +200,8 @@
       "performances": [
         {
           "city": "kor",
-          "time": "19:45",
-          "end": "21:30",
+          "time": "20:00",
+          "end": "21:45",
           "stage": "BUDA: filmzaal",
           "genre": "Film",
           "genre_en": "Film",
@@ -311,7 +311,7 @@
           "city": "kor",
           "time": "10:00",
           "end": "23:00",
-          "stage": "Buda & de Bib",
+          "stage": "Bib & BUDA",
           "genre": "Interventie",
           "genre_en": "",
           "blurb": "In aanloop van SPOKEN werkt Curieus twee interventies uit.",
@@ -330,9 +330,9 @@
       "performances": [
         {
           "city": "kor",
-          "time": "20:00",
-          "end": "20:15",
-          "stage": "BUDA",
+          "time": "22:45",
+          "end": "23:00",
+          "stage": "BUDA: Rotonde",
           "genre": "Slam",
           "genre_en": "",
           "blurb": "",
@@ -351,9 +351,9 @@
       "performances": [
         {
           "city": "kor",
-          "time": "20:00",
-          "end": "21:15",
-          "stage": "BUDA",
+          "time": "22:15",
+          "end": "22:30",
+          "stage": "BUDA: Rotonde",
           "genre": "Podcast",
           "genre_en": "",
           "blurb": "Voor het HuiverHuis maakte Kimme Tigra een podcast: een Gen Z spookverhaal over angst, trauma en wonen in een spookhuis.",
@@ -372,9 +372,9 @@
       "performances": [
         {
           "city": "kor",
-          "time": "21:00",
-          "end": "",
-          "stage": "Buda",
+          "time": "21:45",
+          "end": "22:00",
+          "stage": "BUDA: rotonde",
           "genre": "Performance",
           "genre_en": "",
           "blurb": "Hoe ga je onderling om met verschillende niveaus van kennis, agency, vrijheid en vertrouwen? Wat doen we met die frictie? Hoe uiten die dynamieken zich in onze lichamen?",
@@ -393,9 +393,9 @@
       "performances": [
         {
           "city": "kor",
-          "time": "21:00",
-          "end": "",
-          "stage": "Buda",
+          "time": "21:15",
+          "end": "21:30",
+          "stage": "BUDA: rotonde",
           "genre": "Woord",
           "genre_en": "",
           "blurb": "Ilona ging samen met collectiefleden Bart Vanhee, Emma De Poortere en Kato Vancraeynest aan de slag om voor SPOKEN een poëtische performance uit te werken.",
