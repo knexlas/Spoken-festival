@@ -43,6 +43,14 @@ local_backend: true
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
 
+# Maak van geüploade bestandsnamen automatisch een URL-veilige naam (spaties en
+# rare tekens eruit), zodat links naar afbeeldingen niet stukgaan bij crawlers,
+# social-media previews of e-mail. Geldt voor nieuwe uploads; bestaande bestanden
+# houden hun naam. (Sveltia CMS-optie.)
+media_libraries:
+  all:
+    slugify_filename: true
+
 # Publiceren gaat rechtstreeks (geen aparte review-stap). Zet onderstaande aan
 # voor een review-workflow via pull requests:
 # publish_mode: editorial_workflow
@@ -258,6 +266,7 @@ collections:
                   - { label: "Starttijd", name: "time", widget: "string", hint: "Bv. 20:00" }
                   - { label: "Eindtijd", name: "end", widget: "string", required: false, hint: "Bv. 21:00 — leeg gelaten telt als 1 uur (voor het blokkenschema)." }
                   - { label: "Podium / zaal", name: "stage", widget: "string" }
+                  - { label: "Niet in blokkenschema tonen", name: "hideInSchema", widget: "boolean", default: false, required: false, hint: "Aan = dit onderdeel verschijnt wél in de programmalijst, maar niet in het blokkenschema (handig voor iets zonder vast tijdsblok, of te kort voor een blok)." }
                   - { label: "Genre / vorm", name: "genre", widget: "string", hint: "Bv. Lezing, Interview, Poëzie, Spoken word, Paneldiscussie, Signeersessie" }
                   - { label: "🇬🇧 Genre / vorm — English", name: "genre_en", widget: "string", required: false, hint: "Bv. Talk, Interview, Poetry. Leeg = Nederlandse tekst." }
                   - { label: "Omschrijving van dit optreden", name: "blurb", widget: "markdown", buttons: ["bold", "italic", "link"], editor_components: [], required: false }
