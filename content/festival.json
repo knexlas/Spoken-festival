@@ -13,9 +13,9 @@
     "description": "SPOKEN — een griezelfestival in Antwerpen & Kortrijk met muziek, film, performance, poëzie, debat, en feest!",
     "shareImage": "/assets/og-image.jpg",
     "programmeReveal": {
-      "showSchema": false,
+      "showSchema": true,
       "hideTimes": false,
-      "hideStages": true
+      "hideStages": false
     },
     "hideCities": false,
     "hideTickets": false,
@@ -101,9 +101,9 @@
   },
   "days": [
     {
+      "date": "31 OKT",
       "id": "za",
-      "label": "ZA",
-      "date": "31 OKT"
+      "label": "ZA"
     }
   ]
 }
