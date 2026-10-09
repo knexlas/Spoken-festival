@@ -357,7 +357,16 @@
   .lb-img{ display:block; width:100%; max-height:78vh; object-fit:contain; border:1px solid rgba(255,255,255,0.1); background:#0b0a09; box-shadow:0 24px 70px rgba(0,0,0,0.6); }
   .lb-credit{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.04em; color:rgba(255,255,255,0.55); }
   .lb-credit:empty{ display:none; }
-  .lb-info{ flex:1 1 42%; max-height:78vh; overflow-y:auto; color:#f3ede2; padding-right:6px; }
+  .lb-info{ flex:1 1 42%; max-height:78vh; overflow-y:auto; color:#f3ede2; padding-right:10px; scrollbar-width:thin; scrollbar-color:rgba(230,211,59,0.75) rgba(255,255,255,0.08); }
+  /* long bios scroll inside this box: an always-visible scrollbar (Mac hides
+     overlay scrollbars) and a fade + arrow while more text sits below */
+  .lb-info::-webkit-scrollbar{ width:6px; }
+  .lb-info::-webkit-scrollbar-track{ background:rgba(255,255,255,0.08); border-radius:3px; }
+  .lb-info::-webkit-scrollbar-thumb{ background:rgba(230,211,59,0.75); border-radius:3px; }
+  .lb-more{ position:sticky; bottom:0; height:64px; margin-top:-64px; display:flex; align-items:flex-end; justify-content:center; background:linear-gradient(180deg, rgba(10,9,8,0) 0%, rgba(10,9,8,0.97) 75%); opacity:0; pointer-events:none; transition:opacity .2s ease; }
+  .lb-info.more .lb-more{ opacity:1; }
+  .lb-more button{ pointer-events:auto; width:34px; height:34px; border:1px solid rgba(230,211,59,0.6); border-radius:999px; background:rgba(11,10,9,0.8); color:#e6d33b; font-size:16px; line-height:1; cursor:pointer; animation:hintPulse 2.4s ease-in-out infinite; }
+  .lb-info:not(.more) .lb-more button{ pointer-events:none; }
   .lb-genre{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#e6d33b; margin-bottom:8px; }
   .lb-genre:empty{ display:none; }
   .lb-name{ font-family:var(--f-display); font-weight:700; font-size:clamp(28px,4vw,46px); line-height:1; letter-spacing:0.02em; margin:0 0 16px; }
@@ -496,6 +505,7 @@
         <div class="lb-genre" id="lb-genre"></div>
         <h3 class="lb-name" id="lb-name"></h3>
         <div class="lb-text" id="lb-text"></div>
+        <div class="lb-more" aria-hidden="true"><button type="button" id="lb-more" tabindex="-1">↓</button></div>
       </div>
     </div>
     <div class="lb-count" id="lb-count"></div>
@@ -932,12 +942,29 @@ function renderLightbox(){
   LB.el.querySelector('.lb-prev').style.display = multi ? '' : 'none';
   LB.el.querySelector('.lb-next').style.display = multi ? '' : 'none';
   const info = LB.el.querySelector('.lb-info'); if (info) info.scrollTop = 0;
+  if (!LB.el.hidden) lbMore();
 }
+/* desktop: a long bio scrolls inside .lb-info. Flag when text is hidden below
+   (fade + arrow), and let the wheel / ↑↓ keys scroll it from anywhere in the
+   lightbox, not only with the pointer over the text. On phones .lb-info
+   doesn't scroll itself (the whole stack does), so none of this kicks in. */
+const lbInfo = LB.el.querySelector('.lb-info');
+const lbScrollable = () => lbInfo.scrollHeight > lbInfo.clientHeight + 1;
+function lbMore(){ lbInfo.classList.toggle('more', lbScrollable() && lbInfo.scrollHeight - lbInfo.scrollTop - lbInfo.clientHeight > 4); }
+lbInfo.addEventListener('scroll', lbMore, { passive: true });
+window.addEventListener('resize', () => { if (!LB.el.hidden) lbMore(); });
+document.getElementById('lb-more').addEventListener('click', () => lbInfo.scrollBy({ top: lbInfo.clientHeight * 0.8, behavior: 'smooth' }));
+LB.el.addEventListener('wheel', e => {
+  if (lbInfo.contains(e.target) || !lbScrollable()) return;
+  e.preventDefault();
+  lbInfo.scrollTop += e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+}, { passive: false });
 function openLightbox(gallery, idx){
   if (!gallery.length) return;
   LB.gallery = gallery; LB.i = idx;
   renderLightbox();
   LB.el.hidden = false; LB.el.setAttribute('aria-hidden', 'false');
+  lbMore();
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox(){
@@ -954,6 +981,11 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowLeft') stepLightbox(-1);
   else if (e.key === 'ArrowRight') stepLightbox(1);
+  else if ((e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp') && lbScrollable()){
+    e.preventDefault();
+    const step = e.key.startsWith('Page') ? lbInfo.clientHeight * 0.8 : 60;
+    lbInfo.scrollBy({ top: e.key.endsWith('Down') ? step : -step, behavior: 'smooth' });
+  }
 });
 let lbTouchX = null, lbTouchY = null;
 LB.el.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; lbTouchY = e.touches[0].clientY; }, { passive: true });
