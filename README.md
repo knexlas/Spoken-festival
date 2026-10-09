@@ -43,10 +43,8 @@ niets hardcoded behalve de structuur.
   de openingsvideo) is vast in `index.html` + `assets/render.mjs` — dit is het v3-ontwerp,
   geen CMS-instelling. Het oude keuze-uit-10-paletten systeem is met v3 verdwenen; de
   krijtblauwe (Antwerpen) / oranje (Kortrijk) / gele kleuren zijn nu definitief.
-- **Artwork** staat in `assets/img/` (`wordmark.png` met het oog, `gezicht.jpg` gezicht-
-  achtergrond, `spook1–5` figuren, `eye-*` knipperframes, `poster.jpg` = achtergrond van
-  de openingsvideo) en `assets/media/intro.mp4`. De openingsvideo speelt "contain" met de
-  poster erachter zodat de zwarte letterbox-balken (vooral op mobiel) gevuld worden.
+- **Artwork** staat in `assets/img/` (`wordmark.webp` met het oog, `gezicht.webp` gezicht-
+  achtergrond, `spook1–5` figuren, `eye-*` knipperframes; allemaal WebP, verkleind voor het web).
   Bron: de Claude Design v3-export (`Spokenv3_extracted/`, gitignored).
 
 ## SEO — automatisch gegenereerd

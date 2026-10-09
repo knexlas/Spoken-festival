@@ -41,3 +41,22 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
+
+# Browser caching (Netlify's default is max-age=0: every visit re-checks every
+# file). /assets/opt/ filenames contain a content hash, so they never change and
+# can be cached for a year. The painted artwork changes rarely: one week. CMS
+# originals can be replaced under the same name: one day.
+[[headers]]
+  for = "/assets/opt/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
