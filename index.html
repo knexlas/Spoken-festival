@@ -66,7 +66,7 @@
      seam down the nose; melts away before the fold */
   .face-bg{
     position:absolute; top:0; left:0; right:0; height:88vh; z-index:0; pointer-events:none;
-    background-image:url('assets/img/gezicht.jpg');
+    background-image:url('assets/img/gezicht.webp');
     background-size:200% auto; background-repeat:no-repeat;
     mix-blend-mode:lighten;
     -webkit-mask-image:linear-gradient(180deg, black 30%, transparent 92%);
@@ -337,22 +337,6 @@
   .hint{ position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:55; pointer-events:none; font-family:var(--f-mono); font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:rgba(255,255,255,0.8); animation:hintPulse 2.6s ease-in-out infinite; text-align:center; background:rgba(11,10,9,0.7); padding:10px 18px; border-radius:999px; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
   .hint.hide{ display:none; }
 
-  /* intro overlay (injected by JS, once per session) */
-  .intro{ position:fixed; inset:0; z-index:100; background:#000; cursor:pointer; opacity:1; transition:opacity 1.25s ease; }
-  .intro.fading{ opacity:0; pointer-events:none; }
-  /* poster backdrop: the painted "world" the opener video sits in. Fills the
-     letterbox bars left by the contained video (esp. big on portrait phones),
-     darkened so the video still reads as the focal point. */
-  .intro .intro-poster{ position:absolute; inset:0; z-index:0; background:#0b0a09 url('assets/img/poster.jpg') center/cover no-repeat; filter:brightness(0.62) saturate(1.05); }
-  .intro video{ position:absolute; inset:0; z-index:1; width:100%; height:100%; object-fit:contain; display:block; }
-  .intro .intro-vignette{ position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.6) 100%); }
-  /* clear, obviously-tappable skip control — corner button + a button-styled
-     bottom label — so on a phone it's never unclear the opener is skippable */
-  .intro .intro-skip{ position:absolute; top:calc(16px + env(safe-area-inset-top,0px)); right:16px; z-index:3; display:inline-flex; align-items:center; gap:8px; padding:9px 16px; border:1px solid rgba(230,211,59,0.6); border-radius:999px; background:rgba(11,10,9,0.55); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); color:var(--yellow); font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; cursor:pointer; }
-  .intro .intro-skip .x{ font-size:14px; line-height:1; }
-  .intro .intro-label{ position:absolute; z-index:3; bottom:calc(30px + env(safe-area-inset-bottom,0px)); left:50%; transform:translateX(-50%); padding:12px 22px; border:1.5px solid var(--yellow); border-radius:999px; background:rgba(11,10,9,0.35); font-family:var(--f-display); font-weight:700; font-size:22px; letter-spacing:0.16em; color:var(--yellow); animation:hintPulse 2.4s ease-in-out infinite; white-space:nowrap; text-align:center; }
-  @media (max-width: 640px){ .intro .intro-label{ font-size:19px; padding:11px 18px; } }
-
   /* city toggle — lives in the top banner, shown on mobile only. Being
      top-fixed (in the banner) it stays reliably visible on Android, unlike
      the old bottom-fixed pill that the URL bar could hide. */
@@ -374,6 +358,12 @@
   .lb-credit{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.04em; color:rgba(255,255,255,0.55); }
   .lb-credit:empty{ display:none; }
   .lb-info{ flex:1 1 42%; max-height:78vh; overflow-y:auto; color:#f3ede2; padding-right:6px; }
+  /* long bios scroll inside this box (browser's own scrollbar): a fade +
+     arrow shows while more text sits below */
+  .lb-more{ position:sticky; bottom:0; height:64px; margin-top:-64px; display:flex; align-items:flex-end; justify-content:center; background:linear-gradient(180deg, rgba(10,9,8,0) 0%, rgba(10,9,8,0.97) 75%); opacity:0; pointer-events:none; transition:opacity .2s ease; }
+  .lb-info.more .lb-more{ opacity:1; }
+  .lb-more button{ pointer-events:auto; width:34px; height:34px; border:1px solid rgba(230,211,59,0.6); border-radius:999px; background:rgba(11,10,9,0.8); color:#e6d33b; font-size:16px; line-height:1; cursor:pointer; animation:hintPulse 2.4s ease-in-out infinite; }
+  .lb-info:not(.more) .lb-more button{ pointer-events:none; }
   .lb-genre{ font-family:var(--f-mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#e6d33b; margin-bottom:8px; }
   .lb-genre:empty{ display:none; }
   .lb-name{ font-family:var(--f-display); font-weight:700; font-size:clamp(28px,4vw,46px); line-height:1; letter-spacing:0.02em; margin:0 0 16px; }
@@ -387,7 +377,11 @@
   .lb-prev{ left:14px; } .lb-next{ right:14px; }
   .lb-count{ position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-family:var(--f-mono); font-size:11px; letter-spacing:0.14em; color:rgba(255,255,255,0.6); }
   @media (max-width: 760px){
-    .lb-inner{ flex-direction:column; gap:14px; max-height:none; overflow-y:auto; }
+    /* photo + text stack taller than the screen: make the stack itself the
+       scroll area (capped to the lightbox) and start it at the top — centred,
+       it overflowed both ends with nothing scrollable */
+    .lightbox{ align-items:flex-start; padding:64px 12px 40px; }
+    .lb-inner{ flex-direction:column; gap:14px; max-height:100%; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch; }
     .lb-figure{ flex:none; width:100%; align-items:center; }
     .lb-img{ max-height:52vh; }
     .lb-info{ flex:none; width:100%; max-height:none; overflow:visible; padding-right:0; }
@@ -467,12 +461,12 @@
   <header class="topbar" id="topbar">
     <div class="tb-brand">
       <div class="wordmark">
-        <img class="wm-img" src="assets/img/wordmark.png" alt="SPOKEN">
+        <img class="wm-img" src="assets/img/wordmark.webp" alt="SPOKEN">
         <div class="eye" data-eye data-frame="0">
-          <div class="eye-clip"><div class="eye-iris" data-iris><img src="assets/img/wordmark.png" alt=""></div></div>
-          <img class="eye-lid" data-lid="1" src="assets/img/eye-half.png" alt="">
-          <img class="eye-lid" data-lid="2" src="assets/img/eye-75.png" alt="">
-          <img class="eye-lid" data-lid="3" src="assets/img/eye-closed.png" alt="">
+          <div class="eye-clip"><div class="eye-iris" data-iris><img src="assets/img/wordmark.webp" alt=""></div></div>
+          <img class="eye-lid" data-lid="1" src="assets/img/eye-half.webp" alt="">
+          <img class="eye-lid" data-lid="2" src="assets/img/eye-75.webp" alt="">
+          <img class="eye-lid" data-lid="3" src="assets/img/eye-closed.webp" alt="">
         </div>
       </div>
       <span class="tb-date">31.10.2026</span>
@@ -508,6 +502,7 @@
         <div class="lb-genre" id="lb-genre"></div>
         <h3 class="lb-name" id="lb-name"></h3>
         <div class="lb-text" id="lb-text"></div>
+        <div class="lb-more" aria-hidden="true"><button type="button" id="lb-more" tabindex="-1">↓</button></div>
       </div>
     </div>
     <div class="lb-count" id="lb-count"></div>
@@ -644,55 +639,6 @@ function attachFigureParallax(){
       });
     }, { passive: true });
   });
-}
-
-/* ---------- intro overlay: painted opener, once per session ---------- */
-function maybeShowIntro(labels){
-  // Plays on every visit (the client wants it to greet returning visitors),
-  // so there is no "already seen" gate anymore.
-  state.introActive = true;
-  const el = document.createElement('div');
-  el.className = 'intro muted';
-  el.innerHTML =
-    '<div class="intro-poster"></div>' +
-    '<video autoplay muted playsinline src="assets/media/intro.mp4"></video>' +
-    '<div class="intro-vignette"></div>' +
-    '<button type="button" class="intro-skip">Overslaan <span class="x">✕</span></button>' +
-    '<div class="intro-label"></div>';
-  const labelEl = el.querySelector('.intro-label');
-  // Mobile browsers block autoplay WITH sound, so we start muted (which is
-  // allowed) and invite one tap to switch the sound on.
-  labelEl.textContent = '🔊 ' + (labels.introGeluid || 'TIK VOOR GELUID');
-  document.body.appendChild(el);
-  const video = el.querySelector('video');
-  if (video.play) video.play().catch(() => {});
-
-  let soundOn = false;
-  const enableSound = () => {
-    soundOn = true;
-    el.classList.remove('muted');
-    video.muted = false;
-    try { video.volume = 1; } catch (e) {}
-    // Restart so they hear the soundtrack from the top, not mid-clip.
-    try { video.currentTime = 0; } catch (e) {}
-    video.play().catch(() => {});
-    labelEl.textContent = labels.introKnop;
-  };
-
-  let done = false;
-  const dismiss = () => {
-    if (done) return;
-    done = true;
-    el.classList.add('fading');
-    setTimeout(() => { el.remove(); state.introActive = false; }, 1300);
-  };
-
-  el.addEventListener('click', (e) => {
-    if (e.target.closest('.intro-skip')) { dismiss(); return; } // ✕ always closes
-    if (!soundOn) { enableSound(); return; }                    // first tap = sound
-    dismiss();                                                  // then tap to enter
-  });
-  video.addEventListener('ended', dismiss);
 }
 
 /* the eye follows the cursor anywhere on the page (the banner sits above the
@@ -974,7 +920,7 @@ function collectGallery(panel){
   return [...panel.querySelectorAll('.slot')]
     .filter(s => s.querySelector('.slot-photo.has-img img'))
     .map(s => ({
-      src: s.querySelector('.slot-photo.has-img img').getAttribute('src'),
+      src: (img => img.dataset.full || img.getAttribute('src'))(s.querySelector('.slot-photo.has-img img')),
       name: (s.querySelector('.slot-artist')?.textContent || '').trim(),
       genre: (s.querySelector('.slot-genre')?.textContent || '').trim(),
       credit: (s.querySelector('.slot-photo .credit')?.textContent || '').replace(/^©\s*/, '').trim(),
@@ -993,12 +939,29 @@ function renderLightbox(){
   LB.el.querySelector('.lb-prev').style.display = multi ? '' : 'none';
   LB.el.querySelector('.lb-next').style.display = multi ? '' : 'none';
   const info = LB.el.querySelector('.lb-info'); if (info) info.scrollTop = 0;
+  if (!LB.el.hidden) lbMore();
 }
+/* desktop: a long bio scrolls inside .lb-info. Flag when text is hidden below
+   (fade + arrow), and let the wheel / ↑↓ keys scroll it from anywhere in the
+   lightbox, not only with the pointer over the text. On phones .lb-info
+   doesn't scroll itself (the whole stack does), so none of this kicks in. */
+const lbInfo = LB.el.querySelector('.lb-info');
+const lbScrollable = () => lbInfo.scrollHeight > lbInfo.clientHeight + 1;
+function lbMore(){ lbInfo.classList.toggle('more', lbScrollable() && lbInfo.scrollHeight - lbInfo.scrollTop - lbInfo.clientHeight > 4); }
+lbInfo.addEventListener('scroll', lbMore, { passive: true });
+window.addEventListener('resize', () => { if (!LB.el.hidden) lbMore(); });
+document.getElementById('lb-more').addEventListener('click', () => lbInfo.scrollBy({ top: lbInfo.clientHeight * 0.8, behavior: 'smooth' }));
+LB.el.addEventListener('wheel', e => {
+  if (lbInfo.contains(e.target) || !lbScrollable()) return;
+  e.preventDefault();
+  lbInfo.scrollTop += e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+}, { passive: false });
 function openLightbox(gallery, idx){
   if (!gallery.length) return;
   LB.gallery = gallery; LB.i = idx;
   renderLightbox();
   LB.el.hidden = false; LB.el.setAttribute('aria-hidden', 'false');
+  lbMore();
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox(){
@@ -1015,13 +978,20 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLightbox();
   else if (e.key === 'ArrowLeft') stepLightbox(-1);
   else if (e.key === 'ArrowRight') stepLightbox(1);
+  else if ((e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'PageDown' || e.key === 'PageUp') && lbScrollable()){
+    e.preventDefault();
+    const step = e.key.startsWith('Page') ? lbInfo.clientHeight * 0.8 : 60;
+    lbInfo.scrollBy({ top: e.key.endsWith('Down') ? step : -step, behavior: 'smooth' });
+  }
 });
-let lbTouchX = null;
-LB.el.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+let lbTouchX = null, lbTouchY = null;
+LB.el.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; lbTouchY = e.touches[0].clientY; }, { passive: true });
 LB.el.addEventListener('touchend', e => {
   if (lbTouchX == null) return;
-  const dx = e.changedTouches[0].clientX - lbTouchX; lbTouchX = null;
-  if (Math.abs(dx) > 45) stepLightbox(dx < 0 ? 1 : -1);
+  const dx = e.changedTouches[0].clientX - lbTouchX, dy = e.changedTouches[0].clientY - lbTouchY;
+  lbTouchX = lbTouchY = null;
+  // only a clearly sideways swipe changes artist; a (slightly diagonal) scroll must not
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) stepLightbox(dx < 0 ? 1 : -1);
 }, { passive: true });
 
 boot();

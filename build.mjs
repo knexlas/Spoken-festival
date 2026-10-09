@@ -12,13 +12,58 @@
 
    Run:  node build.mjs      Output:  dist/
    ========================================================================= */
-import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { renderPanels, esc, cityPerformances } from './assets/render.mjs';
+import { createHash } from 'node:crypto';
+import sharp from 'sharp';
+import { renderPanels, esc, cityPerformances, imgSrc } from './assets/render.mjs';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const dist = join(root, 'dist');
+
+rmSync(dist, { recursive: true, force: true });
+mkdirSync(dist, { recursive: true });
+
+/* ---- web-sized copies of every CMS upload ----
+   Editors upload straight-off-the-camera photos (3000+ px, 3–5 MB) that the
+   page shows at 128×96. Serving those originals is what burned the Netlify
+   bandwidth, so every image in assets/uploads gets three WebP variants:
+     thumb  400×300 cover  — programme tile
+     med    max 900 px     — news images, posters, logos
+     full   max 1600 px    — lightbox
+   The filename carries a content hash, so a replaced photo gets a new URL and
+   /assets/opt/* can be cached by browsers for a year (see netlify.toml).
+   The originals are still deployed (and still what the CMS shows), but the
+   page no longer links to them. */
+const VARIANTS = {
+  thumb: p => p.resize({ width: 400, height: 300, fit: 'outside', withoutEnlargement: true }).webp({ quality: 76 }),
+  med:   p => p.resize({ width: 900, height: 900, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }),
+  full:  p => p.resize({ width: 1600, height: 1600, fit: 'inside', withoutEnlargement: true }).webp({ quality: 80 }),
+};
+const images = {};
+const uploadsDir = join(root, 'assets', 'uploads');
+const optDir = join(dist, 'assets', 'opt');
+mkdirSync(optDir, { recursive: true });
+for (const file of existsSync(uploadsDir) ? readdirSync(uploadsDir) : []) {
+  if (!/\.(jpe?g|png|webp|gif|tiff?)$/i.test(file)) continue;
+  const buf = readFileSync(join(uploadsDir, file));
+  const slug = file.replace(/\.[^.]+$/, '').normalize('NFKD').replace(/[^\w-]+/g, '-').replace(/^-+|-+$/g, '').toLowerCase() || 'img';
+  const hash = createHash('sha1').update(buf).digest('hex').slice(0, 8);
+  const entry = {};
+  try {
+    for (const [size, encode] of Object.entries(VARIANTS)) {
+      const name = `${slug}-${hash}-${size}.webp`;
+      await encode(sharp(buf).rotate()).toFile(join(optDir, name));
+      entry[size] = `/assets/opt/${name}`;
+    }
+  } catch (err) {
+    // an unreadable upload must never block a deploy: the page falls back to the original
+    console.warn(`⚠ could not resize ${file} (${err.message}) — serving the original`);
+    continue;
+  }
+  images[`assets/uploads/${file}`] = entry;
+}
 
 const readJson = name => JSON.parse(readFileSync(join(root, 'content', name), 'utf8'));
 const { festival, labels, days } = readJson('festival.json');
@@ -27,6 +72,7 @@ const data = {
   cities: [readJson('antwerpen.json'), readJson('kortrijk.json')],
   artists: readJson('artiesten.json').artists || [],
   news: readJson('nieuws.json'),
+  images,
 };
 const f = data.festival;
 const artistByName = Object.fromEntries(data.artists.filter(a => a && a.name).map(a => [String(a.name).trim(), a]));
@@ -68,7 +114,7 @@ const events = data.cities.map(c => ({
     const a = artistByName[String(name || '').trim()];
     return {
       '@type': 'Person', name,
-      ...(a && a.photo ? { image: absUrl(a.photo) } : {}),
+      ...(a && a.photo ? { image: absUrl(imgSrc(data, a.photo, 'full')) } : {}),
       ...(a && a.bio ? { description: a.bio } : {}),
     };
   }),
@@ -115,8 +161,6 @@ html = html
   .replace("./assets/render.mjs", `./assets/render.mjs?v=${Date.now()}`);
 
 /* ---- write dist ---- */
-rmSync(dist, { recursive: true, force: true });
-mkdirSync(dist, { recursive: true });
 writeFileSync(join(dist, 'index.html'), html);
 cpSync(join(root, 'assets'), join(dist, 'assets'), { recursive: true });
 cpSync(join(root, 'content'), join(dist, 'content'), { recursive: true });
