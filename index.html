@@ -357,12 +357,9 @@
   .lb-img{ display:block; width:100%; max-height:78vh; object-fit:contain; border:1px solid rgba(255,255,255,0.1); background:#0b0a09; box-shadow:0 24px 70px rgba(0,0,0,0.6); }
   .lb-credit{ font-family:var(--f-mono); font-size:10px; letter-spacing:0.04em; color:rgba(255,255,255,0.55); }
   .lb-credit:empty{ display:none; }
-  .lb-info{ flex:1 1 42%; max-height:78vh; overflow-y:auto; color:#f3ede2; padding-right:10px; scrollbar-width:thin; scrollbar-color:rgba(230,211,59,0.75) rgba(255,255,255,0.08); }
-  /* long bios scroll inside this box: an always-visible scrollbar (Mac hides
-     overlay scrollbars) and a fade + arrow while more text sits below */
-  .lb-info::-webkit-scrollbar{ width:6px; }
-  .lb-info::-webkit-scrollbar-track{ background:rgba(255,255,255,0.08); border-radius:3px; }
-  .lb-info::-webkit-scrollbar-thumb{ background:rgba(230,211,59,0.75); border-radius:3px; }
+  .lb-info{ flex:1 1 42%; max-height:78vh; overflow-y:auto; color:#f3ede2; padding-right:6px; }
+  /* long bios scroll inside this box (browser's own scrollbar): a fade +
+     arrow shows while more text sits below */
   .lb-more{ position:sticky; bottom:0; height:64px; margin-top:-64px; display:flex; align-items:flex-end; justify-content:center; background:linear-gradient(180deg, rgba(10,9,8,0) 0%, rgba(10,9,8,0.97) 75%); opacity:0; pointer-events:none; transition:opacity .2s ease; }
   .lb-info.more .lb-more{ opacity:1; }
   .lb-more button{ pointer-events:auto; width:34px; height:34px; border:1px solid rgba(230,211,59,0.6); border-radius:999px; background:rgba(11,10,9,0.8); color:#e6d33b; font-size:16px; line-height:1; cursor:pointer; animation:hintPulse 2.4s ease-in-out infinite; }
