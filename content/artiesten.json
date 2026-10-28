@@ -440,6 +440,28 @@
           "subprogram": []
         }
       ]
+    },
+    {
+      "name": "Expo",
+      "photo": "/assets/uploads/cootje-lisa.jpg",
+      "photoCredit": "Dimitris Siokis",
+      "bio": "Lisa Van der Auwera is striptekenaar en grafisch verteller gevestigd in Antwerpen. In 2025 studeerde ze als beste van haar jaar af in de bacheloropleiding Strips aan de LUCA School of Arts (Brussel). Momenteel combineert ze haar masteropleiding met een parttime baan in de literaire sector. Ze heeft verschillende zines in eigen beheer uitgegeven, waaronder Heatwaves (2023) en You Have to See Pompeii (2025). Haar werk put inspiratie voornamelijk uit het alledaagse, maar bevraagt tegelijkertijd haar rol als observator. De wisselwerking tussen tekst en beeld staat momenteel centraal in haar praktijk.\n\nDe figuratieve patchworkwerken van Cootje Veelenturf verbeelden een binnenwereld waarin emotie, intuïtie en herinnering samenkomen. Het lichaam vormt een vertrekpunt voor intense gevoelens en voorstellingen, die ze vertaalt naar figuren, landschappen, dieren en objecten die zich tot elkaar verhouden. \n\nVeelenturf heeft een achtergrond in theater en ervaring met fotografie, performance en installatie. Haar textielwerken ontstaan instinctief uit een veelheid aan kleuren, verven en stoffen, die ze vaak recyclet en opnieuw bewerkt. Onregelmatigheden blijven zichtbaar en worden onderdeel van het beeld. Zo ontstaat textielkunst die niet zozeer verklaart, maar onthult: een tactiele zoektocht naar wat er onder de oppervlakte leeft, die uitnodigt om te voelen.",
+      "bio_en": "",
+      "link": "",
+      "performances": [
+        {
+          "city": "ant",
+          "time": "18:00",
+          "end": "23:30",
+          "stage": "Blikfabriek",
+          "hideInSchema": false,
+          "genre": "expo",
+          "genre_en": "",
+          "blurb": "Je zag de spookjes van Lisa Van der Auwera al verschijnen op de poster, website, en op social media - en ook zaterdag tijdens het festival kan je ze tegen het lijf lopen. Naast de spoken van Lisa, kan je ook enkele werken van Cootje Veelenturf bewonderen tijdens SPOKEN.",
+          "blurb_en": "",
+          "subprogram": []
+        }
+      ]
     }
   ]
 }
